@@ -6,9 +6,11 @@ public class playerController : MonoBehaviour {
 
     //variables
     public float mSpeed;
+    public int health;
     // Use this for initialization
     void Start () {
-        mSpeed = .05f;
+        mSpeed = .03f;
+        health = 20;
     }
 	
 	// Update is called once per frame
