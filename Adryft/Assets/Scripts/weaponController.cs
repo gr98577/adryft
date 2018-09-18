@@ -6,6 +6,7 @@ public class weaponController : MonoBehaviour {
 
     // Variables
     public GameObject player;
+    public int pickedUp = 0;
 
     // Use this for initialization
     void Start () {
@@ -14,11 +15,14 @@ public class weaponController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Vector3 mousePosition = Input.mousePosition;
-        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        if (pickedUp == 1)
+        {
+            Vector3 mousePosition = Input.mousePosition;
+            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
-        attachPlayer(mousePosition);
-        faceMouse(mousePosition);
+            attachPlayer(mousePosition);
+            faceMouse(mousePosition);
+        }
     }
 
     void attachPlayer(Vector3 mouse)
@@ -48,5 +52,13 @@ public class weaponController : MonoBehaviour {
                     mouse.y - transform.position.y);
         transform.up = direction;
 
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            pickedUp = 1;
+        }
     }
 }

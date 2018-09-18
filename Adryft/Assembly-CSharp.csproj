@@ -55,6 +55,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\playerController.cs" />
+     <Compile Include="Assets\Scripts\tProjectileController.cs" />
      <Compile Include="Assets\Scripts\turretController.cs" />
      <Compile Include="Assets\Scripts\weaponController.cs" />
  <Reference Include="UnityEditor.StandardEvents">

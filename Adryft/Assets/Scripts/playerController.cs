@@ -15,9 +15,20 @@ public class playerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
         transform.Translate(mSpeed * Input.GetAxisRaw("Horizontal"), mSpeed * Input.GetAxisRaw("Vertical"), 0f);
+        Debug.Log("Health = " + health);
 
-        //original: transform.Translate(mSpeed * Input.GetAxis("Horizontal") * Time.deltaTime, mSpeed * Input.GetAxis("Vertical") * Time.deltaTime, 0f);
+        if (health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Projectile"))
+        {
+            health = health - 2;
+        }
     }
 }
