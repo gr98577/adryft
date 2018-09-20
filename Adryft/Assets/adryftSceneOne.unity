@@ -2127,6 +2127,17 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114281701901755622, guid: 9d8c86912fa90eb4a913b81ba563cb51,
+        type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 2123364112}
+    - target: {fileID: 114281701901755622, guid: 9d8c86912fa90eb4a913b81ba563cb51,
+        type: 2}
+      propertyPath: success
+      value: 
+      objectReference: {fileID: 1623002884717914, guid: b3eb417578898504dbe22b4263a156f8,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d8c86912fa90eb4a913b81ba563cb51, type: 2}
   m_IsPrefabAsset: 0
@@ -2420,8 +2431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7aa633ca82993e40bfed1c8e3a34ed7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mSpeed: 0
-  health: 0
+  gameOver: {fileID: 1053966815656050, guid: 7a2953a0b6a00ec45a87a185d3f5fc43, type: 2}
 --- !u!212 &2123364114
 SpriteRenderer:
   m_ObjectHideFlags: 0

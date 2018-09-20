@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ObjectiveController : MonoBehaviour {
 
+    public GameObject player;
+    public GameObject success;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -19,6 +22,9 @@ public class ObjectiveController : MonoBehaviour {
         if (collision.CompareTag("Player"))
         {
             Debug.Log("CONGRADULATIONS");
+            var clone = Instantiate(success, player.transform.position, Quaternion.identity);
+
+            Destroy(player);
         }
     }
 }

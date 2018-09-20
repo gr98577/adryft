@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\pProjectileController.cs" />
     <Compile Include="Assets\Scripts\tProjectileController.cs" />
     <Compile Include="Assets\Scripts\turretController.cs" />
+    <Compile Include="Assets\Scripts\UIController.cs" />
     <Compile Include="Assets\Scripts\weaponController.cs" />
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

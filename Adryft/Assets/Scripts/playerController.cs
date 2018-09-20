@@ -5,8 +5,11 @@ using UnityEngine;
 public class playerController : MonoBehaviour {
 
     //variables
-    public float mSpeed;
-    public int health;
+    float mSpeed;
+    int health;
+
+    public GameObject gameOver;
+
     // Use this for initialization
     void Start () {
         mSpeed = .03f;
@@ -20,7 +23,7 @@ public class playerController : MonoBehaviour {
 
         if (health <= 0)
         {
-            Debug.Log("GAME OVER!");
+            var clone = Instantiate(gameOver, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
     }
