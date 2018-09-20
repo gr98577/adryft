@@ -6,7 +6,10 @@ public class weaponController : MonoBehaviour {
 
     // Variables
     public GameObject player;
+    public GameObject projectile;
+
     public int pickedUp = 0;
+    public bool canFire = true;
 
     // Use this for initialization
     void Start () {
@@ -22,6 +25,11 @@ public class weaponController : MonoBehaviour {
 
             attachPlayer(mousePosition);
             faceMouse(mousePosition);
+        }
+
+        if (Input.GetButtonDown("Fire1") && canFire)
+        {
+                StartCoroutine(Fire());
         }
     }
 
@@ -60,5 +68,16 @@ public class weaponController : MonoBehaviour {
         {
             pickedUp = 1;
         }
+    }
+
+    IEnumerator Fire()
+    {
+        //n++;
+        //Debug.Log("Shoot no." + n);
+        var clone = Instantiate(projectile, transform.position, Quaternion.identity);
+        clone.transform.up = transform.up;
+        canFire = false;
+        yield return new WaitForSeconds(0.5F);
+        canFire = true;
     }
 }

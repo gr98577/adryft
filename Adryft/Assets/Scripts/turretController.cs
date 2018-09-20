@@ -11,6 +11,7 @@ public class turretController : MonoBehaviour {
     public float range = 5;
     public float dist;
     public bool canShoot = true;
+    public int health = 6;
 
     //public float projectileSpeed = 5;
 
@@ -34,7 +35,12 @@ public class turretController : MonoBehaviour {
         {
             StartCoroutine(Shoot()); 
         }
-	}
+
+        if (health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
 
     void FacePlayer()
     {
@@ -59,5 +65,13 @@ public class turretController : MonoBehaviour {
         canShoot = false;
         yield return new WaitForSeconds(0.75F);
         canShoot = true;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("playerProjectile"))
+        {
+            health = health - 2;
+        }
     }
 }

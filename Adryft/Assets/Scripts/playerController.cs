@@ -11,22 +11,23 @@ public class playerController : MonoBehaviour {
     void Start () {
         mSpeed = .03f;
         health = 20;
+        Debug.Log("GAME START!");
     }
 	
 	// Update is called once per frame
 	void Update () {
         transform.Translate(mSpeed * Input.GetAxisRaw("Horizontal"), mSpeed * Input.GetAxisRaw("Vertical"), 0f);
-        Debug.Log("Health = " + health);
 
         if (health <= 0)
         {
+            Debug.Log("GAME OVER!");
             Destroy(this.gameObject);
         }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Projectile"))
+        if (collision.CompareTag("enemyProjectile"))
         {
             health = health - 2;
         }

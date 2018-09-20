@@ -62,7 +62,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\ObjectiveController.cs" />
     <Compile Include="Assets\Scripts\playerController.cs" />
+    <Compile Include="Assets\Scripts\pProjectileController.cs" />
     <Compile Include="Assets\Scripts\tProjectileController.cs" />
     <Compile Include="Assets\Scripts\turretController.cs" />
     <Compile Include="Assets\Scripts\weaponController.cs" />
