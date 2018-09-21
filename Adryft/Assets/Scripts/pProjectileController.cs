@@ -10,7 +10,7 @@ public class pProjectileController : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        
+        StartCoroutine(life());
     }
 
     // Update is called once per frame
@@ -31,6 +31,12 @@ public class pProjectileController : MonoBehaviour {
         {
             Destroy(this.gameObject);
         }
+    }
+
+    IEnumerator life()
+    {
+        yield return new WaitForSeconds(5F);
+        Destroy(this.gameObject);
     }
 }
 

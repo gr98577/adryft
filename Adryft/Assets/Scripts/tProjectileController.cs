@@ -6,8 +6,8 @@ public class tProjectileController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        
-	}
+        StartCoroutine(life());
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -20,5 +20,11 @@ public class tProjectileController : MonoBehaviour {
         {
             Destroy(this.gameObject);
         }
+    }
+
+    IEnumerator life()
+    {
+        yield return new WaitForSeconds(5F);
+        Destroy(this.gameObject);
     }
 }
