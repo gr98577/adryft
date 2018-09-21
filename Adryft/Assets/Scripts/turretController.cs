@@ -13,14 +13,17 @@ public class turretController : MonoBehaviour {
     public bool canShoot = true;
     public int health = 6;
 
+    public AudioSource dootSource;
+    public AudioSource echoDootSource;
+
     //public float projectileSpeed = 5;
 
     //public int n = 0;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
-
+        dootSource = GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -36,10 +39,12 @@ public class turretController : MonoBehaviour {
             StartCoroutine(Shoot()); 
         }
 
+
         if (health <= 0)
         {
             Destroy(this.gameObject);
         }
+        
     }
 
     void FacePlayer()
@@ -71,6 +76,7 @@ public class turretController : MonoBehaviour {
     {
         if (collision.CompareTag("playerProjectile"))
         {
+            dootSource.Play();
             health = health - 2;
         }
     }

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class playerController : MonoBehaviour {
 
+    public AudioSource ochSource;
+
+
     //variables
     float mSpeed;
     int health;
@@ -15,6 +18,8 @@ public class playerController : MonoBehaviour {
         mSpeed = .03f;
         health = 20;
         Debug.Log("GAME START!");
+
+        ochSource = GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -32,7 +37,12 @@ public class playerController : MonoBehaviour {
     {
         if (collision.CompareTag("enemyProjectile"))
         {
+            //health
             health = health - 2;
+            //hurt sound
+            ochSource.Play();
+
+
         }
     }
 }
