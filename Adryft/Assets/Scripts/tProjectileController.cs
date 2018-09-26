@@ -16,7 +16,7 @@ public class tProjectileController : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") || collision.CompareTag("Wall"))
         {
             Destroy(this.gameObject);
         }

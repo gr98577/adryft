@@ -5,16 +5,23 @@ using UnityEngine;
 public class turretController : MonoBehaviour {
 
     // Variables
-    public GameObject player;
-    public GameObject projectile;
 
-    public float range = 5;
-    public float dist;
-    public bool canShoot = true;
-    public int health = 6;
+    [SerializeField]
+    private GameObject player;
+    [SerializeField]
+    private GameObject projectile;
+    [SerializeField]
+    private GameObject deadSprite;
 
-    public AudioSource dootSource;
-    public AudioSource echoDootSource;
+    private float range = 5;
+    private float dist;
+    private bool canShoot = true;
+    private int health = 6;
+
+    [SerializeField]
+    private AudioSource dootSource;
+    [SerializeField]
+    private AudioSource echoDootSource;
 
     //public float projectileSpeed = 5;
 
@@ -42,6 +49,7 @@ public class turretController : MonoBehaviour {
 
         if (health <= 0)
         {
+            var clone = Instantiate(deadSprite, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
         

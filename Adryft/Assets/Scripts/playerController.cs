@@ -2,29 +2,49 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerController : MonoBehaviour {
+public class playerController : MonoBehaviour
+{
 
-    public AudioSource ochSource;
+    // Game Object Variables
+    [SerializeField]
+    private AudioSource ochSource;
+    [SerializeField]
+    private GameObject gameOver;
 
+   
+    
 
     //variables
-    float mSpeed;
-    int health;
+    private float mSpeed;
+    private float tSpeed;
+    private int health;
+    private bool stun;
+    private int dash;
+    private Vector3 direction;
 
-    public GameObject gameOver;
+
 
     // Use this for initialization
-    void Start () {
-        mSpeed = .03f;
+    void Start()
+    {
+        mSpeed = 2f;
         health = 20;
         Debug.Log("GAME START!");
 
         ochSource = GetComponent<AudioSource>();
     }
-	
-	// Update is called once per frame
-	void Update () {
-        transform.Translate(mSpeed * Input.GetAxisRaw("Horizontal"), mSpeed * Input.GetAxisRaw("Vertical"), 0f);
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (stun)
+        {
+            //do nothing for now
+        }
+        else
+        {
+            Move();
+        }
 
         if (health <= 0)
         {
@@ -33,16 +53,49 @@ public class playerController : MonoBehaviour {
         }
     }
 
+    void Move()
+    {
+        if (Input.GetButtonDown("Jump") && dash == 0)
+        {
+            dash = 1;
+            StartCoroutine(Dash());
+        }
+
+        if (dash == 1)
+        {
+            tSpeed = mSpeed * Time.deltaTime * 5;
+        }
+        else
+        {
+            tSpeed = mSpeed * Time.deltaTime;
+        }
+        direction = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0f);
+        transform.Translate(tSpeed * direction.normalized);
+    }
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("enemyProjectile"))
         {
-            //health
-            health = health - 2;
-            //hurt sound
-            ochSource.Play();
-
-
+            if (dash != 1)
+            {
+                //health
+                health = health - 2;
+                //hurt sound
+                ochSource.Play();
+            }
         }
     }
+
+
+
+    IEnumerator Dash()
+    {
+        yield return new WaitForSeconds(0.15F);
+        dash = 2;
+        yield return new WaitForSeconds(1F);
+        dash = 0;
+    }
 }
+
+        

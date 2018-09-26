@@ -5,11 +5,13 @@ using UnityEngine;
 public class weaponController : MonoBehaviour {
 
     // Variables
-    public GameObject player;
-    public GameObject projectile;
+    [SerializeField]
+    private GameObject player;
+    [SerializeField]
+    private GameObject projectile;
 
-    public int pickedUp = 0;
-    public bool canFire = true;
+    private int pickedUp = 0;
+    private bool canFire = true;
 
     // Use this for initialization
     void Start () {
@@ -17,7 +19,7 @@ public class weaponController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void LateUpdate () {
         if (pickedUp == 1)
         {
             Vector3 mousePosition = Input.mousePosition;
@@ -27,7 +29,7 @@ public class weaponController : MonoBehaviour {
             faceMouse(mousePosition);
         }
 
-        if (Input.GetButtonDown("Fire1") && canFire)
+        if (Input.GetButtonDown("Fire2") && canFire)
         {
                 StartCoroutine(Fire());
         }

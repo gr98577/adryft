@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class ObjectiveController : MonoBehaviour {
 
-    public GameObject player;
-    public GameObject success;
+    [SerializeField]
+    private GameObject player;
+    [SerializeField]
+    private GameObject success;
 
 	// Use this for initialization
 	void Start () {

@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour {
 
-    public bool dead;
 
 	// Use this for initialization
 	void Start () {

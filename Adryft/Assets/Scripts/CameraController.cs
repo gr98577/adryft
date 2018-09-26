@@ -5,7 +5,8 @@ using UnityEngine;
 public class CameraController : MonoBehaviour {
 
     // Variables
-    public GameObject player;
+    [SerializeField]
+    private GameObject player;
 
     // Use this for initialization
     void Start () {
@@ -13,7 +14,7 @@ public class CameraController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void LateUpdate () {
         followPlayer();
 	}
 
