@@ -23,7 +23,6 @@ public class gunController : MonoBehaviour {
 	void LateUpdate () {
         if (pickedUp == true)
         {
-            canFire = true;
             Vector3 mousePosition = Input.mousePosition;
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
@@ -70,6 +69,7 @@ public class gunController : MonoBehaviour {
     {
         if (collision.CompareTag("Player"))
         {
+            canFire = true;
             pickedUp = true;
         }
     }
@@ -81,7 +81,7 @@ public class gunController : MonoBehaviour {
         var clone = Instantiate(projectile, transform.position, Quaternion.identity);
         clone.transform.up = transform.up;
         canFire = false;
-        yield return new WaitForSeconds(0.5F);
+        yield return new WaitForSeconds(0.1F);
         canFire = true;
     }
 

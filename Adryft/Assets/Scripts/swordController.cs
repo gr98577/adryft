@@ -7,26 +7,32 @@ public class swordController : MonoBehaviour {
     // Variables
     [SerializeField]
     private GameObject player;
+    [SerializeField]
+    private int swingArc;
 
     private bool pickedUp = false;
     private bool canSwing = false;
+    
 
     // Use this for initialization
     void Start () {
-		
+        
 	}
 	
 	// Update is called once per frame
 	void LateUpdate () {
 
-        if ( pickedUp == true)
+        if (pickedUp == true)
         {
-            canSwing = true;
             Vector3 mousePosition = Input.mousePosition;
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
             attachPlayer(mousePosition);
-            faceMouse(mousePosition);
+
+            if(canSwing == true)
+            {
+                faceMouse(mousePosition);
+            }
         }
 
         if (Input.GetButtonDown("Fire1") && canSwing)
@@ -68,32 +74,30 @@ public class swordController : MonoBehaviour {
     {
         if (collision.CompareTag("Player"))
         {
+            canSwing = true;
             pickedUp = true;
+        }
+        if (collision.CompareTag("Enemy") && canSwing == false)
+        {
+            collision.gameObject.SendMessage("TakeDamage", 3);
         }
     }
 
     IEnumerator Swing()
     {
 
-        Debug.Log("weapong swung");
         //test
-        transform.Rotate(transform.rotation.x, transform.rotation.y + 5, transform.rotation.z);
         canSwing = false;
-        yield return new WaitForSeconds(0.05F);
-        transform.Rotate(transform.rotation.x, transform.rotation.y + 5, transform.rotation.z);
-        yield return new WaitForSeconds(0.05F);
-        transform.Rotate(transform.rotation.x, transform.rotation.y + 5, transform.rotation.z);
-        yield return new WaitForSeconds(0.05F);
-        transform.Rotate(transform.rotation.x, transform.rotation.y + 5, transform.rotation.z);
-        yield return new WaitForSeconds(0.05F);
-        transform.Rotate(transform.rotation.x, transform.rotation.y + 5, transform.rotation.z);
-        yield return new WaitForSeconds(0.05F);
-        transform.Rotate(transform.rotation.x, transform.rotation.y + 5, transform.rotation.z);
-        yield return new WaitForSeconds(0.05F);
-        transform.Rotate(transform.rotation.x, transform.rotation.y + 5, transform.rotation.z);
-        yield return new WaitForSeconds(0.05F);
+        transform.Rotate(transform.rotation.x, transform.rotation.y, transform.rotation.z - (8 * swingArc));
+        yield return new WaitForSeconds(0.01F);
+        for (int i = 0; i < 16; i++)
+        {
+            transform.Rotate(transform.rotation.x, transform.rotation.y, transform.rotation.z + swingArc);
+            yield return new WaitForSeconds(0.01F);
+        }
+        
         //end test
-        transform.Rotate(transform.rotation.x, transform.rotation.y - 35, transform.rotation.z);
+        transform.Rotate(transform.rotation.x, transform.rotation.y, transform.rotation.z - (8 * swingArc));
         canSwing = true;
     }
 }
