@@ -12,6 +12,7 @@ public class weaponController : MonoBehaviour {
 
     private int pickedUp = 0;
     private bool canFire = true;
+    private bool canSwing = true;
 
     // Use this for initialization
     void Start () {
@@ -32,6 +33,11 @@ public class weaponController : MonoBehaviour {
         if (Input.GetButtonDown("Fire2") && canFire)
         {
                 StartCoroutine(Fire());
+        }
+
+        if (Input.GetButtonDown("Fire1") && canFire)
+        {
+                StartCoroutine(Swing());
         }
     }
 
@@ -81,5 +87,16 @@ public class weaponController : MonoBehaviour {
         canFire = false;
         yield return new WaitForSeconds(0.5F);
         canFire = true;
+    }
+
+    IEnumerator Swing()
+    {
+        
+        Debug.Log("weapong swung");
+        transform.Rotate(transform.rotation.x, transform.rotation.y + 90, transform.rotation.z);
+        canSwing = false;
+        yield return new WaitForSeconds(0.5F);
+        transform.Rotate(transform.rotation.x, transform.rotation.y -90, transform.rotation.z);
+        canSwing = true;
     }
 }
