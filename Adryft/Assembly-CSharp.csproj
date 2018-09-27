@@ -54,14 +54,15 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\CameraController.cs" />
+     <Compile Include="Assets\Scripts\gunController.cs" />
      <Compile Include="Assets\Scripts\ObjectiveController.cs" />
      <Compile Include="Assets\Scripts\playerCombat.cs" />
      <Compile Include="Assets\Scripts\playerController.cs" />
      <Compile Include="Assets\Scripts\pProjectileController.cs" />
+     <Compile Include="Assets\Scripts\swordController.cs" />
      <Compile Include="Assets\Scripts\tProjectileController.cs" />
      <Compile Include="Assets\Scripts\turretController.cs" />
      <Compile Include="Assets\Scripts\UIController.cs" />
-     <Compile Include="Assets\Scripts\weaponController.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>C:/Users/escol/Documents/GitHub/adryft/Adryft/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
