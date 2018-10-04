@@ -17,10 +17,23 @@ public class playerController : MonoBehaviour
     //variables
     private float mSpeed;
     private float tSpeed;
-    private int health;
+    private static int STARTING_PLAYER_HEALTH = 20;
+    private static int health;
     private bool stun;
     private int dash;
     private Vector3 direction;
+
+    //get/set for health for the healthbar
+    public static int playerHealth
+    {
+        get { return health; }
+        set { health -= value; }
+    }
+
+    public static int startingPlayerHealth
+    {
+        get { return STARTING_PLAYER_HEALTH; }
+    }
 
 
 
@@ -28,7 +41,7 @@ public class playerController : MonoBehaviour
     void Start()
     {
         mSpeed = 2f;
-        health = 20;
+        health = STARTING_PLAYER_HEALTH;
         Debug.Log("GAME START!");
 
         ochSource = GetComponent<AudioSource>();
