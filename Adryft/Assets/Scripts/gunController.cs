@@ -12,7 +12,9 @@ public class gunController : MonoBehaviour {
 
     private bool pickedUp = false;
     private bool canFire = false;
-    
+
+    private bool stunned;
+    private bool active;
 
     // Use this for initialization
     void Start () {
@@ -21,18 +23,22 @@ public class gunController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void LateUpdate () {
-        if (pickedUp == true)
+        if (pickedUp && active)
         {
-            Vector3 mousePosition = Input.mousePosition;
-            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            stunned = player.GetComponent<playerController>().getIsStunned();
+            if (!stunned)
+            {
+                Vector3 mousePosition = Input.mousePosition;
+                mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
-            attachPlayer(mousePosition);
-            faceMouse(mousePosition);
-        }
+                attachPlayer(mousePosition);
+                faceMouse(mousePosition);
 
-        if (Input.GetButtonDown("Fire2") && canFire)
-        {
-                StartCoroutine(Fire());
+                if (Input.GetButtonDown("Fire2") && canFire)
+                {
+                    StartCoroutine(Fire());
+                }
+            }
         }
     }
 
@@ -71,6 +77,7 @@ public class gunController : MonoBehaviour {
         {
             canFire = true;
             pickedUp = true;
+            active = true;
         }
     }
 

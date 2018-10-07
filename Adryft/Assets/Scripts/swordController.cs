@@ -12,32 +12,37 @@ public class swordController : MonoBehaviour {
 
     private bool pickedUp = false;
     private bool canSwing = false;
+
+    private bool stunned;
+    private bool active;
     
 
     // Use this for initialization
     void Start () {
-        
 	}
 	
 	// Update is called once per frame
 	void LateUpdate () {
-
-        if (pickedUp == true)
+        if (pickedUp & active)
         {
-            Vector3 mousePosition = Input.mousePosition;
-            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-
-            attachPlayer(mousePosition);
-
-            if(canSwing == true)
+            stunned = player.GetComponent<playerController>().getIsStunned();
+            if (!stunned)
             {
-                faceMouse(mousePosition);
-            }
-        }
+                Vector3 mousePosition = Input.mousePosition;
+                mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
-        if (Input.GetButtonDown("Fire1") && canSwing)
-        {
-            StartCoroutine(Swing());
+                attachPlayer(mousePosition);
+
+                if (canSwing == true)
+                {
+                    faceMouse(mousePosition);
+                }
+
+                if (Input.GetButtonDown("Fire1") && canSwing)
+                {
+                    StartCoroutine(Swing());
+                }
+            }
         }
     }
 
@@ -60,14 +65,10 @@ public class swordController : MonoBehaviour {
 
     void faceMouse(Vector3 mouse)
     {
-        //Vector3 mousePosition = Input.mousePosition;
-        //mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-
         Vector2 direction = new Vector2(
                     mouse.x - transform.position.x,
                     mouse.y - transform.position.y);
         transform.up = direction;
-
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -76,10 +77,13 @@ public class swordController : MonoBehaviour {
         {
             canSwing = true;
             pickedUp = true;
+            active = true;
         }
         if (collision.CompareTag("Enemy") && canSwing == false)
         {
-            collision.gameObject.SendMessage("TakeDamage", 3);
+            damageController dc = collision.gameObject.GetComponent<damageController>();
+            dc.doDamage(3, "none", player.transform.position);
+            Destroy(this.gameObject);
         }
     }
 

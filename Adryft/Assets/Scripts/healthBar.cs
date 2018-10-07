@@ -5,17 +5,22 @@ using UnityEngine.UI;
 
 public class healthBar : MonoBehaviour {
 
+    [SerializeField]
+    GameObject player;
 
+    damageController dc;
     Image HealthBar;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         HealthBar = GetComponent<Image>();
-        HealthBar.fillAmount = playerController.playerHealth;
+        dc = player.GetComponent<damageController>();
+        HealthBar.fillAmount = dc.getHealth();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        HealthBar.fillAmount = (float)(playerController.playerHealth) / (playerController.startingPlayerHealth);
+        dc = player.GetComponent<damageController>();
+        HealthBar.fillAmount = (float)dc.getHealth() / dc.getMaxHealth();
     }
 }

@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class pProjectileController : MonoBehaviour {
 
-    
-
-
     // Use this for initialization
     void Start()
     {
@@ -17,18 +14,19 @@ public class pProjectileController : MonoBehaviour {
     void Update()
     {
         transform.Translate(0f, 0.05f, 0f);
-
-        Vector3 pos = new Vector3(
-            transform.position.x,
-            transform.position.y,
-            0);
-        transform.position = pos;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy") || collision.CompareTag("Wall"))
+        if (collision.CompareTag("Enemy"))
         {
+            damageController dc = collision.gameObject.GetComponent<damageController>();
+            dc.doDamage(2, "none", transform.position);
+            Destroy(this.gameObject);
+        }
+        else if (collision.CompareTag("Wall"))
+        {
+            //spawn particle effect
             Destroy(this.gameObject);
         }
     }

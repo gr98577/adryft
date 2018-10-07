@@ -17,31 +17,19 @@ public class playerController : MonoBehaviour
     //variables
     private float mSpeed;
     private float tSpeed;
-    private static int STARTING_PLAYER_HEALTH = 20;
-    private static int health;
-    private bool stun;
+    private bool stunned;
     private int dash;
     private Vector3 direction;
 
-    //get/set for health for the healthbar
-    public static int playerHealth
+    public bool getIsStunned()
     {
-        get { return health; }
-        set { health -= value; }
+        return stunned;
     }
-
-    public static int startingPlayerHealth
-    {
-        get { return STARTING_PLAYER_HEALTH; }
-    }
-
-
 
     // Use this for initialization
     void Start()
     {
         mSpeed = 2f;
-        health = STARTING_PLAYER_HEALTH;
         Debug.Log("GAME START!");
 
         ochSource = GetComponent<AudioSource>();
@@ -50,19 +38,13 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (stun)
+        if (stunned)
         {
-            //do nothing for now
+            // stun effect
         }
         else
         {
             Move();
-        }
-
-        if (health <= 0)
-        {
-            var clone = Instantiate(gameOver, transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
         }
     }
 
@@ -86,28 +68,22 @@ public class playerController : MonoBehaviour
         transform.Translate(tSpeed * direction.normalized);
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("enemyProjectile"))
-        {
-            if (dash != 1)
-            {
-                //health
-                health = health - 2;
-                //hurt sound
-                ochSource.Play();
-            }
-        }
-    }
-
-
-
     IEnumerator Dash()
     {
         yield return new WaitForSeconds(0.15F);
         dash = 2;
         yield return new WaitForSeconds(1F);
         dash = 0;
+    }
+
+    IEnumerator stun(float time)
+    {
+        if (!stunned)
+        {
+            stunned = true;
+            yield return new WaitForSeconds(time/2);
+            stunned = false;
+        }
     }
 }
 

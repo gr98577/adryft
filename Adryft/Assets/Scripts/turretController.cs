@@ -10,49 +10,37 @@ public class turretController : MonoBehaviour {
     private GameObject player;
     [SerializeField]
     private GameObject projectile;
-    [SerializeField]
-    private GameObject deadSprite;
 
     private float range = 5;
     private float dist;
     private bool canShoot = true;
-    private int health = 6;
+    private bool stunned;
 
-    [SerializeField]
-    private AudioSource dootSource;
-    [SerializeField]
-    private AudioSource echoDootSource;
-
-    //public float projectileSpeed = 5;
-
-    //public int n = 0;
 
     // Use this for initialization
     void Start ()
     {
-        dootSource = GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        FacePlayer();
-
-        // Send out a Raycast and stores the hit result in hit
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right);
-        dist = Vector3.Distance(player.transform.position, transform.position);
-
-        if (canShoot && hit.transform.tag == "Player" && dist <= range)
+        if (stunned)
         {
-            StartCoroutine(Shoot()); 
+
         }
-
-
-        if (health <= 0)
+        else
         {
-            var clone = Instantiate(deadSprite, transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
+            FacePlayer();
+
+            // Send out a Raycast and stores the hit result in hit
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right);
+            dist = Vector3.Distance(player.transform.position, transform.position);
+
+            if (canShoot && hit.transform.tag == "Player" && dist <= range)
+            {
+                StartCoroutine(Shoot());
+            }
         }
-        
     }
 
     void FacePlayer()
@@ -80,18 +68,13 @@ public class turretController : MonoBehaviour {
         canShoot = true;
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    IEnumerator stun(float time)
     {
-        if (collision.CompareTag("playerProjectile"))
+        if (!stunned)
         {
-            dootSource.Play();
-            health = health - 2;
+            stunned = true;
+            yield return new WaitForSeconds(time);
+            stunned = false;
         }
-    }
-
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
-        Debug.Log(health + "/6");
     }
 }
