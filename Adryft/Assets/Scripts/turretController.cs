@@ -15,6 +15,7 @@ public class turretController : MonoBehaviour {
     private float dist;
     private bool canShoot = true;
     private bool stunned;
+    private bool isHit;
 
 
     // Use this for initialization
@@ -24,7 +25,7 @@ public class turretController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (stunned)
+        if (stunned || isHit)
         {
 
         }
@@ -75,6 +76,16 @@ public class turretController : MonoBehaviour {
             stunned = true;
             yield return new WaitForSeconds(time);
             stunned = false;
+        }
+    }
+
+    IEnumerator hit(float time)
+    {
+        if (!isHit)
+        {
+            isHit = true;
+            yield return new WaitForSeconds(time);
+            isHit = false;
         }
     }
 }

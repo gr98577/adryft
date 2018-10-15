@@ -82,7 +82,7 @@ public class swordController : MonoBehaviour {
         if (collision.CompareTag("Enemy") && canSwing == false)
         {
             damageController dc = collision.gameObject.GetComponent<damageController>();
-            dc.doDamage(3, "none", player.transform.position);
+            dc.doDamage(3, "none", player.transform.position, 1f);
             Destroy(this.gameObject);
         }
     }

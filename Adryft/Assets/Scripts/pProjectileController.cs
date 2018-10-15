@@ -21,7 +21,8 @@ public class pProjectileController : MonoBehaviour {
         if (collision.CompareTag("Enemy"))
         {
             damageController dc = collision.gameObject.GetComponent<damageController>();
-            dc.doDamage(2, "none", transform.position);
+            dc.doDamage(2, "none", transform.position, 0.5f);
+            Debug.Log("hello");
             Destroy(this.gameObject);
         }
         else if (collision.CompareTag("Wall"))
