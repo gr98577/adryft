@@ -19,7 +19,13 @@ public class playerController : MonoBehaviour
     private float tSpeed;
     private bool stunned;
     private int dash;
+    private int ammunition = 20;
     private Vector3 direction;
+
+    public int getAmmunition()
+    {
+        return ammunition;
+    }
 
     public bool getIsStunned()
     {

@@ -12,6 +12,7 @@ public class gunController : MonoBehaviour {
 
     private bool pickedUp = false;
     private bool canFire = false;
+    // private int ammunition = playerGetComponent<playerController>().getAmmunition();
 
     private bool stunned;
     private bool active;
@@ -34,7 +35,7 @@ public class gunController : MonoBehaviour {
                 attachPlayer(mousePosition);
                 faceMouse(mousePosition);
 
-                if (Input.GetButtonDown("Fire2") && canFire)
+                if (Input.GetButtonDown("Fire2") && canFire /*&& ammunition >= 0 */)
                 {
                     StartCoroutine(Fire());
                 }
@@ -87,6 +88,7 @@ public class gunController : MonoBehaviour {
         //Debug.Log("Shoot no." + n);
         var clone = Instantiate(projectile, transform.position, Quaternion.identity);
         clone.transform.up = transform.up;
+        // ammunition--;
         canFire = false;
         yield return new WaitForSeconds(0.1F);
         canFire = true;
