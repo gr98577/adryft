@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class healthBar : MonoBehaviour {
 
     [SerializeField]
-    GameObject player;
+    private GameObject player;
 
     damageController dc;
     Image HealthBar;

@@ -15,9 +15,15 @@ public class damageController : MonoBehaviour {
     private bool isMobile;
     [SerializeField]
     private float dropPercent;
+    [SerializeField]
+    private bool doesFly;
+    [SerializeField]
+    private bool player;
     private AudioSource oofSource;
     private Rigidbody2D rb2d;
+    private SpriteRenderer sr;
     private bool kb = false;
+    private bool fell = false;
 
     // getter function for health
     public int getHealth()
@@ -27,36 +33,54 @@ public class damageController : MonoBehaviour {
     public int getMaxHealth()
     { return MAX_HEALTH; }
 
+    public void setFlying(bool dash)
+    {
+        doesFly = dash;
+        //Debug.Log(dash);
+    }
+    public bool getFlying()
+    {
+        return doesFly;
+    }
+
     // Use this for initialization
     void Start () {
         health = MAX_HEALTH;
         oofSource = GetComponent<AudioSource>();
         rb2d = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
     }
 	
 	// Update is called once per frame
 	void Update () {
         if (health <= 0)
         {
-            try
+            if (fell && !player)
             {
-                var clone = Instantiate(deathSpawn, transform.position, Quaternion.identity);
+                Debug.Log("why was fell?");
             }
-            catch
+            else
             {
-                Debug.Log("no death spawn");
-            }
-            try
-            {
-                float rand = Random.Range(0.0f, 1.0f);
-                if (rand < dropPercent)
+                try
                 {
-                    var drop = Instantiate(deathDrop, transform.position, Quaternion.identity);
+                    var clone = Instantiate(deathSpawn, transform.position, Quaternion.identity);
                 }
-            }
-            catch
-            {
-                Debug.Log("no death drop");
+                catch
+                {
+                    Debug.Log("no death spawn");
+                }
+                try
+                {
+                    float rand = Random.Range(0.0f, 1.0f);
+                    if (rand < dropPercent)
+                    {
+                        var drop = Instantiate(deathDrop, transform.position, Quaternion.identity);
+                    }
+                }
+                catch
+                {
+                    Debug.Log("no death drop");
+                }
             }
             Destroy(this.gameObject);
         }
@@ -75,6 +99,8 @@ public class damageController : MonoBehaviour {
     {
         health -= amount;
         oofSource.Play();
+
+        StartCoroutine(redFlash());
 
         if (isMobile)
         {
@@ -100,10 +126,26 @@ public class damageController : MonoBehaviour {
         {
             // to implement
         }
-        else if (type == "")
+        else if (type == "fall")
         {
-
+            if (!doesFly)
+            {
+                this.SendMessage("stun", 2f);
+                StartCoroutine(fall());
+                Debug.Log(doesFly);
+            }
         }
+    }
+
+    IEnumerator fall()
+    {
+        for (float i = 1f; i >= 0f; i -= 0.1f)
+        {
+            yield return new WaitForSeconds(0.0025f);
+            transform.localScale = new Vector3(i, i, i);
+        }
+        fell = true;
+        health = 0;
     }
 
     IEnumerator knockback(Vector3 location, float mult)
@@ -135,5 +177,12 @@ public class damageController : MonoBehaviour {
             health -= 1;
             oofSource.Play();
         }
+    }
+
+    IEnumerator redFlash()
+    {
+        sr.color = Color.red;
+        yield return new WaitForSeconds(.1F);
+        sr.color = Color.white;
     }
 }

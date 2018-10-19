@@ -10,23 +10,28 @@ public class gunController : MonoBehaviour {
     [SerializeField]
     private GameObject projectile;
 
+    private playerController pc;
+
     private bool pickedUp = false;
     private bool canFire = false;
-    // private int ammunition = playerGetComponent<playerController>().getAmmunition();
+    private int ammunition;
 
     private bool stunned;
     private bool active;
 
+    private int n = 0;
+
     // Use this for initialization
     void Start () {
-		
-	}
+		pc = player.GetComponent<playerController>();
+        ammunition = pc.getAmmunition();
+    }
 	
 	// Update is called once per frame
 	void LateUpdate () {
         if (pickedUp && active)
         {
-            stunned = player.GetComponent<playerController>().getIsStunned();
+            stunned = pc.getIsStunned();
             if (!stunned)
             {
                 Vector3 mousePosition = Input.mousePosition;
@@ -35,7 +40,8 @@ public class gunController : MonoBehaviour {
                 attachPlayer(mousePosition);
                 faceMouse(mousePosition);
 
-                if (Input.GetButtonDown("Fire2") && canFire /*&& ammunition >= 0 */)
+                ammunition = pc.getAmmunition();
+                if (Input.GetButtonDown("Fire2") && canFire && ammunition > 0 )
                 {
                     StartCoroutine(Fire());
                 }
@@ -84,11 +90,15 @@ public class gunController : MonoBehaviour {
 
     IEnumerator Fire()
     {
-        //n++;
-        //Debug.Log("Shoot no." + n);
+        n++;
+        
         var clone = Instantiate(projectile, transform.position, Quaternion.identity);
         clone.transform.up = transform.up;
-        // ammunition--;
+        pc.incAmmunition(-1);
+        ammunition = pc.getAmmunition();
+
+        Debug.Log("Shoot no." + n + " | Ammo: " + ammunition + "/20");
+
         canFire = false;
         yield return new WaitForSeconds(0.1F);
         canFire = true;

@@ -10,22 +10,28 @@ public class swordController : MonoBehaviour {
     [SerializeField]
     private int swingArc;
 
+    private float swingTime;
+
     private bool pickedUp = false;
     private bool canSwing = false;
 
     private bool stunned;
     private bool active;
+
+    private playerController pc;
     
 
     // Use this for initialization
     void Start () {
-	}
+        swingTime = 0.01f;
+        pc = player.GetComponent<playerController>();
+    }
 	
 	// Update is called once per frame
 	void LateUpdate () {
         if (pickedUp & active)
         {
-            stunned = player.GetComponent<playerController>().getIsStunned();
+            stunned = pc.getIsStunned();
             if (!stunned)
             {
                 Vector3 mousePosition = Input.mousePosition;
@@ -40,7 +46,17 @@ public class swordController : MonoBehaviour {
 
                 if (Input.GetButtonDown("Fire1") && canSwing)
                 {
-                    StartCoroutine(Swing());
+                    if (pc.useStamina(0.4f))
+                    {
+                        swingTime = 0.01f;
+                        StartCoroutine(Swing());
+                    }
+                    else
+                    {
+                        pc.zeroStamina();
+                        swingTime = 0.02f;
+                        StartCoroutine(Swing());
+                    }
                 }
             }
         }
@@ -82,22 +98,31 @@ public class swordController : MonoBehaviour {
         if (collision.CompareTag("Enemy") && canSwing == false)
         {
             damageController dc = collision.gameObject.GetComponent<damageController>();
-            dc.doDamage(3, "none", player.transform.position, 1f);
-            Destroy(this.gameObject);
+            dc.doDamage(3, "none", player.transform.position, 0.5f);
+        }
+        if (collision.CompareTag("Player"))
+        {
+            canSwing = true;
+            pickedUp = true;
+            active = true;
+        }
+        if (collision.CompareTag("Enemy") && canSwing == false)
+        {
+            damageController dc = collision.gameObject.GetComponent<damageController>();
+            dc.doDamage(1, "none", player.transform.position, 0f);
         }
     }
 
     IEnumerator Swing()
     {
-
         //test
         canSwing = false;
         transform.Rotate(transform.rotation.x, transform.rotation.y, transform.rotation.z - (8 * swingArc));
-        yield return new WaitForSeconds(0.01F);
+        yield return new WaitForSeconds(swingTime);
         for (int i = 0; i < 16; i++)
         {
             transform.Rotate(transform.rotation.x, transform.rotation.y, transform.rotation.z + swingArc);
-            yield return new WaitForSeconds(0.01F);
+            yield return new WaitForSeconds(swingTime);
         }
         
         //end test

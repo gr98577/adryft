@@ -8,7 +8,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private GameObject player;
 
-    private float range = 2;
+    private float range = 3;
     private float dist;
     //private int health = 6;
     private float mSpeed;
@@ -86,7 +86,7 @@ public class EnemyController : MonoBehaviour
         if (collision.gameObject == player)
         {
             damageController dc = collision.gameObject.GetComponent<damageController>();
-            dc.doDamage(3, "none", transform.position, 1f);
+            dc.doDamage(3, "none", transform.position, 1.5f);
             Debug.Log("hello");
         }
     }
