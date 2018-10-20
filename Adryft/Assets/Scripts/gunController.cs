@@ -21,6 +21,8 @@ public class gunController : MonoBehaviour {
 
     private int n = 0;
 
+    public bool getPickedUp() { return pickedUp; }
+
     // Use this for initialization
     void Start () {
 		pc = player.GetComponent<playerController>();

@@ -87,7 +87,10 @@ public class playerController : MonoBehaviour
 
     void Move()
     {
-        if (Input.GetButtonDown("Jump") && dash == 0)
+        //checks if Dash button (Space) was pressed AND
+        //1. player wasn't already in dash mode,
+        //2. player is stationary
+        if (Input.GetButtonDown("Jump") && dash == 0 && (Input.GetAxisRaw("Horizontal") != 0f || Input.GetAxisRaw("Vertical") != 0f))
         {
             if (useStamina(.9f))
             {

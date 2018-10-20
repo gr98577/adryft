@@ -24,5 +24,6 @@ public class BulletBar : MonoBehaviour {
     {
         pc = player.GetComponent<playerController>();
         bulletBar.fillAmount = (float)pc.getAmmunition() / pc.getMaxAmmo();
+        
     }
 }
