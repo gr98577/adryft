@@ -1,0 +1,4 @@
+C:\Users\liamu\OneDrive\Documents\UMBC\GDC\adryft-master\Adryft\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+C:\Users\liamu\OneDrive\Documents\UMBC\GDC\adryft-master\Adryft\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
+C:\Users\liamu\OneDrive\Documents\UMBC\GDC\GitHub\adryft\Adryft\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+C:\Users\liamu\OneDrive\Documents\UMBC\GDC\GitHub\adryft\Adryft\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
