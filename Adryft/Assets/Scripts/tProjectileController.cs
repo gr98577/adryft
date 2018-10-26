@@ -21,7 +21,7 @@ public class tProjectileController : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D collision)
     {
         // If it hits the player
-        if (collision.CompareTag("Player"))
+        if (collision.tag == "Player")
         {
             // Does damage
             damageController dc = collision.gameObject.GetComponent<damageController>();
@@ -29,7 +29,7 @@ public class tProjectileController : MonoBehaviour {
             // Self Destructs
             Destroy(this.gameObject);
         }
-        else if (collision.CompareTag("Wall"))
+        else if (collision.tag == "Wall" || collision.tag == "PowerBlock")
         {
             //spawn particles
             Destroy(this.gameObject);

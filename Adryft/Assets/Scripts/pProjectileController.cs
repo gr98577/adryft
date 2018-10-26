@@ -21,7 +21,7 @@ public class pProjectileController : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D collision)
     {
         // If it hits an enemy
-        if (collision.CompareTag("Enemy"))
+        if (collision.tag == "Enemy")
         {
             // Does damage
             damageController dc = collision.gameObject.GetComponent<damageController>();
@@ -29,7 +29,7 @@ public class pProjectileController : MonoBehaviour {
             // Self Destructs
             Destroy(this.gameObject);
         }
-        else if (collision.CompareTag("Wall"))
+        else if (collision.tag == "Wall" || collision.tag == "PowerBlock")
         {
             //spawn particle effect
             Destroy(this.gameObject);
