@@ -4,28 +4,25 @@ using UnityEngine;
 
 public class ObjectiveController : MonoBehaviour {
 
-    [SerializeField]
+    // Variables
     private GameObject player;
     [SerializeField]
     private GameObject success;
 
 	// Use this for initialization
 	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
 
+    // Collision detection
     void OnTriggerEnter2D(Collider2D collision)
     {
+        // If it collides with the player
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("CONGRADULATIONS");
             var clone = Instantiate(success, player.transform.position, Quaternion.identity);
 
+            // self destructs
             Destroy(player);
         }
     }

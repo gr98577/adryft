@@ -13,16 +13,20 @@ public class pProjectileController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        // Moves forward
         transform.Translate(0f, 0.05f, 0f);
     }
 
+    // Collision detection
     void OnTriggerEnter2D(Collider2D collision)
     {
+        // If it hits an enemy
         if (collision.CompareTag("Enemy"))
         {
+            // Does damage
             damageController dc = collision.gameObject.GetComponent<damageController>();
             dc.doDamage(2, "none", transform.position, 0.5f);
-            Debug.Log("hello");
+            // Self Destructs
             Destroy(this.gameObject);
         }
         else if (collision.CompareTag("Wall"))
@@ -32,6 +36,7 @@ public class pProjectileController : MonoBehaviour {
         }
     }
 
+    // Self destructs after a given amount of time
     IEnumerator life()
     {
         yield return new WaitForSeconds(5F);

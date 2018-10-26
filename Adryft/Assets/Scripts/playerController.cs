@@ -11,6 +11,7 @@ public class playerController : MonoBehaviour
     [SerializeField]
     private GameObject gameOver;
 
+
     private damageController dc;
     
 
@@ -26,35 +27,39 @@ public class playerController : MonoBehaviour
     private Vector3 direction;
     private bool isStaminaRegen = false;
     private bool isStaminaUsed = false;
-    private bool isStaminaInDelay = false;
+    //private bool isStaminaInDelay = false;
 
+    // Max ammo getter
     public int getMaxAmmo()
     { return maxAmmo; }
+    // Ammo getter
     public int getAmmunition()
     { return ammo; }
 
+    // Max Stamina getter
     public float getMaxStamina()
     { return maxStamina; }
+    // Stamina getter
     public float getStamina()
     { return stamina; }
+    // Sets stamina to zero
     public void zeroStamina()
-    {
-        stamina = -1;
-        //StopCoroutine(staminaRegen());
-        //StartCoroutine(staminaDelay());
-    }
+    { stamina = -1; }
 
+    // Ammo setter
     public void setAmmunition(int ammount)
     {
         ammo = ammount;
         normalizeAmmo();
     }
+    // Ammo incramenter
     public void incAmmunition(int ammount)
     {
         ammo += ammount;
         normalizeAmmo();
     }
 
+    // Stunned getter 
     public bool getIsStunned()
     { return stunned; }
 
@@ -62,13 +67,9 @@ public class playerController : MonoBehaviour
     void Start()
     {
         mSpeed = 2f;
-
         ochSource = GetComponent<AudioSource>();
-
         dc = GetComponent<damageController>();
-
         ammo = maxAmmo;
-
         stamina = maxStamina;
     }
 
@@ -92,13 +93,11 @@ public class playerController : MonoBehaviour
         //2. player is stationary
         if (Input.GetButtonDown("Jump") && dash == 0 && (Input.GetAxisRaw("Horizontal") != 0f || Input.GetAxisRaw("Vertical") != 0f))
         {
-            if (useStamina(.9f))
-            {
-                dash = 1;
-                StartCoroutine(Dash());
-            }
+            dash = 1;
+            StartCoroutine(Dash());
         }
 
+        // If dashing move faster and set flying to true
         if (dash == 1)
         {
             tSpeed = mSpeed * Time.deltaTime * 5;
@@ -107,44 +106,42 @@ public class playerController : MonoBehaviour
         {
             tSpeed = mSpeed * Time.deltaTime;
         }
+        // Move in the desired direction
         direction = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0f);
         transform.Translate(tSpeed * direction.normalized);
     }
 
+    // Use stamina
     public bool useStamina(float ammount)
     {
-        if (isStaminaInDelay == true)
-        {
-            StopCoroutine(staminaRegen());
-            StartCoroutine(staminaRegen());
-            return false;
-        }
-        else if (isStaminaUsed)
-        {
-            return false;
-        }
-        else if (ammount <= stamina)
+        StartCoroutine(staminaRegen());
+
+        if (ammount <= stamina)
         {
             stamina -= ammount;
-            //StartCoroutine(staminaDelay());
-            StartCoroutine(staminaRegen());
             return true;
         }
-        return false;
+        else
+        {
+            return false;
+        }
     }
 
+    // Dash
     IEnumerator Dash()
     {
-        isStaminaUsed = true;
+        // Dash
         dc.setFlying(true);
         yield return new WaitForSeconds(0.15F);
         dash = 2;
         dc.setFlying(false);
-        isStaminaUsed = false;
+
+        // Dash cooldown
         yield return new WaitForSeconds(1F);
         dash = 0;
     }
 
+    // Stun
     IEnumerator stun(float time)
     {
         if (!stunned)
@@ -155,31 +152,42 @@ public class playerController : MonoBehaviour
         }
     }
 
-    IEnumerator staminaDelay()
-    {
-        isStaminaInDelay = true;
-        yield return new WaitForSeconds(1.5f);
-        isStaminaRegen = false;
-        stamina = 0f;
-        StartCoroutine(staminaRegen());
-        isStaminaInDelay = false;
-    }
-
+    // Regenerates stamina
     IEnumerator staminaRegen()
     {
-        if (isStaminaRegen)
+        isStaminaUsed = true;
+        // Delays alot if there is no stamina left
+        if (stamina <= 0f)
+        {
+            yield return new WaitForSeconds(1.5f);
+        }
+        // Delays a little if there is stamina left
+        else
+        {
+            yield return new WaitForSeconds(0.4f);
+        }
+        isStaminaUsed = false;
+
+        // Makes sure not to double up on regen
+        if (isStaminaRegen || isStaminaUsed)
+        {
             yield break;
+        }
 
         isStaminaRegen = true;
         yield return new WaitForSeconds(0.01f);
+
+        // Loops until stamina is full
         while (stamina <= maxStamina)
         {
             yield return new WaitForSeconds(0.01f);
+            // Increases stamina
             stamina += 0.005f;
-            if (stamina <= 0.0f)
+
+            // Stops if stamina is used
+            if (isStaminaUsed)
             {
-                Debug.Log("YAYAYAYAY");
-                StartCoroutine(staminaDelay());
+                isStaminaRegen = false;
                 yield break;
             }
         }
@@ -187,12 +195,14 @@ public class playerController : MonoBehaviour
         normalizeStamina();
     }
 
+    // Normalizes stamina
     void normalizeStamina()
     {
         if (stamina > maxStamina) stamina = maxStamina;
         else if (stamina < 0) stamina = 0;
     }
 
+    // Normalizes Ammo
     void normalizeAmmo()
     {
         if (ammo > maxAmmo) ammo = maxAmmo;

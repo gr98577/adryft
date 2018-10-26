@@ -9,6 +9,7 @@ TagManager:
   - enemyProjectile
   - playerProjectile
   - Wall
+  - PowerBlock
   layers:
   - Default
   - TransparentFX
@@ -48,6 +49,9 @@ TagManager:
     locked: 0
   - name: Room
     uniqueID: 3379037309
+    locked: 0
+  - name: Power
+    uniqueID: 3758460445
     locked: 0
   - name: Ground
     uniqueID: 2209133033

@@ -4,24 +4,13 @@ using UnityEngine;
 
 public class pitController : MonoBehaviour
 {
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
+    // Trigger detection 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        // If it's triggered by the player or an enemy
         if (collision.CompareTag("Player") || collision.CompareTag("Enemy"))
         {
-            Debug.Log("Works");
+            // Deals falling damage if the target can't fly.
             damageController dc = collision.gameObject.GetComponent<damageController>();
             if (!dc.getFlying())
             {

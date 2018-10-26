@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PickupController : MonoBehaviour {
 
+    // Variables
     [SerializeField]
     private GameObject health;
     [SerializeField]
@@ -13,17 +14,13 @@ public class PickupController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        // Creates an array from the given pickups then picks a random one
         pickups = new GameObject[] { health, ammo };
         size = pickups.Length;
         int rand = Random.Range(0, size);
-        //int drop = (int)(rand * size);
-        //Debug.Log(rand + " | " + drop);
+
+        // Drops the selected pickup then self destructs
         var drop = Instantiate(pickups[rand], transform.position, Quaternion.identity);
         Destroy(this.gameObject);
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
