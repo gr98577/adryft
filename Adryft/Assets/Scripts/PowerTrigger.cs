@@ -23,7 +23,7 @@ public class PowerTrigger : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D collision)
     {
         // If it collides with the player
-        if (collision.CompareTag("PowerBlock"))
+        if (collision.CompareTag("PowerBlock") || collision.CompareTag("Player") || collision.CompareTag("Enemy"))
         {
             ON.SetActive(true);
             OFF.SetActive(false);
@@ -32,7 +32,7 @@ public class PowerTrigger : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("PowerBlock"))
+        if (collision.CompareTag("PowerBlock") || collision.CompareTag("Player") || collision.CompareTag("Enemy"))
         {
             ON.SetActive(false);
             OFF.SetActive(true);

@@ -9,6 +9,8 @@ public class turretController : MonoBehaviour {
     private GameObject player;
     [SerializeField]
     private GameObject projectile;
+    [SerializeField]
+    private Vector3 dir;
 
     private float range = 5;
     private float dist;
@@ -20,6 +22,7 @@ public class turretController : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        
         player = GameObject.FindGameObjectWithTag("Player");
     }
 	
@@ -31,32 +34,42 @@ public class turretController : MonoBehaviour {
         }
         else
         {
-            FacePlayer();
+            //FacePlayer();
+            dir = FacePlayer(); //Vector3 leading to the player position is received here
+            //the transform.right of the turret is changed iff there's a clear shot (so it doesn't
+            //face the player through walls)
 
             // Send out a Raycast and stores the hit result in hit
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, dir);
             dist = Vector3.Distance(player.transform.position, transform.position);
 
             // If it can see the player and the player is withing range
             if (canShoot && hit.transform.tag == "Player" && dist <= range)
             {
-                StartCoroutine(Shoot());
+                //note: "transform.right" refers to the object's x-axis
+                transform.right = dir; //...the turret will now face the player...
+                StartCoroutine(Shoot()); //...and shoot.
+                
             }
         }
     }
 
     // faces the player
-    void FacePlayer()
+    //(10.28: FacePlayer() now returns a Vector3 that leads to a player position rather than constantly updating the turret's
+    //transform.right) 
+    Vector3 FacePlayer()
     {
         // Finds where the player is
         Vector3 playerPosition = player.transform.position;
 
         // Calculates the angle to look at the player
+        //(essentially calculates sloped line)
         Vector2 direction = new Vector2(
                     playerPosition.x - transform.position.x,
                     playerPosition.y - transform.position.y);
-        // Looks at the player
-        transform.right = direction;
+
+        //returns position of player relative to the turret
+        return direction;
 
     }
 
