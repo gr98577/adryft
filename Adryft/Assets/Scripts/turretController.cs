@@ -72,17 +72,19 @@ public class turretController : MonoBehaviour
 
 
             //seen = (hit.transform.tag == "Player");
+            Vector3 shootDir;
 
+            shootDir = dir; //collects dir to be passed to EscalateToFire to determine what orientation of sprites to load
+                            //this variable will have their x and y components rounded to the nearest integer after given some 
+                            //"slack" in an attempt to make turrets more likely to turn to their proper directions when shooting
 
             // If it can see the player and the player is withing range
             if (canShoot && hit.transform.tag == "Player" && dist <= range)
             {
+                StopCoroutine(idleSwing(tag));
 
 
-
-                Vector3 shootDir = dir; //collects dir to be passed to EscalateToFire to determine what orientation of sprites to load
-                                        //this variable will have their x and y components rounded to the nearest integer after given some 
-                                        //"slack" in an attempt to make turrets more likely to turn to their proper directions when shooting
+               
 
                 //rounds x and y components of shootDir
                 //value to be rounded divided by 0.1 to add slack (seems to work decently...)
@@ -99,7 +101,7 @@ public class turretController : MonoBehaviour
             }
             else
             {
-                
+                StopCoroutine(EscalateToFire(shootDir));
                 StartCoroutine(idleSwing(hit.transform.tag));
                 
             }
@@ -120,8 +122,9 @@ public class turretController : MonoBehaviour
 
             if (currSprite.sprite == idleSprites[0])
             {
-                
-                switch (rand.Next(0, 2)){
+                //(11.8) random number generator with fairly large range is used to slow down sprite changes
+                //(merely using the range of relevant numbers makes the turrets spaz out)
+                switch (rand.Next(0, 60)){
                     case 0:
                         currSprite.sprite = idleSprites[7];
                         break;
@@ -133,7 +136,7 @@ public class turretController : MonoBehaviour
             }
             else if (currSprite.sprite == idleSprites[1])
             {
-                switch (rand.Next(0, 3))
+                switch (rand.Next(0, 60))
                 {
                     case 0:
                         currSprite.sprite = idleSprites[0];
@@ -147,7 +150,7 @@ public class turretController : MonoBehaviour
             }
             else if (currSprite.sprite == idleSprites[2])
             {
-                switch (rand.Next(1, 4))
+                switch (rand.Next(1, 60))
                 {
                     case 1:
                         currSprite.sprite = idleSprites[1];
@@ -162,7 +165,7 @@ public class turretController : MonoBehaviour
             }
             else if (currSprite.sprite == idleSprites[3])
             {
-                switch (rand.Next(2, 5))
+                switch (rand.Next(2, 60))
                 {
                     case 2:
                         currSprite.sprite = idleSprites[2];
@@ -178,7 +181,7 @@ public class turretController : MonoBehaviour
             else if (currSprite.sprite == idleSprites[4])
             {
 
-                switch (rand.Next(3, 6))
+                switch (rand.Next(3, 60))
                 {
 
                     case 3:
@@ -194,7 +197,7 @@ public class turretController : MonoBehaviour
             }
             else if (currSprite.sprite == idleSprites[5])
             {
-                switch (rand.Next(4, 7))
+                switch (rand.Next(4, 60))
                 {
 
                     case 4:
@@ -211,7 +214,7 @@ public class turretController : MonoBehaviour
             }
             else if (currSprite.sprite == idleSprites[6])
             {
-                switch (rand.Next(5, 8))
+                switch (rand.Next(5, 60))
                 {
                     case 5:
                         currSprite.sprite = idleSprites[5];
@@ -228,7 +231,7 @@ public class turretController : MonoBehaviour
             }
             else if (currSprite.sprite == idleSprites[7])
             {
-                switch (rand.Next(6, 8))
+                switch (rand.Next(6, 60))
                 {
                     case 6:
                         currSprite.sprite = idleSprites[6];
