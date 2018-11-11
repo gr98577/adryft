@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class turretController : MonoBehaviour
 {
 
@@ -21,18 +22,20 @@ public class turretController : MonoBehaviour
     private bool search = false; //true when the PC is out of aggro range after having been in it
     private SpriteRenderer currSprite; //retrieves reference to current SpriteRenderer of gameObject; can get
     //sprite of gameObject here to change accordingly
-    private enum DIR { UP, UPRHT, RHT, DWNRHT, DWN, DWNLFT, LFT, UPLFT } //enumeration of directions to pass to other functions
+    private enum DIR {NONE, UP, UPRHT, RHT, DWNRHT, DWN, DWNLFT, LFT, UPLFT} //enumeration of directions to pass to other functions
     private DIR sprDir;
     private bool batMode, sprDone;
     Sprite[] idleSprites;
     System.Random rand = new System.Random();
-    private bool hivar;    
+    bool hivar;
+    [SerializeField]
+    private DIR[] noTurn = new DIR[8];
 
 
     // Use this for initialization
     void Start()
     {
-
+        
         idleSprites = new Sprite[8];
         idleSprites[0] = Resources.Load<Sprite>("turSprites/up/idle");
         idleSprites[1] = Resources.Load<Sprite>("turSprites/up_right/idle");
@@ -49,6 +52,7 @@ public class turretController : MonoBehaviour
         currSprite = gameObject.GetComponent<SpriteRenderer>();
         currSprite.sprite = idleSprites[2];
         player = GameObject.FindGameObjectWithTag("Player");
+        
     }
 
     // Update is called once per frame
@@ -124,12 +128,21 @@ public class turretController : MonoBehaviour
             {
                 //(11.8) random number generator with fairly large range is used to slow down sprite changes
                 //(merely using the range of relevant numbers makes the turrets spaz out)
+                //(11.10) will only turn to directions it's not configured to NOT turn to (denoted in 
+                //noTurn array in the editor
                 switch (rand.Next(0, 60)){
                     case 0:
-                        currSprite.sprite = idleSprites[7];
+
+                        if (System.Array.IndexOf(noTurn, DIR.UPLFT) == -1)
+                        {
+                            currSprite.sprite = idleSprites[7];
+                        }
                         break;
                     case 1:
-                        currSprite.sprite = idleSprites[1];
+                        if (System.Array.IndexOf(noTurn, DIR.UPRHT) == -1)
+                        {
+                            currSprite.sprite = idleSprites[1];
+                        }
                         break;
                 }
 
@@ -139,11 +152,17 @@ public class turretController : MonoBehaviour
                 switch (rand.Next(0, 60))
                 {
                     case 0:
-                        currSprite.sprite = idleSprites[0];
+                        if (System.Array.IndexOf(noTurn, DIR.UP) == -1)
+                        {
+                            currSprite.sprite = idleSprites[0];
+                        }
                         break;
                    
                     case 2:
-                        currSprite.sprite = idleSprites[2];
+                        if (System.Array.IndexOf(noTurn, DIR.RHT) == -1)
+                        {
+                            currSprite.sprite = idleSprites[2];
+                        }
                         break;
                 }
 
@@ -153,11 +172,17 @@ public class turretController : MonoBehaviour
                 switch (rand.Next(1, 60))
                 {
                     case 1:
-                        currSprite.sprite = idleSprites[1];
+                        if (System.Array.IndexOf(noTurn, DIR.UPRHT) == -1)
+                        {
+                            currSprite.sprite = idleSprites[1];
+                        }
                         break;
                     
                     case 3:
-                        currSprite.sprite = idleSprites[3];
+                        if (System.Array.IndexOf(noTurn, DIR.DWNRHT) == -1)
+                        {
+                            currSprite.sprite = idleSprites[3];
+                        }
                         break;
                 }
 
@@ -168,11 +193,17 @@ public class turretController : MonoBehaviour
                 switch (rand.Next(2, 60))
                 {
                     case 2:
-                        currSprite.sprite = idleSprites[2];
+                        if (System.Array.IndexOf(noTurn, DIR.RHT) == -1)
+                        {
+                            currSprite.sprite = idleSprites[2];
+                        }
                         break;
                    
                     case 4:
-                        currSprite.sprite = idleSprites[4];
+                        if (System.Array.IndexOf(noTurn, DIR.DWN) == -1)
+                        {
+                            currSprite.sprite = idleSprites[4];
+                        }
                         break;
                 }
 
@@ -185,11 +216,17 @@ public class turretController : MonoBehaviour
                 {
 
                     case 3:
-                        currSprite.sprite = idleSprites[3];
+                        if (System.Array.IndexOf(noTurn, DIR.DWNRHT) == -1)
+                        {
+                            currSprite.sprite = idleSprites[3];
+                        }
                         break;
                   
                     case 5:
-                        currSprite.sprite = idleSprites[5];
+                        if (System.Array.IndexOf(noTurn, DIR.DWNLFT) == -1)
+                        { 
+                            currSprite.sprite = idleSprites[5];
+                        }
                         break;
                 }
 
@@ -201,11 +238,18 @@ public class turretController : MonoBehaviour
                 {
 
                     case 4:
-                        currSprite.sprite = idleSprites[4];
+
+                        if (System.Array.IndexOf(noTurn, DIR.DWN) == -1)
+                        {
+                            currSprite.sprite = idleSprites[4];
+                        }
                         break;
                    
                     case 6:
-                        currSprite.sprite = idleSprites[6];
+                        if (System.Array.IndexOf(noTurn, DIR.LFT) == -1)
+                        {
+                            currSprite.sprite = idleSprites[6];
+                        }
                         break;
                         
 
@@ -217,11 +261,17 @@ public class turretController : MonoBehaviour
                 switch (rand.Next(5, 60))
                 {
                     case 5:
-                        currSprite.sprite = idleSprites[5];
+                        if (System.Array.IndexOf(noTurn, DIR.DWNLFT) == -1)
+                        {
+                            currSprite.sprite = idleSprites[5];
+                        }
                         break;
                    
                     case 7:
-                        currSprite.sprite = idleSprites[7];
+                        if (System.Array.IndexOf(noTurn, DIR.UPLFT) == -1)
+                        {
+                            currSprite.sprite = idleSprites[7];
+                        }
                         break;
 
 
