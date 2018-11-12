@@ -62,11 +62,11 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Light
-    uniqueID: 3509484549
-    locked: 0
   - name: Ceeling
     uniqueID: 164466793
+    locked: 0
+  - name: Light
+    uniqueID: 3509484549
     locked: 0
   - name: Block
     uniqueID: 908348919
