@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Weapon
+  - Enemy
+  - enemyProjectile
+  - playerProjectile
+  - Wall
+  - PowerBlock
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 1623823377
+    locked: 0
+  - name: Floor
+    uniqueID: 3379037309
+    locked: 0
+  - name: Wall
+    uniqueID: 780628719
+    locked: 0
+  - name: Power
+    uniqueID: 3758460445
+    locked: 0
+  - name: Ground
+    uniqueID: 2209133033
+    locked: 0
+  - name: pickup
+    uniqueID: 3349289497
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Ceeling
+    uniqueID: 164466793
+    locked: 0
+  - name: Light
+    uniqueID: 3509484549
+    locked: 0
+  - name: Block
+    uniqueID: 908348919
+    locked: 0
+  - name: UI
+    uniqueID: 354623047
+    locked: 0
