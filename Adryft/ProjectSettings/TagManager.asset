@@ -47,8 +47,11 @@ TagManager:
   - name: Background
     uniqueID: 1623823377
     locked: 0
-  - name: Room
+  - name: Floor
     uniqueID: 3379037309
+    locked: 0
+  - name: Wall
+    uniqueID: 780628719
     locked: 0
   - name: Power
     uniqueID: 3758460445
