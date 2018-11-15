@@ -158,6 +158,12 @@ public class damageController : MonoBehaviour {
         }
     }
 
+    public void HealthLvlUp(int ammount)
+    {
+        MAX_HEALTH += ammount;
+        health = MAX_HEALTH;
+    }
+
     // Fall Damage
     IEnumerator fall()
     {
@@ -214,5 +220,17 @@ public class damageController : MonoBehaviour {
         sr.color = Color.red;
         yield return new WaitForSeconds(.1F);
         sr.color = Color.white;
+    }
+
+    public void SaveTo(PlayerData pd)
+    {
+        pd.d_healh = health;
+        pd.d_maxHealth = MAX_HEALTH;
+    }
+
+    public void LoadFrom(PlayerData pd)
+    {
+        health = pd.d_healh;
+        MAX_HEALTH = pd.d_maxHealth;
     }
 }

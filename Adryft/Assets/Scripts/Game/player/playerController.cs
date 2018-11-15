@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class playerController : MonoBehaviour
 {
 
@@ -11,9 +12,7 @@ public class playerController : MonoBehaviour
     [SerializeField]
     private GameObject gameOver;
 
-
     private damageController dc;
-    
 
     //variables
     private float mSpeed;
@@ -207,6 +206,25 @@ public class playerController : MonoBehaviour
     {
         if (ammo > maxAmmo) ammo = maxAmmo;
         else if (ammo < 0) ammo = 0;
+    }
+
+    public void SaveTo(PlayerData pd)
+    {
+        pd.p_ammo = ammo;
+        pd.p_maxAmmo = ammo;
+        pd.p_maxStamina = maxStamina;
+
+        dc.SaveTo(pd);
+    }
+
+    public void LoadFrom(PlayerData pd)
+    {
+        ammo = pd.p_ammo;
+        maxAmmo = pd.p_maxAmmo;
+        maxStamina = pd.p_maxStamina;
+        stamina = maxStamina;
+
+        dc.LoadFrom(pd);
     }
 }
 

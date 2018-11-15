@@ -5,18 +5,17 @@ using UnityEngine;
 public class Terminal : MonoBehaviour {
 
     [SerializeField]
-    private GameObject prompt;
+    private GameObject UI;
     [SerializeField]
-    private GameObject TextBox;
+    private GameObject Opened;
     [SerializeField]
-    private string text;
-    private GameObject clone;
-    private bool opened;
+    private GameObject Closed;
     
 
 	// Use this for initialization
 	void Start () {
-        opened = false;
+        Close();
+        UI.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -24,13 +23,25 @@ public class Terminal : MonoBehaviour {
 		
 	}
 
+    public void Open()
+    {
+        Closed.SetActive(false);
+        Opened.SetActive(true);
+    }
+
+    public void Close()
+    {
+        Closed.SetActive(true);
+        Opened.SetActive(false);
+    }
+
     // Collision detection
     void OnTriggerEnter2D(Collider2D collision)
     {
         // If it collides with the player
         if (collision.CompareTag("Player"))
         {
-            prompt.SetActive(true);
+            UI.SetActive(true);
         }
     }
 
@@ -38,8 +49,8 @@ public class Terminal : MonoBehaviour {
     {
         if (collision.CompareTag("Player"))
         {
-            prompt.SetActive(false);
-            Destroy(clone);
+            Close();
+            UI.SetActive(false);
         }
     }
 
@@ -47,8 +58,7 @@ public class Terminal : MonoBehaviour {
     {
         if (collision.CompareTag("Player") && Input.GetButtonDown("Interact"))
         {
-            clone = Instantiate(TextBox);
-            //clone
+            
         }
     }
 }
