@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 224764107686765190}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Closed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ GameObject:
   - component: {fileID: 224506943441889230}
   - component: {fileID: 222792117602184552}
   - component: {fileID: 114724823941757312}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 223300834490569490}
   - component: {fileID: 114823903605651242}
   - component: {fileID: 114409399086377952}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 222237443830135864}
   - component: {fileID: 114478174710473868}
   - component: {fileID: 114773190195644542}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Close
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 224480163631053494}
   - component: {fileID: 222029261726228344}
   - component: {fileID: 114993051075794028}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 224339519174020978}
   - component: {fileID: 222394041188535600}
   - component: {fileID: 114110769582432660}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 224946479389891514}
   - component: {fileID: 222293293301019588}
   - component: {fileID: 114111358095350452}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 224878641588700638}
   - component: {fileID: 222518198959810640}
   - component: {fileID: 114299547894920172}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4073732893766240}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 222328888569831700}
   - component: {fileID: 114977332546463190}
   - component: {fileID: 114316104370868902}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Open
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 224859395046571422}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Opened
   m_TagString: Untagged
   m_Icon: {fileID: 0}

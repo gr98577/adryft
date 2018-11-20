@@ -16,12 +16,16 @@ public class gunController : MonoBehaviour {
 
     private playerController pc;
 
+    private bool charging;
+
     private bool pickedUp = false;
     private bool canFire = false;
     private int ammunition;
 
     private bool stunned;
     private bool active;
+
+    private float gunCharge;
 
     private GameObject HUD;
 
@@ -59,15 +63,56 @@ public class gunController : MonoBehaviour {
 
                 // Gets the amount of ammunition the player has
                 ammunition = pc.getAmmunition();
-                // If the player fires the gun
-                if (Input.GetButtonDown("Fire2") && canFire && ammunition > 0)
+
+                if (Input.GetButtonDown("Cancel"))
                 {
-                    StartCoroutine(Fire());
+                    gunCharge = 1f;
+                    charging = false;
+                }
+
+                if (canFire && ammunition > 0)
+                {
+                    // If the player fires the gun
+                    if (Input.GetButtonUp("Fire2"))
+                    {
+                        if (charging)
+                        {
+                            StartCoroutine(Fire());
+                            gunCharge = 1f;
+                            charging = false;
+                        }
+                    }
+                    // Charges up bullet
+                    if (Input.GetButtonDown("Fire2"))
+                    {
+                        gunCharge = 1f;
+                        charging = true;
+                    }
+                    if (Input.GetButton("Fire2"))
+                    {
+                        if (charging)
+                        {
+                            gunCharge += Time.deltaTime;
+                            if (gunCharge > pc.getAmmunition())
+                            {
+                                gunCharge = pc.getAmmunition();
+                            }
+                            else if (gunCharge > 5f)
+                            {
+                                gunCharge = 5f;
+                            }
+                        }
+                    }
                 }
             }
             else
             {
                 //make dissapear
+            }
+
+            if (charging)
+            {
+                Debug.Log(gunCharge);
             }
         }
     }
@@ -133,11 +178,14 @@ public class gunController : MonoBehaviour {
     IEnumerator Fire()
     {
         // Creates a projectile and rotates it correctly
-        var clone = Instantiate(projectile, transform.position, Quaternion.identity);
+        GameObject clone = Instantiate(projectile, transform.position, Quaternion.identity);
         clone.transform.up = transform.up;
+        clone.transform.localScale = clone.transform.localScale * gunCharge;
+        clone.GetComponent<pProjectileController>().setCharge(gunCharge);
 
         // Spends one bullet
-        pc.incAmmunition(-1);
+        int price = -1 * (int)gunCharge;
+        pc.incAmmunition(price);
         ammunition = pc.getAmmunition();
 
         // Slight Delay

@@ -11,6 +11,7 @@ public class playerController : MonoBehaviour
     private AudioSource ochSource;
     [SerializeField]
     private GameObject gameOver;
+    public CameraController mainCamera;
 
     private damageController dc;
 
@@ -75,6 +76,15 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            StartCoroutine(mainCamera.cameraShake(0.1f, 0.01f));
+        }
+        if (Input.GetButtonDown("Fire2"))
+        {
+            //StartCoroutine(mainCamera.cameraShake(0.1f, 0.001f));
+        }
+
         if (stunned)
         {
             // stun effect

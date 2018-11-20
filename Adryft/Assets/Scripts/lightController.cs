@@ -11,7 +11,7 @@ public class lightController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         player = GameObject.FindGameObjectWithTag("Player");
-        flashLight = false;
+        flashLight = true;
         start = new Vector3(-15, 5, 0);
     }
 	

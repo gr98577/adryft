@@ -156,6 +156,15 @@ public class damageController : MonoBehaviour {
                 StartCoroutine(fall());
             }
         }
+
+        ///*
+        if (player)
+        {
+            playerController plyr = GetComponent<playerController>();
+            float duration = kbAmount / 20;
+            StartCoroutine(plyr.mainCamera.cameraShake(0.1f, duration));
+        }
+        //*/
     }
 
     public void HealthLvlUp(int ammount)

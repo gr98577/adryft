@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class pProjectileController : MonoBehaviour {
 
+    private int m_charge;
+
+    public void setCharge(float charge)
+    {
+        m_charge = (int)charge;
+    }
+
     // Use this for initialization
     void Start()
     {
@@ -25,7 +32,9 @@ public class pProjectileController : MonoBehaviour {
         {
             // Does damage
             damageController dc = collision.gameObject.GetComponent<damageController>();
-            dc.doDamage(2, "none", transform.position, 0.5f);
+            int damage = 2 * m_charge;
+            float knockback = 0.5f * m_charge;
+            dc.doDamage(damage, "none", transform.position, knockback);
             // Self Destructs
             Destroy(this.gameObject);
         }
