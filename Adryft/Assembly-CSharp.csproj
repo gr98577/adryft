@@ -84,6 +84,7 @@
     <Compile Include="Assets\Scripts\tProjectileController.cs" />
     <Compile Include="Assets\Scripts\turretController.cs" />
     <Compile Include="Assets\Scripts\UI\BulletBar.cs" />
+    <Compile Include="Assets\Scripts\UI\CursorController.cs" />
     <Compile Include="Assets\Scripts\UI\healthBar.cs" />
     <Compile Include="Assets\Scripts\UI\StaminaBar.cs" />
     <Compile Include="Assets\Scripts\UI\UIController.cs" />
