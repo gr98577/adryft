@@ -211,10 +211,14 @@ MonoBehaviour:
   MAX_HEALTH: 20
   deathSpawn: {fileID: 1053966815656050, guid: 7a2953a0b6a00ec45a87a185d3f5fc43, type: 2}
   deathDrop: {fileID: 0}
+  deathBlood: {fileID: 1210216658510764, guid: 331354b05133dd24aaaf06d19d244111, type: 2}
   isMobile: 1
   dropPercent: 0
   doesFly: 0
   player: 1
+  blood: {fileID: 1015599545902126, guid: f26ec7b8a0da1844da77507d89353262, type: 2}
+  damageFlash: {fileID: 0}
+  killFlash: {fileID: 0}
 --- !u!114 &114737130193784594
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -228,6 +232,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ochSource: {fileID: 0}
   gameOver: {fileID: 1053966815656050, guid: 7a2953a0b6a00ec45a87a185d3f5fc43, type: 2}
+  blood: {fileID: 1015599545902126, guid: f26ec7b8a0da1844da77507d89353262, type: 2}
+  bloodMed: {fileID: 1577187698073326, guid: ffd9b257e4188044e8a3812a90511f45, type: 2}
+  bloodSml: {fileID: 1158478098039658, guid: c5bc7c11eec64224eb4e2e44fdb0ec3c, type: 2}
+  mainCamera: {fileID: 0}
 --- !u!212 &212544098951916904
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -263,7 +271,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e583a1fb800f8004a9f095929bf4da2f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4c1ce0ee582828e43bf1488afdbf5ebc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

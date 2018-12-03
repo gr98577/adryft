@@ -13,6 +13,8 @@ public class damageController : MonoBehaviour {
     [SerializeField]
     private GameObject deathDrop;
     [SerializeField]
+    private GameObject deathBlood;
+    [SerializeField]
     private bool isMobile;
     [SerializeField]
     private float dropPercent;
@@ -20,11 +22,22 @@ public class damageController : MonoBehaviour {
     private bool doesFly;
     [SerializeField]
     private bool player;
+    [SerializeField]
+    private GameObject blood;
     private AudioSource oofSource;
     private Rigidbody2D rb2d;
     private SpriteRenderer sr;
     private bool kb = false;
     private bool fell = false;
+    private bool bleeding = false;
+
+    [SerializeField]
+    private GameObject damageFlash;
+    [SerializeField]
+    private GameObject killFlash;
+    private playerController plyr;
+
+
 
     // getter function for health
     public int getHealth()
@@ -42,18 +55,23 @@ public class damageController : MonoBehaviour {
     { return doesFly; }
 
     // Use this for initialization
-    void Start () {
+    void Start() {
         // Initialization
         health = MAX_HEALTH;
         oofSource = GetComponent<AudioSource>();
         rb2d = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+
+        GameObject tmp = GameObject.FindGameObjectWithTag("Player");
+        plyr = tmp.GetComponent<playerController>();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update() {
         if (health <= 0)
         {
+            GameObject DeathBlood = Instantiate(deathBlood, transform.position, Quaternion.identity);
+
             // If the owner is the player
             if (player)
             {
@@ -96,6 +114,19 @@ public class damageController : MonoBehaviour {
             }
             // Self destructs
             Destroy(this.gameObject);
+        }
+        else if (player && !bleeding)
+        {
+            StartCoroutine(bleedDelay());
+            Debug.Log("BLEEDING AAAAAAA");
+            if (health <= 4)
+            {
+                plyr.bleed(true);
+            }
+            else if (health <= 8)
+            {
+                plyr.bleed(false);
+            }
         }
     }
 
@@ -157,20 +188,69 @@ public class damageController : MonoBehaviour {
             }
         }
 
-        ///*
         if (player)
         {
             playerController plyr = GetComponent<playerController>();
-            float duration = kbAmount / 20;
-            StartCoroutine(plyr.mainCamera.cameraShake(0.1f, duration));
+            StartCoroutine(plyr.mainCamera.cameraShake(0.1f, 0.05f));
+
+            if (health < 0)
+            {
+                GameObject clone = Instantiate(deathBlood, transform.position, Quaternion.identity);
+            }
+            else
+            {
+                bloodSplat(location);
+            }
         }
-        //*/
+        else
+        {
+            VFXflash();
+            bloodSplat(location);
+        }
     }
 
     public void HealthLvlUp(int ammount)
     {
         MAX_HEALTH += ammount;
         health = MAX_HEALTH;
+    }
+
+    // VFX flash on damage
+    public void VFXflash()
+    {
+        if (health > 0)
+        {
+            GameObject clone = Instantiate(damageFlash, transform.position, Quaternion.identity);
+        }
+        else
+        {
+            GameObject clone = Instantiate(killFlash, transform.position, Quaternion.identity);
+        }
+    }
+
+    // Blood Splat
+    public void bloodSplat(Vector3 location)
+    {
+        if (health < 0)
+        {
+            
+        }
+        else
+        {
+            StartCoroutine(bloodDelay(location));
+        }
+    }
+
+    IEnumerator bloodDelay(Vector3 location)
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        GameObject clone = Instantiate(blood, transform.position, Quaternion.identity);
+        Debug.Log(clone.transform.rotation);
+
+        Vector3 rot = transform.position - location;
+        rot.z = 0;
+        clone.transform.right = rot;
     }
 
     // Fall Damage
@@ -196,6 +276,9 @@ public class damageController : MonoBehaviour {
         Vector2 rot = new Vector2(
                     transform.position.x - location.x,
                     transform.position.y - location.y);
+        //rot *= 5;
+        //rot.Normalize();
+        //rot /= 5;
         rot *= 50f * mult;
 
         // Applies knockback
@@ -229,6 +312,13 @@ public class damageController : MonoBehaviour {
         sr.color = Color.red;
         yield return new WaitForSeconds(.1F);
         sr.color = Color.white;
+    }
+
+    IEnumerator bleedDelay()
+    {
+        bleeding = true;
+        yield return new WaitForSeconds(1.2f);
+        bleeding = false;
     }
 
     public void SaveTo(PlayerData pd)

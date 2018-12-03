@@ -5,6 +5,7 @@ using UnityEngine;
 public class pProjectileController : MonoBehaviour {
 
     private int m_charge;
+    private Vector3 originalPos;
 
     public void setCharge(float charge)
     {
@@ -15,6 +16,7 @@ public class pProjectileController : MonoBehaviour {
     void Start()
     {
         StartCoroutine(life());
+        originalPos = transform.position;
     }
 
     // Update is called once per frame
@@ -34,7 +36,7 @@ public class pProjectileController : MonoBehaviour {
             damageController dc = collision.gameObject.GetComponent<damageController>();
             int damage = 2 * m_charge;
             float knockback = 0.5f * m_charge;
-            dc.doDamage(damage, "none", transform.position, knockback);
+            dc.doDamage(damage, "none", originalPos, knockback);
             // Self Destructs
             Destroy(this.gameObject);
         }

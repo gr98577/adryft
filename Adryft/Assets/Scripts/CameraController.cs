@@ -8,6 +8,7 @@ public class CameraController : MonoBehaviour {
     private GameObject player;
     [SerializeField]
     private float smoothAmmount;
+    private float smoothAmmountActual;
     private bool shake;
     private float m_magnitude;
     private float delay;
@@ -31,6 +32,7 @@ public class CameraController : MonoBehaviour {
 
     // Update is called once per frame
     void LateUpdate () {
+        smoothAmmountActual = smoothAmmount * ((1/Time.deltaTime)/120);
         followPlayer();
 	}
 
@@ -75,7 +77,7 @@ public class CameraController : MonoBehaviour {
 
         desiredPosition += mousePosition;
 
-        Vector3 position = Vector3.Lerp(transform.position, desiredPosition, smoothAmmount);
+        Vector3 position = Vector3.Lerp(transform.position, desiredPosition, smoothAmmountActual);
 
         if (shake)
         {

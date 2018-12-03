@@ -112,7 +112,7 @@ public class gunController : MonoBehaviour {
 
             if (charging)
             {
-                Debug.Log(gunCharge);
+                //Debug.Log(gunCharge);
             }
         }
     }

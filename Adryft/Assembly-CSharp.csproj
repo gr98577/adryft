@@ -72,12 +72,15 @@
     <Compile Include="Assets\Scripts\gunController.cs" />
     <Compile Include="Assets\Scripts\lightController.cs" />
     <Compile Include="Assets\Scripts\ObjectiveController.cs" />
+    <Compile Include="Assets\Scripts\Obstacles\handPlantController.cs" />
+    <Compile Include="Assets\Scripts\Obstacles\HAZslowScript.cs" />
+    <Compile Include="Assets\Scripts\Obstacles\pitController.cs" />
     <Compile Include="Assets\Scripts\Pickups\ammoPickupController.cs" />
     <Compile Include="Assets\Scripts\Pickups\Pickup_Health.cs" />
     <Compile Include="Assets\Scripts\Pickups\PickupController.cs" />
-    <Compile Include="Assets\Scripts\pitController.cs" />
     <Compile Include="Assets\Scripts\PowerTrigger.cs" />
     <Compile Include="Assets\Scripts\pProjectileController.cs" />
+    <Compile Include="Assets\Scripts\RESTART.cs" />
     <Compile Include="Assets\Scripts\swordController.cs" />
     <Compile Include="Assets\Scripts\Terminal.cs" />
     <Compile Include="Assets\Scripts\TextBox.cs" />
@@ -88,6 +91,8 @@
     <Compile Include="Assets\Scripts\UI\healthBar.cs" />
     <Compile Include="Assets\Scripts\UI\StaminaBar.cs" />
     <Compile Include="Assets\Scripts\UI\UIController.cs" />
+    <Compile Include="Assets\Scripts\VFX\BleedingVFX.cs" />
+    <Compile Include="Assets\Scripts\VFX\FlashDamageVFX.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />

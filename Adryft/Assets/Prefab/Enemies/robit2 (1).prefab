@@ -210,10 +210,15 @@ MonoBehaviour:
   MAX_HEALTH: 20
   deathSpawn: {fileID: 1319458648845008, guid: d9edf99c42661ee49afe94b96dd260ec, type: 2}
   deathDrop: {fileID: 1796617647204878, guid: a734442b5bca1884ab4d456606d1983e, type: 2}
+  deathBlood: {fileID: 1428261840459020, guid: acb797e6554d37e4ba3b162a1aeba179, type: 2}
   isMobile: 1
   dropPercent: 0.5
   doesFly: 0
   player: 0
+  blood: {fileID: 1366150061642314, guid: c0efcd8c92d2f2945ba29d72f9adf756, type: 2}
+  damageFlash: {fileID: 1808185158270472, guid: 960f2604845dc3147993fc66851d6313,
+    type: 2}
+  killFlash: {fileID: 1134804557898358, guid: 44f2814102dd2db4d84551ea72b690c6, type: 2}
 --- !u!212 &212742210522757496
 SpriteRenderer:
   m_ObjectHideFlags: 1

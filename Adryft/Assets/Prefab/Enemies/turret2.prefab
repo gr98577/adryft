@@ -292,8 +292,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19ba369c8e227f943a87850bdb7a5069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   projectile: {fileID: 1676014708574204, guid: 0492e693b7e670a4c9100939a370217d, type: 2}
+  dir: {x: 0, y: 0, z: 0}
+  noTurn: 0000000000000000000000000000000000000000000000000000000000000000
 --- !u!114 &114159570413403092
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -308,9 +309,15 @@ MonoBehaviour:
   MAX_HEALTH: 6
   deathSpawn: {fileID: 1659897376946456, guid: 2e52f68f34c6854449422e4edc0756af, type: 2}
   deathDrop: {fileID: 1796617647204878, guid: a734442b5bca1884ab4d456606d1983e, type: 2}
+  deathBlood: {fileID: 1191322685270746, guid: 9ddb2466aa0fde44694d4033a6ab8777, type: 2}
   isMobile: 0
   dropPercent: 0.1
   doesFly: 0
+  player: 0
+  blood: {fileID: 0}
+  damageFlash: {fileID: 1808185158270472, guid: 960f2604845dc3147993fc66851d6313,
+    type: 2}
+  killFlash: {fileID: 1134804557898358, guid: 44f2814102dd2db4d84551ea72b690c6, type: 2}
 --- !u!212 &212631682277253424
 SpriteRenderer:
   m_ObjectHideFlags: 1

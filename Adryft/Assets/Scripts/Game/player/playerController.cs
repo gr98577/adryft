@@ -11,12 +11,19 @@ public class playerController : MonoBehaviour
     private AudioSource ochSource;
     [SerializeField]
     private GameObject gameOver;
+    [SerializeField]
+    private GameObject blood;
+    [SerializeField]
+    private GameObject bloodMed;
+    [SerializeField]
+    private GameObject bloodSml;
     public CameraController mainCamera;
 
     private damageController dc;
 
     //variables
     private float mSpeed;
+    public bool isSlowed;
     private float tSpeed;
     private bool stunned;
     private int dash;
@@ -67,6 +74,7 @@ public class playerController : MonoBehaviour
     void Start()
     {
         mSpeed = 2f;
+        isSlowed = false;
         ochSource = GetComponent<AudioSource>();
         dc = GetComponent<damageController>();
         ammo = maxAmmo;
@@ -107,13 +115,20 @@ public class playerController : MonoBehaviour
         }
 
         // If dashing move faster and set flying to true
-        if (dash == 1)
+        if (!isSlowed)
         {
-            tSpeed = mSpeed * Time.deltaTime * 5;
+            if (dash == 1)
+            {
+                tSpeed = mSpeed * Time.deltaTime * 5;
+            }
+            else
+            {
+                tSpeed = mSpeed * Time.deltaTime;
+            }
         }
         else
         {
-            tSpeed = mSpeed * Time.deltaTime;
+            tSpeed = (mSpeed * Time.deltaTime) / 2;
         }
         // Move in the desired direction
         direction = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0f);
@@ -134,6 +149,28 @@ public class playerController : MonoBehaviour
         {
             return false;
         }
+    }
+
+    // Bleeding
+    public void bleed(bool heavy)
+    {
+        float x = transform.position.x;
+        x = Random.Range(x - 0.01f, x + 0.01f);
+        float y = transform.position.y;
+        y = Random.Range(y - 0.01f, y + 0.01f);
+        Vector3 pos = new Vector3(x, y, 0);
+
+        if (heavy)
+        {
+            GameObject clone = Instantiate(bloodMed, pos, Quaternion.identity);
+        }
+        else
+        {
+            
+            GameObject clone = Instantiate(bloodSml, pos, Quaternion.identity);
+        }
+
+        
     }
 
     // Dash

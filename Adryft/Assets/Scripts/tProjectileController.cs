@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class tProjectileController : MonoBehaviour {
 
-	// Use this for initialization
-	void Start()
+    private Vector3 originalPos;
+
+    // Use this for initialization
+    void Start()
     {
         StartCoroutine(life());
+        originalPos = transform.position;
     }
 	
 	// Update is called once per frame
@@ -25,7 +28,7 @@ public class tProjectileController : MonoBehaviour {
         {
             // Does damage
             damageController dc = collision.gameObject.GetComponent<damageController>();
-            dc.doDamage(3, "none", transform.position, 1f);
+            dc.doDamage(3, "none", originalPos, 0f);
             // Self Destructs
             Destroy(this.gameObject);
         }
