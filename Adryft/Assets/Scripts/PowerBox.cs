@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PowerBox : MonoBehaviour
 {
-
     private bool isInUse;
     private SpriteRenderer sr;
     private Sprite[] es;
@@ -37,7 +36,7 @@ public class PowerBox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     IEnumerator Shock()

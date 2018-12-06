@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\gunController.cs" />
     <Compile Include="Assets\Scripts\lightController.cs" />
     <Compile Include="Assets\Scripts\ObjectiveController.cs" />
+    <Compile Include="Assets\Scripts\Objects\Grabable.cs" />
     <Compile Include="Assets\Scripts\Obstacles\handPlantController.cs" />
     <Compile Include="Assets\Scripts\Obstacles\HAZslowScript.cs" />
     <Compile Include="Assets\Scripts\Obstacles\pitController.cs" />

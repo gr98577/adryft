@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 61121982059600794}
   - component: {fileID: 50366535442716250}
   - component: {fileID: 114676506320384836}
+  - component: {fileID: 114998461424225684}
   m_Layer: 0
   m_Name: PowerBox
   m_TagString: PowerBlock
@@ -37,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1997056316709136}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.198, y: -0.179, z: 0}
+  m_LocalPosition: {x: -0.193, y: -0.189, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -55,7 +56,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1000000
   m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -75,7 +76,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0043237805, y: -0.0019760877}
+  m_Offset: {x: 0.0009212494, y: 0.000121831894}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -86,7 +87,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.17370856, y: 0.31604782}
+  m_Size: {x: 0.21986532, y: 0.2216363}
   m_EdgeRadius: 0
 --- !u!114 &114676506320384836
 MonoBehaviour:
@@ -97,6 +98,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70c5818cf76153242a6ac7884960a5ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114998461424225684
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1997056316709136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b6bc0196af45941b7445ee21ca7187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212939349733104716

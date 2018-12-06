@@ -31,9 +31,10 @@ public class playerController : MonoBehaviour
     private int maxAmmo = 20;
     private float stamina;
     private float maxStamina = 1f;
-    private Vector3 direction;
+    private Vector2 direction;
     private bool isStaminaRegen = false;
     private bool isStaminaUsed = false;
+    private Rigidbody2D rb;
     //private bool isStaminaInDelay = false;
 
     // Max ammo getter
@@ -52,6 +53,9 @@ public class playerController : MonoBehaviour
     // Sets stamina to zero
     public void zeroStamina()
     { stamina = -1; }
+
+    public float getTSpeed()
+    { return tSpeed; }
 
     // Ammo setter
     public void setAmmunition(int ammount)
@@ -77,6 +81,7 @@ public class playerController : MonoBehaviour
         isSlowed = false;
         ochSource = GetComponent<AudioSource>();
         dc = GetComponent<damageController>();
+        rb = GetComponent<Rigidbody2D>();
         ammo = maxAmmo;
         stamina = maxStamina;
     }
@@ -133,8 +138,15 @@ public class playerController : MonoBehaviour
             tSpeed = (mSpeed * Time.deltaTime) / 2;
         }
         // Move in the desired direction
-        direction = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0f);
+        direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         transform.Translate(tSpeed * direction.normalized);
+        /*
+        direction = tSpeed * direction.normalized;
+        float x = transform.position.x + (direction.x * 1.1f);
+        float y = transform.position.y + (direction.y * 1.1f);
+        Vector2 pos = new Vector2(x, y);
+        rb.MovePosition(pos);
+        */
     }
 
     // Use stamina

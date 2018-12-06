@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class pitController : MonoBehaviour
 {
-    // Trigger detection 
-    void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         // If it's triggered by the player or an enemy
         if (collision.CompareTag("Player") || collision.CompareTag("Enemy"))
@@ -17,5 +16,11 @@ public class pitController : MonoBehaviour
                 dc.doDamage(0, "fall", transform.position, -1.5f);
             }
         }
+    }
+
+    // Trigger detection 
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        
     }
 }
