@@ -13,7 +13,7 @@ public class damageController : MonoBehaviour {
     [SerializeField]
     private GameObject deathDrop;
     [SerializeField]
-    private GameObject deathBlood;
+    private GameObject deathEffect;
     [SerializeField]
     private bool isMobile;
     [SerializeField]
@@ -70,7 +70,10 @@ public class damageController : MonoBehaviour {
     void Update() {
         if (health <= 0)
         {
-            GameObject DeathBlood = Instantiate(deathBlood, transform.position, Quaternion.identity);
+            if (!fell)
+            {
+                GameObject DeathBlood = Instantiate(deathEffect, transform.position, Quaternion.identity);
+            }
 
             // If the owner is the player
             if (player)
@@ -184,6 +187,7 @@ public class damageController : MonoBehaviour {
             if (!doesFly)
             {
                 this.SendMessage("stun", 2f);
+                fell = true;
                 StartCoroutine(fall());
             }
         }
@@ -195,9 +199,9 @@ public class damageController : MonoBehaviour {
 
             if (health < 0)
             {
-                GameObject clone = Instantiate(deathBlood, transform.position, Quaternion.identity);
+                GameObject clone = Instantiate(deathEffect, transform.position, Quaternion.identity);
             }
-            else
+            else if (!fell)
             {
                 bloodSplat(location);
             }
@@ -205,7 +209,10 @@ public class damageController : MonoBehaviour {
         else
         {
             VFXflash();
-            bloodSplat(location);
+            if (!fell)
+            {
+                bloodSplat(location);
+            }
         }
     }
 
@@ -263,7 +270,6 @@ public class damageController : MonoBehaviour {
             transform.localScale = new Vector3(i, i, i);
         }
         // Sets fell to true and health to zero
-        fell = true;
         health = 0;
     }
 

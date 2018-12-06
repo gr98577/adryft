@@ -27,8 +27,11 @@ public class PowerTrigger : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         // If it collides with the player
-        if (collision.CompareTag("PowerBlock") || collision.CompareTag("Player") || collision.CompareTag("Enemy"))
+        if (collision.CompareTag("PowerBlock") /*|| collision.CompareTag("Player") || collision.CompareTag("Enemy")*/)
         {
+            PowerBox pb = collision.GetComponent<PowerBox>();
+            pb.setUse(true);
+
             coList.Add(collision.gameObject);
             ON.SetActive(true);
             OFF.SetActive(false);
@@ -36,11 +39,13 @@ public class PowerTrigger : MonoBehaviour
     }
 
     private void OnTriggerExit2D(Collider2D collision)
-
     {
         coList.Remove(collision.gameObject);
         if (coList.Count == 0)
         {
+            PowerBox pb = collision.GetComponent<PowerBox>();
+            pb.setUse(false);
+
             ON.SetActive(false);
             OFF.SetActive(true);
         }

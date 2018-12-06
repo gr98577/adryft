@@ -62,7 +62,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraController.cs" />
-    <Compile Include="Assets\Scripts\EnemyController.cs" />
+    <Compile Include="Assets\Scripts\Enemies\EnemyController.cs" />
+    <Compile Include="Assets\Scripts\Enemies\turretController.cs" />
     <Compile Include="Assets\Scripts\Game\damageController.cs" />
     <Compile Include="Assets\Scripts\Game\MenuController.cs" />
     <Compile Include="Assets\Scripts\Game\player\playerCombat.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Assets\Scripts\Pickups\ammoPickupController.cs" />
     <Compile Include="Assets\Scripts\Pickups\Pickup_Health.cs" />
     <Compile Include="Assets\Scripts\Pickups\PickupController.cs" />
+    <Compile Include="Assets\Scripts\PowerBox.cs" />
     <Compile Include="Assets\Scripts\PowerTrigger.cs" />
     <Compile Include="Assets\Scripts\pProjectileController.cs" />
     <Compile Include="Assets\Scripts\RESTART.cs" />
@@ -85,13 +87,14 @@
     <Compile Include="Assets\Scripts\Terminal.cs" />
     <Compile Include="Assets\Scripts\TextBox.cs" />
     <Compile Include="Assets\Scripts\tProjectileController.cs" />
-    <Compile Include="Assets\Scripts\turretController.cs" />
     <Compile Include="Assets\Scripts\UI\BulletBar.cs" />
     <Compile Include="Assets\Scripts\UI\CursorController.cs" />
     <Compile Include="Assets\Scripts\UI\healthBar.cs" />
+    <Compile Include="Assets\Scripts\UI\SplashScreen.cs" />
     <Compile Include="Assets\Scripts\UI\StaminaBar.cs" />
     <Compile Include="Assets\Scripts\UI\UIController.cs" />
     <Compile Include="Assets\Scripts\VFX\BleedingVFX.cs" />
+    <Compile Include="Assets\Scripts\VFX\ExplosionVFX.cs" />
     <Compile Include="Assets\Scripts\VFX\FlashDamageVFX.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />

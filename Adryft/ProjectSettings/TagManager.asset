@@ -11,6 +11,8 @@ TagManager:
   - Wall
   - PowerBlock
   - UI
+  - music
+  - trigger
   layers:
   - Default
   - TransparentFX

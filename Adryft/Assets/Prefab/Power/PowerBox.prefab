@@ -22,8 +22,9 @@ GameObject:
   - component: {fileID: 212939349733104716}
   - component: {fileID: 61121982059600794}
   - component: {fileID: 50366535442716250}
+  - component: {fileID: 114676506320384836}
   m_Layer: 0
-  m_Name: bob
+  m_Name: PowerBox
   m_TagString: PowerBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +79,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.5, y: 0.32}
+    oldSize: {x: 0.32, y: 0.32}
     newSize: {x: 0.5, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -87,6 +88,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.17370856, y: 0.31604782}
   m_EdgeRadius: 0
+--- !u!114 &114676506320384836
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1997056316709136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70c5818cf76153242a6ac7884960a5ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212939349733104716
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -122,7 +134,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9d6c55da423d9ec47acfe097298db85b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1b0e77d70742e0b4b9c222ca17236d2e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

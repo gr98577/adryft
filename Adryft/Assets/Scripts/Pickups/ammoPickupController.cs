@@ -27,14 +27,14 @@ public class ammoPickupController : MonoBehaviour {
         // Grows until it reaches max size, then shrinks
         if (grow)
         {
-            size += 0.002f;
+            size += 0.004f;
             transform.localScale = new Vector3(1, 1, 1) * size;
             if (size >= maxSize) grow = false;
         }
         // Shrinks until it reaches min sze then grows
         else
         {
-            size -= 0.002f;
+            size -= 0.004f;
             transform.localScale = new Vector3(1, 1, 1) * size;
             if (size <= minSize) grow = true;
         }

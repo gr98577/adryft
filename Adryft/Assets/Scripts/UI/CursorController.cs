@@ -9,15 +9,16 @@ public class CursorController : MonoBehaviour {
     [SerializeField]
     Texture2D cursorImageActive;
     [SerializeField]
-    Vector2 hotSpot = Vector2.zero;
+    Vector2 hotSpot;
     [SerializeField]
-    private CursorMode cursorMode = CursorMode.Auto;
+    private CursorMode cursorMode = CursorMode.ForceSoftware;
 
     bool OnEnemy = false;
     bool OnElement = false;
 
     // Use this for initialization
     void Start () {
+        hotSpot = new Vector2(37, 37);
         Cursor.SetCursor(cursorImage, hotSpot, cursorMode);
     }
 

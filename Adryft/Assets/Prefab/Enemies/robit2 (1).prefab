@@ -196,6 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9da189c599912b54883b1bc7ccd0fcf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  time: 0.1
 --- !u!114 &114457592722983076
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -210,7 +211,8 @@ MonoBehaviour:
   MAX_HEALTH: 20
   deathSpawn: {fileID: 1319458648845008, guid: d9edf99c42661ee49afe94b96dd260ec, type: 2}
   deathDrop: {fileID: 1796617647204878, guid: a734442b5bca1884ab4d456606d1983e, type: 2}
-  deathBlood: {fileID: 1428261840459020, guid: acb797e6554d37e4ba3b162a1aeba179, type: 2}
+  deathEffect: {fileID: 1428261840459020, guid: acb797e6554d37e4ba3b162a1aeba179,
+    type: 2}
   isMobile: 1
   dropPercent: 0.5
   doesFly: 0

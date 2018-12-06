@@ -309,7 +309,8 @@ MonoBehaviour:
   MAX_HEALTH: 6
   deathSpawn: {fileID: 1659897376946456, guid: 2e52f68f34c6854449422e4edc0756af, type: 2}
   deathDrop: {fileID: 1796617647204878, guid: a734442b5bca1884ab4d456606d1983e, type: 2}
-  deathBlood: {fileID: 1191322685270746, guid: 9ddb2466aa0fde44694d4033a6ab8777, type: 2}
+  deathEffect: {fileID: 1785053188367316, guid: 2c21e994102c1624997d393598df2a5b,
+    type: 2}
   isMobile: 0
   dropPercent: 0.1
   doesFly: 0
