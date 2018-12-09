@@ -35,7 +35,6 @@ public class FlashDamageVFX : MonoBehaviour {
 
             if (sr.color.a == c1.a)
             {
-                Debug.Log("A");
                 Destroy(gameObject);
             }
         }
@@ -43,10 +42,8 @@ public class FlashDamageVFX : MonoBehaviour {
         {
             sr.color = Color.Lerp(sr.color, c2, 0.99f);
 
-            Debug.Log(c2.a + ":" + sr.color.a);
             if (sr.color.a == c2.a)
             {
-                Debug.Log("B");
                 peaked = true;
             }
         }

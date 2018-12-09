@@ -36,7 +36,6 @@ public class handPlantController : MonoBehaviour {
             }
             else
             {
-                Debug.Log(transform.up);
                 transform.up = new Vector3(-ammount, 1.0f, 0.0f);
             }
         }

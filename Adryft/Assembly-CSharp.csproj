@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\Enemies\turretController.cs" />
     <Compile Include="Assets\Scripts\Game\damageController.cs" />
     <Compile Include="Assets\Scripts\Game\MenuController.cs" />
+    <Compile Include="Assets\Scripts\Game\player\playerAnimScript.cs" />
     <Compile Include="Assets\Scripts\Game\player\playerCombat.cs" />
     <Compile Include="Assets\Scripts\Game\player\playerController.cs" />
     <Compile Include="Assets\Scripts\Game\SaveLoad\SaveLoadManager.cs" />

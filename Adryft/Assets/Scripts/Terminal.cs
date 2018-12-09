@@ -53,12 +53,4 @@ public class Terminal : MonoBehaviour {
             UI.SetActive(false);
         }
     }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player") && Input.GetButtonDown("Interact"))
-        {
-            
-        }
-    }
 }

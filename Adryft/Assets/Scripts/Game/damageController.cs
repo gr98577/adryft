@@ -121,7 +121,6 @@ public class damageController : MonoBehaviour {
         else if (player && !bleeding)
         {
             StartCoroutine(bleedDelay());
-            Debug.Log("BLEEDING AAAAAAA");
             if (health <= 4)
             {
                 plyr.bleed(true);

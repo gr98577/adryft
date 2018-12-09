@@ -13,6 +13,7 @@ TagManager:
   - UI
   - music
   - trigger
+  - Objective
   layers:
   - Default
   - TransparentFX

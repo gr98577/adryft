@@ -11,14 +11,18 @@ public class CursorController : MonoBehaviour {
     [SerializeField]
     Vector2 hotSpot;
     [SerializeField]
-    private CursorMode cursorMode = CursorMode.ForceSoftware;
+    private CursorMode cursorMode = CursorMode.Auto;
 
     bool OnEnemy = false;
     bool OnElement = false;
 
+    private GameObject finish;
+
     // Use this for initialization
     void Start () {
-        hotSpot = new Vector2(37, 37);
+        transform.localScale *= 2000f / Screen.width;
+        finish = GameObject.FindGameObjectWithTag("Finish");
+        hotSpot = new Vector2(15f, 15f);
         Cursor.SetCursor(cursorImage, hotSpot, cursorMode);
     }
 
@@ -26,8 +30,21 @@ public class CursorController : MonoBehaviour {
 	void LateUpdate () {
         Vector3 mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        mousePosition.z = 0.0f;
+        mousePosition.y -= 0.01f;
 
         transform.position = mousePosition;
+        faceObjective();
+        //transform.position = Vector3.Lerp(transform.position, mousePosition, 150 * Time.deltaTime);
+    }
+
+    private void faceObjective()
+    {
+        Vector2 direction = new Vector2(
+                    finish.transform.position.x - transform.position.x,
+                    finish.transform.position.y - transform.position.y);
+
+        transform.up = direction;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
