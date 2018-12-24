@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\Enemies\ANTI\AntiAnim.cs" />
     <Compile Include="Assets\Scripts\Enemies\EnemyController.cs" />
     <Compile Include="Assets\Scripts\Enemies\turretController.cs" />
     <Compile Include="Assets\Scripts\Game\damageController.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Assets\Scripts\Game\SaveLoad\SaveStation.cs" />
     <Compile Include="Assets\Scripts\gunController.cs" />
     <Compile Include="Assets\Scripts\lightController.cs" />
+    <Compile Include="Assets\Scripts\Menu\MainMenu.cs" />
     <Compile Include="Assets\Scripts\ObjectiveController.cs" />
     <Compile Include="Assets\Scripts\Objects\Grabable.cs" />
     <Compile Include="Assets\Scripts\Obstacles\handPlantController.cs" />
