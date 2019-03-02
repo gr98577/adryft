@@ -293,6 +293,16 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114111358095350452, guid: fa6bccdbc9411d346b3a8d9b1b4afa5d,
+        type: 2}
+      propertyPath: m_Text
+      value: CLOSE [E]
+      objectReference: {fileID: 0}
+    - target: {fileID: 114110769582432660, guid: fa6bccdbc9411d346b3a8d9b1b4afa5d,
+        type: 2}
+      propertyPath: m_Text
+      value: OPEN [E]
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa6bccdbc9411d346b3a8d9b1b4afa5d, type: 2}
   m_IsPrefabAsset: 0
@@ -350,6 +360,16 @@ Prefab:
     - target: {fileID: 1887743063675360, guid: fa6bccdbc9411d346b3a8d9b1b4afa5d, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114111358095350452, guid: fa6bccdbc9411d346b3a8d9b1b4afa5d,
+        type: 2}
+      propertyPath: m_Text
+      value: CLOSE [E]
+      objectReference: {fileID: 0}
+    - target: {fileID: 114110769582432660, guid: fa6bccdbc9411d346b3a8d9b1b4afa5d,
+        type: 2}
+      propertyPath: m_Text
+      value: OPEN [E]
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa6bccdbc9411d346b3a8d9b1b4afa5d, type: 2}
@@ -3528,7 +3548,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 142.73999, y: 318.83334}
+  m_AnchoredPosition: {x: 1420.74, y: 318.83334}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &552151049
@@ -17132,6 +17152,16 @@ Prefab:
     - target: {fileID: 1887743063675360, guid: fa6bccdbc9411d346b3a8d9b1b4afa5d, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114111358095350452, guid: fa6bccdbc9411d346b3a8d9b1b4afa5d,
+        type: 2}
+      propertyPath: m_Text
+      value: Close [E]
+      objectReference: {fileID: 0}
+    - target: {fileID: 114110769582432660, guid: fa6bccdbc9411d346b3a8d9b1b4afa5d,
+        type: 2}
+      propertyPath: m_Text
+      value: OPEN [E]
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa6bccdbc9411d346b3a8d9b1b4afa5d, type: 2}

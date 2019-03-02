@@ -14,9 +14,17 @@ public class SaveStation : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
-		
-	}
+	void Update ()
+    {
+        if (Input.GetButtonDown("Use1"))
+        {
+            SaveGame();
+        }
+        if (Input.GetButtonDown("Use2"))
+        {
+            LoadGame();
+        }
+    }
 
     public void SaveGame()
     {

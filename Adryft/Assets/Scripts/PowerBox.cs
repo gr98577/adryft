@@ -8,6 +8,12 @@ public class PowerBox : MonoBehaviour
     private SpriteRenderer sr;
     private Sprite[] es;
     private int i;
+    private GameObject player;
+    private float range = 0.5f;
+    private float dist;
+    private float xDisplacement;
+    private float yDisplacement;
+    private bool isHeld;
 
     public void setUse(bool isUsing)
     {
@@ -17,6 +23,8 @@ public class PowerBox : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+
         sr = GetComponent<SpriteRenderer>();
 
         es = new Sprite[6];
@@ -36,7 +44,39 @@ public class PowerBox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        dist = Vector3.Distance(player.transform.position, transform.position);
+
+        Debug.Log("OK");
+        if (Input.GetButtonDown("Fire3") && dist <= range)
+        {
+            isHeld = true;
+
+            xDisplacement = transform.position.x - player.transform.position.x;
+            yDisplacement = transform.position.y - player.transform.position.y;
+        }
+
+        if (isHeld && Input.GetButton("Fire3"))
+        {
+            FollowPlayer();
+        }
+
+        if (Input.GetButtonUp("Fire3") || Input.GetButtonDown("Jump") || dist > range)
+        {
+            isHeld = false;
+        }
+    }
+
+    // Follows the player
+    void FollowPlayer()
+    {
+        float x = player.transform.position.x + xDisplacement;
+        float y = player.transform.position.y + yDisplacement;
+
+        Vector3 position = new Vector3(0, 0, 0);
+
+        //Sets its location to the player's
+        position = new Vector3(x, y, transform.position.z);
+        transform.position = position;
     }
 
     IEnumerator Shock()

@@ -18,17 +18,9 @@ public class CameraController : MonoBehaviour {
         shake = false;
         // Finds the player
         player = GameObject.FindGameObjectWithTag("Player");
-    }
 
-    /*
-    private void Update()
-    {
-        if (Input.GetButtonDown("Fire3"))
-        {
-            StartCoroutine(cameraShake(0.2f, 0.1f));
-        }
+        transform.position = player.transform.position;
     }
-    */
 
     // Update is called once per frame
     void LateUpdate () {

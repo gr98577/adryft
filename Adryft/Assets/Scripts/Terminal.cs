@@ -10,27 +10,42 @@ public class Terminal : MonoBehaviour {
     private GameObject Opened;
     [SerializeField]
     private GameObject Closed;
+    private bool isOpen;
     
 
 	// Use this for initialization
 	void Start () {
         Close();
+        isOpen = false;
         UI.SetActive(false);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        if (Input.GetButtonDown("Use1"))
+        {
+            Debug.Log("E");
+            if (isOpen)
+            {
+                Close();
+            }
+            else
+            {
+                Open();
+            }
+        }
+    }
 
     public void Open()
     {
+        isOpen = true;
         Closed.SetActive(false);
         Opened.SetActive(true);
     }
 
     public void Close()
     {
+        isOpen = false;
         Closed.SetActive(true);
         Opened.SetActive(false);
     }
