@@ -47,7 +47,7 @@ public class lightController : MonoBehaviour {
         Vector3 position = new Vector3(0, 0, 0);
 
         //Sets its location to the player's
-        position = new Vector3(playerPosition.x, playerPosition.y, 1);
+        position = new Vector3(playerPosition.x, playerPosition.y, 2);
         transform.position = position;
     }
 

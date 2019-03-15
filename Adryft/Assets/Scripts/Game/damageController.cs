@@ -115,8 +115,17 @@ public class damageController : MonoBehaviour {
                     Debug.Log("no death drop");
                 }
             }
-            // Self destructs
-            Destroy(this.gameObject);
+            
+            if (player)
+            {
+                Time.timeScale = 0f;
+                sr.color = new Color(1, 1, 1, 0);
+            }
+            else
+            {
+                // Self destructs
+                Destroy(this.gameObject);
+            }
         }
         else if (player && !bleeding)
         {
@@ -252,7 +261,6 @@ public class damageController : MonoBehaviour {
         yield return new WaitForSeconds(0.1f);
 
         GameObject clone = Instantiate(blood, transform.position, Quaternion.identity);
-        Debug.Log(clone.transform.rotation);
 
         Vector3 rot = transform.position - location;
         rot.z = 0;

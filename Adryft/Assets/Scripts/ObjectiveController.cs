@@ -23,7 +23,9 @@ public class ObjectiveController : MonoBehaviour {
             var clone = Instantiate(success, player.transform.position, Quaternion.identity);
 
             // self destructs
-            Destroy(player);
+            //Destroy(player);
+
+            Time.timeScale = 0f;
         }
     }
 }

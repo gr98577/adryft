@@ -126,7 +126,7 @@ public class playerController : MonoBehaviour
         {
             if (dash == 1)
             {
-                tSpeed = mSpeed * Time.deltaTime * 5;
+                tSpeed = mSpeed * Time.deltaTime * 4;
             }
             else
             {

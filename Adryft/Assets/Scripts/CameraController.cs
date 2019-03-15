@@ -73,15 +73,18 @@ public class CameraController : MonoBehaviour {
 
         if (shake)
         {
-            float x = Random.Range(-1f, 1f) * m_magnitude;
-            float y = Random.Range(-1f, 1f) * m_magnitude;
-            float z = Random.Range(-0.2f, 0.2f) * m_magnitude;
+            if (player.GetComponent<SpriteRenderer>().color.a != 0)
+            {
+                float x = Random.Range(-1f, 1f) * m_magnitude;
+                float y = Random.Range(-1f, 1f) * m_magnitude;
+                float z = Random.Range(-0.2f, 0.2f) * m_magnitude;
 
-            x = x + position.x;
-            y = y + position.y;
-            z = z + position.z;
+                x = x + position.x;
+                y = y + position.y;
+                z = z + position.z;
 
-            position = new Vector3(x, y, z);
+                position = new Vector3(x, y, z);
+            }
         }
 
         transform.position = position;

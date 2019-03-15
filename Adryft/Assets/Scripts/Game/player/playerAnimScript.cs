@@ -40,8 +40,7 @@ public class playerAnimScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void LateUpdate () {
-        Vector3 mousePosition = Input.mousePosition;
-        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        
 
         // Sets its location to the player's and put itself on top of or under the player depending on mouse location
         /*if (mousePosition.y >= transform.position.y)
@@ -54,11 +53,18 @@ public class playerAnimScript : MonoBehaviour {
          }
          */
 
-        Debug.Log(mousePosition);
-        if (System.Math.Round(mousePosition.x) == 0f && System.Math.Round(mousePosition.y) == 0f) //right
+        
+        float angle = FindAngle();
+        //Debug.Log(angle);
+
+        
+        
+        //Debug.Log(mousePosition);
+        if (angle < 45 || angle > 315) //right
         {
-            Debug.Log("here");
+            //Debug.Log("right");
             sr.sprite = rWalk[1];
+            /*
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 if (sr.sprite == rWalk[1])
@@ -76,14 +82,14 @@ public class playerAnimScript : MonoBehaviour {
                     Debug.Log("here3");
                     sr.sprite = rWalk[1];
                 }
-
             }
-
+            */
         }
-        else if (System.Math.Round(mousePosition.x) == 0f && System.Math.Round(mousePosition.y) > 0f) //up
+        else if (angle >= 45 && angle <= 135) //up
         {
-            Debug.Log("here");
+            //Debug.Log("up");
             sr.sprite = fWalk[1];
+            /*
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 if (sr.sprite == fWalk[1])
@@ -101,13 +107,15 @@ public class playerAnimScript : MonoBehaviour {
                     Debug.Log("here3");
                     sr.sprite = fWalk[1];
                 }
-
             }
+            */
         }
-        else if (System.Math.Round(mousePosition.x) < 0f && System.Math.Round(mousePosition.y) == 0f) //left
+
+        else if (angle > 135 && angle < 225) //left
         {
-            
+            //Debug.Log("left");
             sr.sprite = lWalk[1];
+            /*
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 if (sr.sprite == lWalk[1])
@@ -126,13 +134,14 @@ public class playerAnimScript : MonoBehaviour {
                     sr.sprite = lWalk[1];
                 }
             }
+            */
+        }
 
-
-            }
-        else if (System.Math.Round(mousePosition.x) == 0f && System.Math.Round(mousePosition.y) < 0f) //down
+        else if (angle >= 225 && angle <= 315) //down
         {
-            
+            //Debug.Log("down");
             sr.sprite = bWalk[1];
+            /*
             if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKey(KeyCode.DownArrow))
             {
                 if (sr.sprite == bWalk[1])
@@ -151,15 +160,49 @@ public class playerAnimScript : MonoBehaviour {
                     sr.sprite = bWalk[1];
                 }
             }
-
-
-
-            }
-
-
-
+            */
+        }
     }
 
+    private float FindAngle()
+    {
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+
+        float x = mousePosition.x - transform.position.x;
+        float y = mousePosition.y - transform.position.y;
+        float angle = 0.0f;
+
+        if (mousePosition.x > transform.position.x && mousePosition.y >= transform.position.y) // 1st Quadrant
+        {
+            angle = Mathf.Atan(y / x);
+            angle *= Mathf.Rad2Deg;
+        }
+        if (mousePosition.x <= transform.position.x && mousePosition.y > transform.position.y) // 2nd Quadrant
+        {
+            angle = Mathf.Atan(x / y);
+            angle *= Mathf.Rad2Deg;
+            angle *= -1;
+            angle += 90.0f;
+        }
+        if (mousePosition.x < transform.position.x && mousePosition.y <= transform.position.y) // 3rd Quadrant
+        {
+            angle = Mathf.Atan(y / x);
+            angle *= Mathf.Rad2Deg;
+            angle += 180.0f;
+        }
+        if (mousePosition.x >= transform.position.x && mousePosition.y < transform.position.y) // 4th Quadrant
+        {
+            angle = Mathf.Atan(x / y);
+            angle *= Mathf.Rad2Deg;
+            angle *= -1;
+            angle += 270.0f;
+        }
+
+        return angle;
+    }
+    
+    /*
     IEnumerator walkCycle(DIR d)
     {
 
@@ -170,4 +213,5 @@ public class playerAnimScript : MonoBehaviour {
 
 
     }
+    */
 }

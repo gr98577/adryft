@@ -46,7 +46,6 @@ public class PowerBox : MonoBehaviour
     {
         dist = Vector3.Distance(player.transform.position, transform.position);
 
-        Debug.Log("OK");
         if (Input.GetButtonDown("Fire3") && dist <= range)
         {
             isHeld = true;
