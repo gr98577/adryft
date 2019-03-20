@@ -18,6 +18,9 @@ public class EnemyController : MonoBehaviour
     private bool canSeePlayer;
 
     [SerializeField]
+    private LayerMask mask;
+
+    [SerializeField]
     private float time;
 
     private SpriteRenderer sr;
@@ -74,7 +77,7 @@ public class EnemyController : MonoBehaviour
         FacePlayer();
 
         // Send out a Raycast and stores the hit result in hit
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, range*2, mask.value);
         dist = Vector3.Distance(player.transform.position, transform.position);
 
         // If its looking at the player and the player is in range

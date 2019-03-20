@@ -22,7 +22,7 @@ public class Terminal : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetButtonDown("Use1"))
+        if (Input.GetButtonDown("Use1") && UI.activeSelf)
         {
             Debug.Log("E");
             if (isOpen)

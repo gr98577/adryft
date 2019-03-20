@@ -24,8 +24,11 @@ public class CameraController : MonoBehaviour {
 
     // Update is called once per frame
     void LateUpdate () {
-        smoothAmmountActual = smoothAmmount * ((1/Time.deltaTime)/120);
-        followPlayer();
+        if (Time.timeScale != 0f)
+        {
+            smoothAmmountActual = smoothAmmount * ((1 / Time.deltaTime) / 120);
+            followPlayer();
+        }
 	}
 
     void followPlayer()

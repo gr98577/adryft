@@ -21,6 +21,10 @@ public class MenuController : MonoBehaviour {
     [SerializeField]
     private float SP;
 
+    [SerializeField]
+    private GameObject mainHUD;
+    private RectTransform hudRect;
+
 	// Use this for initialization
 	void Start () {
         mainCamera = mainCamera.GetComponent<Camera>();
@@ -39,6 +43,9 @@ public class MenuController : MonoBehaviour {
 
         isMenuOpen = false;
         shouldItBe = false;
+
+        hudRect = mainHUD.GetComponent<RectTransform>();
+        hudRect.localScale = new Vector3(5f, 5f, 1f);
 	}
 
     private void Update()
@@ -78,6 +85,8 @@ public class MenuController : MonoBehaviour {
         mainCamera.rect = mainRect;
         menuCamera.rect = menuRect;
 
+        hudRect.localScale = new Vector3(3.5f, 3.5f, 1f);
+
         if (tempV == goalV)
         {
             isMenuOpen = true;
@@ -96,6 +105,8 @@ public class MenuController : MonoBehaviour {
 
         mainCamera.rect = mainRect;
         menuCamera.rect = menuRect;
+
+        hudRect.localScale = new Vector3(5f, 5f, 1f);
 
         if (tempV == goalV)
         {

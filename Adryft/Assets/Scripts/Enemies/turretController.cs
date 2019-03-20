@@ -14,6 +14,9 @@ public class turretController : MonoBehaviour
     [SerializeField]
     private Vector3 dir;
 
+    [SerializeField]
+    private LayerMask mask;
+
     private float range = 5;
     private float dist;
     private bool canShoot = true;
@@ -71,7 +74,7 @@ public class turretController : MonoBehaviour
             //face the player through walls)
 
             // Send out a Raycast and stores the hit result in hit
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, dir);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, range*2, mask.value);
             dist = Vector3.Distance(player.transform.position, transform.position);
 
 

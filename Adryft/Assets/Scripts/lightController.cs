@@ -17,12 +17,14 @@ public class lightController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        /*
         // Toggles the light on/off
         if (Input.GetButtonDown("light"))
         {
             if (flashLight) flashLight = false;
             else flashLight = true;
         }
+        */
 
         // If its on attaches itself to the player
         if (flashLight)

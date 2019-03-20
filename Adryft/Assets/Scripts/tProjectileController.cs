@@ -17,7 +17,11 @@ public class tProjectileController : MonoBehaviour {
 	void Update()
     {
         // Moves forward
-        transform.Translate(0f, 0.03f, 0f);
+        float dist = 0.03f;
+        dist /= 0.02f;
+        dist *= Time.deltaTime;
+        
+        transform.Translate(0f, dist, 0f);
 	}
 
     // Collision detection

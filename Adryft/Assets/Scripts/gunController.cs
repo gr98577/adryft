@@ -18,7 +18,7 @@ public class gunController : MonoBehaviour {
 
     private bool charging;
 
-    private bool pickedUp = false;
+    //private bool pickedUp = false;
     private bool canFire = false;
     private int ammunition;
 
@@ -27,6 +27,7 @@ public class gunController : MonoBehaviour {
 
     private float gunCharge;
 
+    [SerializeField]
     private GameObject HUD;
 
     // Use this for initialization
@@ -34,86 +35,90 @@ public class gunController : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player");
         pc = player.GetComponent<playerController>();
         ammunition = pc.getAmmunition();
+
+        canFire = true;
+        active = true;
+
+        // creates the UI
+        //HUD = Instantiate(UI, Canvas);
+        HUD.SetActive(true);
     }
 
     // Gets if the gun is currently equipped
     public bool getEquipped()
     {
-        if (pickedUp && active) return true;
+        if (active) return true;
         else return false;
     }
 	
 	// Update is called once per frame
 	void LateUpdate () {
-        if (pickedUp)
+        if (active && !stunned)
         {
-            if (active && !stunned)
+            // Gets the position of the mouse
+            Vector3 mousePosition = Input.mousePosition;
+            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+
+            // Attaches to the player
+            attachPlayer(mousePosition);
+            // Faces the mouse
+            faceMouse(mousePosition);
+
+            // Gets if the player is stunned
+            stunned = pc.getIsStunned();
+
+            // Gets the amount of ammunition the player has
+            ammunition = pc.getAmmunition();
+
+            if (Input.GetButtonDown("Cancel"))
             {
-                // Gets the position of the mouse
-                Vector3 mousePosition = Input.mousePosition;
-                mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+                gunCharge = 1f;
+                charging = false;
+            }
 
-                // Attaches to the player
-                attachPlayer(mousePosition);
-                // Faces the mouse
-                faceMouse(mousePosition);
-
-                // Gets if the player is stunned
-                stunned = pc.getIsStunned();
-
-                // Gets the amount of ammunition the player has
-                ammunition = pc.getAmmunition();
-
-                if (Input.GetButtonDown("Cancel"))
+            if (canFire && ammunition > 0)
+            {
+                // If the player fires the gun
+                if (Input.GetButtonUp("Fire2"))
+                {
+                    if (charging)
+                    {
+                        StartCoroutine(Fire());
+                        gunCharge = 1f;
+                        charging = false;
+                    }
+                }
+                // Charges up bullet
+                if (Input.GetButtonDown("Fire2"))
                 {
                     gunCharge = 1f;
-                    charging = false;
+                    charging = true;
                 }
-
-                if (canFire && ammunition > 0)
+                if (Input.GetButton("Fire2"))
                 {
-                    // If the player fires the gun
-                    if (Input.GetButtonUp("Fire2"))
+                    if (charging)
                     {
-                        if (charging)
+                        gunCharge += Time.deltaTime;
+                        if (gunCharge > pc.getAmmunition())
                         {
-                            StartCoroutine(Fire());
-                            gunCharge = 1f;
-                            charging = false;
+                            gunCharge = pc.getAmmunition();
                         }
-                    }
-                    // Charges up bullet
-                    if (Input.GetButtonDown("Fire2"))
-                    {
-                        gunCharge = 1f;
-                        charging = true;
-                    }
-                    if (Input.GetButton("Fire2"))
-                    {
-                        if (charging)
+                        else if (gunCharge > 5f)
                         {
-                            gunCharge += Time.deltaTime;
-                            if (gunCharge > pc.getAmmunition())
-                            {
-                                gunCharge = pc.getAmmunition();
-                            }
-                            else if (gunCharge > 5f)
-                            {
-                                gunCharge = 5f;
-                            }
+                            gunCharge = 5f;
                         }
                     }
                 }
             }
-            else
-            {
-                //make dissapear
-            }
+        }
+        else
+        {
+            //make dissapear
+        }
 
-            if (charging)
-            {
-                //Debug.Log(gunCharge);
-            }
+        if (charging)
+        {
+            //Debug.Log(gunCharge);
         }
     }
 
@@ -152,12 +157,7 @@ public class gunController : MonoBehaviour {
         // If it collides with the player
         if (collision.CompareTag("Player"))
         {
-            canFire = true;
-            pickedUp = true;
-            active = true;
-
-            // creates the UI
-            HUD = Instantiate(UI, Canvas);
+            
         }
     }
 
@@ -193,6 +193,4 @@ public class gunController : MonoBehaviour {
         yield return new WaitForSeconds(0.1F);
         canFire = true;
     }
-
-   
 }

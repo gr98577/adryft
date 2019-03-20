@@ -11,7 +11,7 @@ public class swordController : MonoBehaviour {
 
     private float swingTime;
 
-    private bool pickedUp = false;
+    //private bool pickedUp = false;
     private bool canSwing = false;
 
     private bool stunned;
@@ -27,11 +27,14 @@ public class swordController : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player");
         swingTime = 0.01f;
         pc = player.GetComponent<playerController>();
+
+        canSwing = true;
+        active = true;
     }
 	
 	// Update is called once per frame
 	void LateUpdate () {
-        if (pickedUp & active)
+        if (active)
         {
             stunned = pc.getIsStunned();
             if (!stunned)
@@ -104,21 +107,14 @@ public class swordController : MonoBehaviour {
     // Collision detection
     void OnTriggerEnter2D(Collider2D collision)
     {
-        // If it collides with the player initially
-        if (collision.CompareTag("Player") && !pickedUp)
-        {
-            canSwing = true;
-            pickedUp = true;
-            active = true;
-        }
         // If it collides with the enemy
-        else if (collision.CompareTag("Enemy") && canSwing == false)
+        if (collision.CompareTag("Enemy") && canSwing == false)
         {
             // Does full damage
             if (fullPower)
             {
                 damageController dc = collision.gameObject.GetComponent<damageController>();
-                dc.doDamage(3, "none", player.transform.position, 0.5f);
+                dc.doDamage(4, "none", player.transform.position, 0.5f);
             }
             // Does decreased damage
             else

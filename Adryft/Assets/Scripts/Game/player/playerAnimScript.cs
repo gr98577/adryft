@@ -40,127 +40,115 @@ public class playerAnimScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void LateUpdate () {
-        
 
-        // Sets its location to the player's and put itself on top of or under the player depending on mouse location
-        /*if (mousePosition.y >= transform.position.y)
-         {
-             sr.sprite = back;
-         }
-         else
-         {
-             sr.sprite = front;
-         }
-         */
+        if (Time.timeScale != 0f)
+        { 
+            float angle = FindAngle();
+            //Debug.Log(angle);
 
-        
-        float angle = FindAngle();
-        //Debug.Log(angle);
-
-        
-        
-        //Debug.Log(mousePosition);
-        if (angle < 45 || angle > 315) //right
-        {
-            //Debug.Log("right");
-            sr.sprite = rWalk[1];
-            /*
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            //Debug.Log(mousePosition);
+            if (angle < 45 || angle > 315) //right
             {
-                if (sr.sprite == rWalk[1])
+                //Debug.Log("right");
+                sr.sprite = rWalk[1];
+                /*
+                if (Input.GetKeyDown(KeyCode.RightArrow))
                 {
-                    Debug.Log("here1");
-                    sr.sprite = rWalk[2];
+                    if (sr.sprite == rWalk[1])
+                    {
+                        Debug.Log("here1");
+                        sr.sprite = rWalk[2];
+                    }
+                    else if (sr.sprite == rWalk[2])
+                    {
+                        Debug.Log("here2");
+                        sr.sprite = rWalk[0];
+                    }
+                    else if (sr.sprite == rWalk[0])
+                    {
+                        Debug.Log("here3");
+                        sr.sprite = rWalk[1];
+                    }
                 }
-                else if (sr.sprite == rWalk[2])
-                {
-                    Debug.Log("here2");
-                    sr.sprite = rWalk[0];
-                }
-                else if (sr.sprite == rWalk[0])
-                {
-                    Debug.Log("here3");
-                    sr.sprite = rWalk[1];
-                }
+                */
             }
-            */
-        }
-        else if (angle >= 45 && angle <= 135) //up
-        {
-            //Debug.Log("up");
-            sr.sprite = fWalk[1];
-            /*
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            else if (angle >= 45 && angle <= 135) //up
             {
-                if (sr.sprite == fWalk[1])
+                //Debug.Log("up");
+                sr.sprite = fWalk[1];
+                /*
+                if (Input.GetKeyDown(KeyCode.UpArrow))
                 {
-                    Debug.Log("here1");
-                    sr.sprite = fWalk[2];
+                    if (sr.sprite == fWalk[1])
+                    {
+                        Debug.Log("here1");
+                        sr.sprite = fWalk[2];
+                    }
+                    else if (sr.sprite == fWalk[2])
+                    {
+                        Debug.Log("here2");
+                        sr.sprite = fWalk[0];
+                    }
+                    else if (sr.sprite == fWalk[0])
+                    {
+                        Debug.Log("here3");
+                        sr.sprite = fWalk[1];
+                    }
                 }
-                else if (sr.sprite == fWalk[2])
-                {
-                    Debug.Log("here2");
-                    sr.sprite = fWalk[0];
-                }
-                else if (sr.sprite == fWalk[0])
-                {
-                    Debug.Log("here3");
-                    sr.sprite = fWalk[1];
-                }
+                */
             }
-            */
-        }
 
-        else if (angle > 135 && angle < 225) //left
-        {
-            //Debug.Log("left");
-            sr.sprite = lWalk[1];
-            /*
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            else if (angle > 135 && angle < 225) //left
             {
-                if (sr.sprite == lWalk[1])
+                //Debug.Log("left");
+                sr.sprite = lWalk[1];
+                /*
+                if (Input.GetKeyDown(KeyCode.LeftArrow))
                 {
-                    Debug.Log("here1");
-                    sr.sprite = lWalk[2];
+                    if (sr.sprite == lWalk[1])
+                    {
+                        Debug.Log("here1");
+                        sr.sprite = lWalk[2];
+                    }
+                    else if (sr.sprite == lWalk[2])
+                    {
+                        Debug.Log("here2");
+                        sr.sprite = lWalk[0];
+                    }
+                    else if (sr.sprite == lWalk[0])
+                    {
+                        Debug.Log("here3");
+                        sr.sprite = lWalk[1];
+                    }
                 }
-                else if (sr.sprite == lWalk[2])
-                {
-                    Debug.Log("here2");
-                    sr.sprite = lWalk[0];
-                }
-                else if (sr.sprite == lWalk[0])
-                {
-                    Debug.Log("here3");
-                    sr.sprite = lWalk[1];
-                }
+                */
             }
-            */
-        }
 
-        else if (angle >= 225 && angle <= 315) //down
-        {
-            //Debug.Log("down");
-            sr.sprite = bWalk[1];
-            /*
-            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKey(KeyCode.DownArrow))
+            else if (angle >= 225 && angle <= 315) //down
             {
-                if (sr.sprite == bWalk[1])
+                //Debug.Log("down");
+                sr.sprite = bWalk[1];
+                /*
+                if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKey(KeyCode.DownArrow))
                 {
-                    Debug.Log("here");
-                    sr.sprite = bWalk[2];
+                    if (sr.sprite == bWalk[1])
+                    {
+                        Debug.Log("here");
+                        sr.sprite = bWalk[2];
+                    }
+                    else if (sr.sprite == bWalk[2])
+                    {
+                        Debug.Log("here2");
+                        sr.sprite = bWalk[0];
+                    }
+                    else if (sr.sprite == bWalk[0])
+                    {
+                        Debug.Log("here3");
+                        sr.sprite = bWalk[1];
+                    }
                 }
-                else if (sr.sprite == bWalk[2])
-                {
-                    Debug.Log("here2");
-                    sr.sprite = bWalk[0];
-                }
-                else if (sr.sprite == bWalk[0])
-                {
-                    Debug.Log("here3");
-                    sr.sprite = bWalk[1];
-                }
+                */
             }
-            */
         }
     }
 

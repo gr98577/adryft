@@ -294,6 +294,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 1676014708574204, guid: 0492e693b7e670a4c9100939a370217d, type: 2}
   dir: {x: 0, y: 0, z: 0}
+  mask:
+    serializedVersion: 2
+    m_Bits: 1792
   noTurn: 0000000000000000000000000000000000000000000000000000000000000000
 --- !u!114 &114159570413403092
 MonoBehaviour:
