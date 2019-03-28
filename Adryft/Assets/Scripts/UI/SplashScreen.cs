@@ -6,14 +6,14 @@ public class SplashScreen : MonoBehaviour {
 
     private GameObject player;
     private SpriteRenderer sr;
-    private bool started;
-    private int i;
+    private bool started = false;
+    private float i;
 
     // Use this for initialization
     void Start () {
         player = GameObject.FindGameObjectWithTag("Player");
         sr = GetComponent<SpriteRenderer>();
-        i = 125;
+        i = sr.color.a;
         attachPlayer();
     }
 	
@@ -30,19 +30,12 @@ public class SplashScreen : MonoBehaviour {
             Destroy(gameObject);
         }
 
-        if (i > 255)
-        {
-            sr.color = new Color(255, 255, 255, 255);
-        }
-        else
-        {
-            sr.color = new Color(255, 255, 255, i/125f);
-        }
-
         if (started)
         {
             i--;
         }
+
+        sr.color = new Color(255, 255, 255, i);
     }
 
     

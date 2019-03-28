@@ -10,7 +10,7 @@ public class lightController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("MainCamera");
         flashLight = true;
         start = new Vector3(-15, 5, 0);
     }
@@ -32,7 +32,7 @@ public class lightController : MonoBehaviour {
             Vector3 mousePosition = Input.mousePosition;
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
             attachPlayer();
-            faceMouse(mousePosition);
+            //faceMouse(mousePosition);
         }
         // If its off reverts to its default location
         else
