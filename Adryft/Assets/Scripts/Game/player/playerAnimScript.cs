@@ -49,8 +49,10 @@ public class playerAnimScript : MonoBehaviour {
             //Debug.Log(mousePosition);
             if (angle < 45 || angle > 315) //right
             {
+               
                 //Debug.Log("right");
                 sr.sprite = rWalk[1];
+                StartCoroutine(walkCycle(DIR.RIGHT));
                 /*
                 if (Input.GetKeyDown(KeyCode.RightArrow))
                 {
@@ -74,8 +76,10 @@ public class playerAnimScript : MonoBehaviour {
             }
             else if (angle >= 45 && angle <= 135) //up
             {
+                
                 //Debug.Log("up");
                 sr.sprite = fWalk[1];
+                StartCoroutine(walkCycle(DIR.UP));
                 /*
                 if (Input.GetKeyDown(KeyCode.UpArrow))
                 {
@@ -100,8 +104,10 @@ public class playerAnimScript : MonoBehaviour {
 
             else if (angle > 135 && angle < 225) //left
             {
+               
                 //Debug.Log("left");
                 sr.sprite = lWalk[1];
+                StartCoroutine(walkCycle(DIR.LEFT));
                 /*
                 if (Input.GetKeyDown(KeyCode.LeftArrow))
                 {
@@ -126,8 +132,10 @@ public class playerAnimScript : MonoBehaviour {
 
             else if (angle >= 225 && angle <= 315) //down
             {
+                
                 //Debug.Log("down");
                 sr.sprite = bWalk[1];
+                StartCoroutine(walkCycle(DIR.DOWN));
                 /*
                 if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKey(KeyCode.DownArrow))
                 {
@@ -190,16 +198,64 @@ public class playerAnimScript : MonoBehaviour {
         return angle;
     }
     
-    /*
+    
     IEnumerator walkCycle(DIR d)
     {
+        if(d == DIR.UP)
+        {
+            for(int i = 0; Input.GetKey(KeyCode.UpArrow); i = i+1 % 2)
+            {
+                Debug.Log(i);
+                sr.sprite = fWalk[i];
+                yield return new WaitForSeconds(1f);
+
+            }
+            sr.sprite = fWalk[1];
+        }
+        
+        if(d == DIR.DOWN)
+        {
+            for(int i = 0; Input.GetKey(KeyCode.DownArrow); i = i+1 % 2){
+                sr.sprite = bWalk[i];
+                yield return new WaitForSeconds(1f);
+
+
+            }
+            sr.sprite = bWalk[1];
+        }
+
+        if (d == DIR.LEFT)
+        {
+            for (int i = 0; Input.GetKey(KeyCode.LeftArrow); i = i + 1 % 2)
+            {
+                
+                sr.sprite = lWalk[i];
+                yield return new WaitForSeconds(1f);
+
+
+            }
+            sr.sprite = lWalk[1];
+        }
+
+        if (d == DIR.RIGHT)
+        {
+            for (int i = 0; Input.GetKey(KeyCode.RightArrow); i = i + 1 % 2)
+            {
+                sr.sprite = rWalk[i];
+                yield return new WaitForSeconds(1f);
+
+
+            }
+            sr.sprite = rWalk[1];
+        }
 
 
 
 
-        yield return new WaitForSeconds(1f);
+
+
 
 
     }
-    */
+    
 }

@@ -68,7 +68,7 @@ public class turretController : MonoBehaviour
         else
         {
 
-            //FacePlayer();
+            
             dir = FacePlayer(); //Vector3 leading to the player position is received here
             //the transform.up_left of the turret is changed iff there's a clear shot (so it doesn't
             //face the player through walls)
@@ -78,7 +78,7 @@ public class turretController : MonoBehaviour
             dist = Vector3.Distance(player.transform.position, transform.position);
 
 
-            //seen = (hit.transform.tag == "Player");
+            
             Vector3 shootDir;
 
             shootDir = dir; //collects dir to be passed to EscalateToFire to determine what orientation of sprites to load
@@ -421,101 +421,6 @@ public class turretController : MonoBehaviour
     }
 
 
-/*    IEnumerator DeEscalator(DIR sprDir)
-    {
-
-        switch (sprDir)
-        {
-            case DIR.RHT:
-                currSprite.sprite = Resources.Load<Sprite>("turSprites/right/fire_start");
-                yield return new WaitForSeconds(0.1f);
-                currSprite.sprite = Resources.Load<Sprite>("turSprites/right/seen_end");
-                yield return new WaitForSeconds(0.1f);
-                currSprite.sprite = Resources.Load<Sprite>("turSprites/right/seen_start");
-                yield return new WaitForSeconds(0.1f);
-                currSprite.sprite = Resources.Load<Sprite>("turSprites/right/idle");
-                yield return new WaitForSeconds(0.1f);
-                break;
-
-            case DIR.UPRHT:
-                currSprite.sprite = Resources.Load<Sprite>("turSprites/up_right/fire_start");
-                yield return new WaitForSeconds(0.1f);
-                currSprite.sprite = Resources.Load<Sprite>("turSprites/up_right/seen_end");
-                yield return new WaitForSeconds(0.1f);
-                currSprite.sprite = Resources.Load<Sprite>("turSprites/up_right/seen_start");
-                yield return new WaitForSeconds(0.1f);
-                currSprite.sprite = Resources.Load<Sprite>("turSprites/up_right/idle");
-                yield return new WaitForSeconds(0.1f);
-                break;
-
-            case DIR.UPLFT:
-                currSprite.sprite = Resources.Load<Sprite>("turSprites/up_left/fire_start");
-                yield return new WaitForSeconds(0.1f);
-                currSprite.sprite = Resources.Load<Sprite>("turSprites/up_left/seen_end");
-                yield return new WaitForSeconds(0.1f);
-                currSprite.sprite = Resources.Load<Sprite>("turSprites/up_left/seen_start");
-                yield return new WaitForSeconds(0.1f);
-                currSprite.sprite = Resources.Load<Sprite>("turSprites/up_left/idle");
-                yield return new WaitForSeconds(0.1f);
-                break;
-
-            case DIR.DWN:
-                currSprite.sprite = Resources.Load<Sprite>("turSprites/down/fire_start");
-                yield return new WaitForSeconds(0.1f);
-                currSprite.sprite = Resources.Load<Sprite>("turSprites/down/seen_end");
-                yield return new WaitForSeconds(0.1f);
-                currSprite.sprite = Resources.Load<Sprite>("turSprites/down/seen_start");
-                yield return new WaitForSeconds(0.1f);
-                currSprite.sprite = Resources.Load<Sprite>("turSprites/down/idle");
-                yield return new WaitForSeconds(0.1f);
-                break;
-
-            case DIR.LFT:
-                currSprite.sprite = Resources.Load<Sprite>("turSprites/left/fire_start");
-                yield return new WaitForSeconds(0.1f);
-                currSprite.sprite = Resources.Load<Sprite>("turSprites/left/seen_end");
-                yield return new WaitForSeconds(0.1f);
-                currSprite.sprite = Resources.Load<Sprite>("turSprites/left/seen_start");
-                yield return new WaitForSeconds(0.1f);
-                currSprite.sprite = Resources.Load<Sprite>("turSprites/left/idle");
-                yield return new WaitForSeconds(0.1f);
-                break;
-
-            case DIR.DWNLFT:
-                currSprite.sprite = Resources.Load<Sprite>("turSprites/down_left/fire_start");
-                yield return new WaitForSeconds(0.1f);
-                currSprite.sprite = Resources.Load<Sprite>("turSprites/down_left/seen_end");
-                yield return new WaitForSeconds(0.1f);
-                currSprite.sprite = Resources.Load<Sprite>("turSprites/down_left/seen_start");
-                yield return new WaitForSeconds(0.1f);
-                currSprite.sprite = Resources.Load<Sprite>("turSprites/down_left/idle");
-                yield return new WaitForSeconds(0.1f);
-                break;
-
-            case DIR.UP:
-                currSprite.sprite = Resources.Load<Sprite>("turSprites/up/fire_start");
-                yield return new WaitForSeconds(0.1f);
-                currSprite.sprite = Resources.Load<Sprite>("turSprites/up/seen_end");
-                yield return new WaitForSeconds(0.1f);
-                currSprite.sprite = Resources.Load<Sprite>("turSprites/up/seen_start");
-                yield return new WaitForSeconds(0.1f);
-                currSprite.sprite = Resources.Load<Sprite>("turSprites/up/idle");
-                yield return new WaitForSeconds(0.1f);
-                break;
-
-            case DIR.DWNRHT:
-                currSprite.sprite = Resources.Load<Sprite>("turSprites/down_right/fire_start");
-                yield return new WaitForSeconds(0.1f);
-                currSprite.sprite = Resources.Load<Sprite>("turSprites/down_right/seen_end");
-                yield return new WaitForSeconds(0.1f);
-                currSprite.sprite = Resources.Load<Sprite>("turSprites/down_right/seen_start");
-                yield return new WaitForSeconds(0.1f);
-                currSprite.sprite = Resources.Load<Sprite>("turSprites/down_right/idle");
-                yield return new WaitForSeconds(0.1f);
-                break;
-        }
-
-    }*/
 
     // faces the player
     //(10.28: FacePlayer() now returns a Vector3 that leads to a player position rather than constantly updating the turret's
