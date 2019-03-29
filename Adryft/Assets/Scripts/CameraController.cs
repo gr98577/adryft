@@ -7,9 +7,11 @@ public class CameraController : MonoBehaviour {
     // Variables
     private GameObject player;
     [SerializeField]
-    private float smoothAmmount;
-    private float smoothAmmountActual;
+    private float smoothAmount;
+    private float smoothAmountActual;
     private bool shake;
+    [SerializeField]
+    private float shakeAmount;
     private float m_magnitude;
     private float delay;
 
@@ -26,7 +28,7 @@ public class CameraController : MonoBehaviour {
     void LateUpdate () {
         if (Time.timeScale != 0f)
         {
-            smoothAmmountActual = smoothAmmount * ((1 / Time.deltaTime) / 120);
+            smoothAmountActual = smoothAmount * ((1 / Time.deltaTime) / 120);
             followPlayer();
         }
 	}
@@ -72,7 +74,7 @@ public class CameraController : MonoBehaviour {
 
         desiredPosition += mousePosition;
 
-        Vector3 position = Vector3.Lerp(transform.position, desiredPosition, smoothAmmountActual);
+        Vector3 position = Vector3.Lerp(transform.position, desiredPosition, smoothAmountActual);
 
         if (shake)
         {
@@ -95,7 +97,7 @@ public class CameraController : MonoBehaviour {
 
     public IEnumerator cameraShake(float duration, float magnitude)
     {
-        m_magnitude = magnitude;
+        m_magnitude = magnitude * shakeAmount;
         shake = true;
         yield return new WaitForSeconds(duration);
         shake = false;

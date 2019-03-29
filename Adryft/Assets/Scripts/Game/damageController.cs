@@ -119,7 +119,8 @@ public class damageController : MonoBehaviour {
             if (player)
             {
                 Time.timeScale = 0f;
-                sr.color = new Color(1, 1, 1, 0);
+                //sr.color = new Color(1, 1, 1, 0);
+                gameObject.GetComponent<playerController>().enabled = false;
             }
             else
             {

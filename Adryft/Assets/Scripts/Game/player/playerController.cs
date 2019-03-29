@@ -84,6 +84,7 @@ public class playerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         ammo = maxAmmo;
         stamina = maxStamina;
+        gameObject.GetComponent<TrailRenderer>().enabled = false;
     }
 
     
@@ -118,6 +119,7 @@ public class playerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && dash == 0 && (Input.GetAxisRaw("Horizontal") != 0f || Input.GetAxisRaw("Vertical") != 0f))
         {
             dash = 1;
+            gameObject.GetComponent<TrailRenderer>().enabled = true;
             StartCoroutine(Dash());
         }
 
@@ -195,6 +197,7 @@ public class playerController : MonoBehaviour
         yield return new WaitForSeconds(0.15F);
         dash = 2;
         dc.setFlying(false);
+        gameObject.GetComponent<TrailRenderer>().enabled = false;
 
         // Dash cooldown
         yield return new WaitForSeconds(1F);
