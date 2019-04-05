@@ -42,7 +42,6 @@ public class ScreenEffects : MonoBehaviour {
         float healthPC = health / maxHealth;
         if (healthPC <= 0.5f)
         {
-            Debug.Log(healthPC);
             UserLutModel.Settings ULS = normal.userLut.settings;
             temp = (healthPC / 0.5f);
             ULS.contribution = 1 - Mathf.Clamp(temp, 0, 1);

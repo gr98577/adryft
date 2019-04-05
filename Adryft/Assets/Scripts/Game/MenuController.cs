@@ -93,7 +93,7 @@ public class MenuController : MonoBehaviour {
         }
     }
 
-    void Close()
+    public void Close()
     {
         Vector3 tempV = new Vector3(mainRect.x, mainRect.width, menuRect.x);
         Vector3 goalV = new Vector3(0f, 1f, -SP);
