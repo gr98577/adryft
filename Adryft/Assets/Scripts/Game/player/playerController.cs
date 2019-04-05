@@ -6,6 +6,7 @@ using UnityEngine;
 public class playerController : MonoBehaviour
 {
 
+
     // Game Object Variables
     [SerializeField]
     private AudioSource ochSource;
@@ -20,6 +21,8 @@ public class playerController : MonoBehaviour
     public CameraController mainCamera;
 
     private damageController dc;
+    private BoxCollider2D bc;
+    private CircleCollider2D cc;
 
     //variables
     private float mSpeed;
@@ -82,6 +85,11 @@ public class playerController : MonoBehaviour
         ochSource = GetComponent<AudioSource>();
         dc = GetComponent<damageController>();
         rb = GetComponent<Rigidbody2D>();
+        /*
+        bc = GetComponent<BoxCollider2D>();
+        cc = GetComponent<CircleCollider2D>();
+        cc.enabled = false;
+        */
         ammo = maxAmmo;
         stamina = maxStamina;
         gameObject.GetComponent<TrailRenderer>().enabled = false;
@@ -113,6 +121,7 @@ public class playerController : MonoBehaviour
 
     void Move()
     {
+        
         //checks if Dash button (Space) was pressed AND
         //1. player wasn't already in dash mode,
         //2. player is stationary
@@ -141,14 +150,13 @@ public class playerController : MonoBehaviour
         }
         // Move in the desired direction
         direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        transform.Translate(tSpeed * direction.normalized);
-        /*
+        //transform.Translate(tSpeed * direction.normalized);
+
         direction = tSpeed * direction.normalized;
         float x = transform.position.x + (direction.x * 1.1f);
         float y = transform.position.y + (direction.y * 1.1f);
         Vector2 pos = new Vector2(x, y);
         rb.MovePosition(pos);
-        */
     }
 
     // Use stamina

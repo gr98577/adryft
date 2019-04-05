@@ -52,25 +52,8 @@ public class CameraController : MonoBehaviour {
         else if (my < -3f) { my = -3f; }
         mousePosition = new Vector3(mx, my, mousePosition.z);
 
-        
-
-        if (Input.GetButton("Fire2"))
-        {
-            if (delay < 0f)
-            {
-                mousePosition = mousePosition / 2;
-            }
-            else
-            {
-                delay -= Time.deltaTime;
-                mousePosition = mousePosition / 4;
-            }
-        }
-        else
-        {
-            delay = 0.1f;
-            mousePosition = mousePosition / 4;
-        }
+        delay = 0.1f;
+        mousePosition = mousePosition / 4;
 
         desiredPosition += mousePosition;
 

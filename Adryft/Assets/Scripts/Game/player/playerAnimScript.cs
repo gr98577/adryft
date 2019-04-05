@@ -10,13 +10,13 @@ public class playerAnimScript : MonoBehaviour {
     private Sprite back;
     private Sprite[] fWalk = new Sprite[3], bWalk = new Sprite[3], lWalk = new Sprite[3], rWalk = new Sprite[3];
     private enum DIR { LEFT, RIGHT, UP, DOWN };
-    
-
-
-
-
+    private Vector3 oldPos;
+    private int walkStage;
+ 
     // Use this for initialization
     void Start () {
+        walkStage = 0;
+
         sr = GetComponent<SpriteRenderer>();
         fWalk[0] = Resources.Load<Sprite>("PlayerAnim/up/1");
         fWalk[1] = Resources.Load<Sprite>("PlayerAnim/up/2");
@@ -36,6 +36,7 @@ public class playerAnimScript : MonoBehaviour {
 
         front = Resources.Load<Sprite>("PlayerAnim/PlayerFront");
         back = Resources.Load<Sprite>("PlayerAnim/PlayerBack");
+        StartCoroutine(walkCycle());
     }
 	
 	// Update is called once per frame
@@ -49,113 +50,21 @@ public class playerAnimScript : MonoBehaviour {
             //Debug.Log(mousePosition);
             if (angle < 45 || angle > 315) //right
             {
-               
-                //Debug.Log("right");
-                sr.sprite = rWalk[1];
-                StartCoroutine(walkCycle(DIR.RIGHT));
-                /*
-                if (Input.GetKeyDown(KeyCode.RightArrow))
-                {
-                    if (sr.sprite == rWalk[1])
-                    {
-                        Debug.Log("here1");
-                        sr.sprite = rWalk[2];
-                    }
-                    else if (sr.sprite == rWalk[2])
-                    {
-                        Debug.Log("here2");
-                        sr.sprite = rWalk[0];
-                    }
-                    else if (sr.sprite == rWalk[0])
-                    {
-                        Debug.Log("here3");
-                        sr.sprite = rWalk[1];
-                    }
-                }
-                */
+                sr.sprite = rWalk[walkStage];
             }
             else if (angle >= 45 && angle <= 135) //up
             {
-                
-                //Debug.Log("up");
-                sr.sprite = fWalk[1];
-                StartCoroutine(walkCycle(DIR.UP));
-                /*
-                if (Input.GetKeyDown(KeyCode.UpArrow))
-                {
-                    if (sr.sprite == fWalk[1])
-                    {
-                        Debug.Log("here1");
-                        sr.sprite = fWalk[2];
-                    }
-                    else if (sr.sprite == fWalk[2])
-                    {
-                        Debug.Log("here2");
-                        sr.sprite = fWalk[0];
-                    }
-                    else if (sr.sprite == fWalk[0])
-                    {
-                        Debug.Log("here3");
-                        sr.sprite = fWalk[1];
-                    }
-                }
-                */
+                sr.sprite = fWalk[walkStage];
             }
 
             else if (angle > 135 && angle < 225) //left
             {
-               
-                //Debug.Log("left");
-                sr.sprite = lWalk[1];
-                StartCoroutine(walkCycle(DIR.LEFT));
-                /*
-                if (Input.GetKeyDown(KeyCode.LeftArrow))
-                {
-                    if (sr.sprite == lWalk[1])
-                    {
-                        Debug.Log("here1");
-                        sr.sprite = lWalk[2];
-                    }
-                    else if (sr.sprite == lWalk[2])
-                    {
-                        Debug.Log("here2");
-                        sr.sprite = lWalk[0];
-                    }
-                    else if (sr.sprite == lWalk[0])
-                    {
-                        Debug.Log("here3");
-                        sr.sprite = lWalk[1];
-                    }
-                }
-                */
+                sr.sprite = lWalk[walkStage];
             }
 
             else if (angle >= 225 && angle <= 315) //down
             {
-                
-                //Debug.Log("down");
-                sr.sprite = bWalk[1];
-                StartCoroutine(walkCycle(DIR.DOWN));
-                /*
-                if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKey(KeyCode.DownArrow))
-                {
-                    if (sr.sprite == bWalk[1])
-                    {
-                        Debug.Log("here");
-                        sr.sprite = bWalk[2];
-                    }
-                    else if (sr.sprite == bWalk[2])
-                    {
-                        Debug.Log("here2");
-                        sr.sprite = bWalk[0];
-                    }
-                    else if (sr.sprite == bWalk[0])
-                    {
-                        Debug.Log("here3");
-                        sr.sprite = bWalk[1];
-                    }
-                }
-                */
+                sr.sprite = bWalk[walkStage];
             }
         }
     }
@@ -199,63 +108,26 @@ public class playerAnimScript : MonoBehaviour {
     }
     
     
-    IEnumerator walkCycle(DIR d)
+    IEnumerator walkCycle()
     {
-        if(d == DIR.UP)
+        while (true)
         {
-            for(int i = 0; Input.GetKey(KeyCode.UpArrow); i = i+1 % 2)
+            yield return new WaitForSeconds(0.1f);
+
+            if (transform.position != oldPos)
             {
-                Debug.Log(i);
-                sr.sprite = fWalk[i];
-                yield return new WaitForSeconds(1f);
-
+                walkStage++;
+                if (walkStage > 2)
+                {
+                    walkStage = 0;
+                }
             }
-            sr.sprite = fWalk[1];
-        }
-        
-        if(d == DIR.DOWN)
-        {
-            for(int i = 0; Input.GetKey(KeyCode.DownArrow); i = i+1 % 2){
-                sr.sprite = bWalk[i];
-                yield return new WaitForSeconds(1f);
-
-
-            }
-            sr.sprite = bWalk[1];
-        }
-
-        if (d == DIR.LEFT)
-        {
-            for (int i = 0; Input.GetKey(KeyCode.LeftArrow); i = i + 1 % 2)
+            else
             {
-                
-                sr.sprite = lWalk[i];
-                yield return new WaitForSeconds(1f);
-
-
+                walkStage = 1;
             }
-            sr.sprite = lWalk[1];
+
+            oldPos = transform.position;
         }
-
-        if (d == DIR.RIGHT)
-        {
-            for (int i = 0; Input.GetKey(KeyCode.RightArrow); i = i + 1 % 2)
-            {
-                sr.sprite = rWalk[i];
-                yield return new WaitForSeconds(1f);
-
-
-            }
-            sr.sprite = rWalk[1];
-        }
-
-
-
-
-
-
-
-
-    }
-    
+    }   
 }

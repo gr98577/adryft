@@ -98,22 +98,20 @@ public class gunController : MonoBehaviour {
                 {
                     if (charging)
                     {
-                        gunCharge += Time.deltaTime;
+                        gunCharge += Time.deltaTime * 1.5f;
+                        float gctemp = gunCharge;
+                        if (gunCharge > 3f)
+                        {
+                            gunCharge = 3f;
+                        }
                         if (gunCharge > pc.getAmmunition())
                         {
                             gunCharge = pc.getAmmunition();
                         }
-                        else if (gunCharge > 5f)
-                        {
-                            gunCharge = 5f;
-                        }
+                        Debug.Log(gunCharge + " | " + gctemp);
                     }
                 }
             }
-        }
-        else
-        {
-            //make dissapear
         }
 
         if (charging)
@@ -180,16 +178,32 @@ public class gunController : MonoBehaviour {
         // Creates a projectile and rotates it correctly
         GameObject clone = Instantiate(projectile, transform.position, Quaternion.identity);
         clone.transform.up = transform.up;
-        clone.transform.localScale = clone.transform.localScale * gunCharge;
-        clone.GetComponent<pProjectileController>().setCharge(gunCharge);
+        //clone.transform.localScale = clone.transform.localScale * gunCharge;
+        //clone.GetComponent<pProjectileController>().setCharge(gunCharge);
 
         // Spends one bullet
         int price = -1 * (int)gunCharge;
         pc.incAmmunition(price);
         ammunition = pc.getAmmunition();
 
+        float gcTemp = gunCharge;
+
         // Slight Delay
         canFire = false;
+        if (gcTemp >= 2f)
+        {
+            yield return new WaitForSeconds(0.1F);
+            Debug.Log("GC1: " + gunCharge);
+            GameObject clone2 = Instantiate(projectile, transform.position, Quaternion.identity);
+            clone2.transform.up = transform.up;
+        }
+        if (gcTemp >= 2.9f)
+        {
+            yield return new WaitForSeconds(0.1F);
+            Debug.Log("GC: " + gunCharge);
+            GameObject clone3 = Instantiate(projectile, transform.position, Quaternion.identity);
+            clone3.transform.up = transform.up;
+        }
         yield return new WaitForSeconds(0.1F);
         canFire = true;
     }
