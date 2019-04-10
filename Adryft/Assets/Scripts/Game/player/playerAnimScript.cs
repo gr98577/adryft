@@ -12,6 +12,7 @@ public class playerAnimScript : MonoBehaviour {
     private enum DIR { LEFT, RIGHT, UP, DOWN };
     private Vector3 oldPos;
     private int walkStage;
+    public bool zeroG;
  
     // Use this for initialization
     void Start () {
@@ -47,25 +48,51 @@ public class playerAnimScript : MonoBehaviour {
             float angle = FindAngle();
             //Debug.Log(angle);
 
-            //Debug.Log(mousePosition);
-            if (angle < 45 || angle > 315) //right
+            if (zeroG)
             {
-                sr.sprite = rWalk[walkStage];
+                //Debug.Log(mousePosition);
+                if (angle < 45 || angle > 315) //right
+                {
+                    sr.sprite = rWalk[1];
+                }
+                else if (angle >= 45 && angle <= 135) //up
+                {
+                    sr.sprite = fWalk[1];
+                }
+
+                else if (angle > 135 && angle < 225) //left
+                {
+                    sr.sprite = lWalk[1];
+                }
+
+                else if (angle >= 225 && angle <= 315) //down
+                {
+                    sr.sprite = bWalk[1];
+                }
             }
-            else if (angle >= 45 && angle <= 135) //up
+            else
             {
-                sr.sprite = fWalk[walkStage];
+                //Debug.Log(mousePosition);
+                if (angle < 45 || angle > 315) //right
+                {
+                    sr.sprite = rWalk[walkStage];
+                }
+                else if (angle >= 45 && angle <= 135) //up
+                {
+                    sr.sprite = fWalk[walkStage];
+                }
+
+                else if (angle > 135 && angle < 225) //left
+                {
+                    sr.sprite = lWalk[walkStage];
+                }
+
+                else if (angle >= 225 && angle <= 315) //down
+                {
+                    sr.sprite = bWalk[walkStage];
+                }
             }
 
-            else if (angle > 135 && angle < 225) //left
-            {
-                sr.sprite = lWalk[walkStage];
-            }
-
-            else if (angle >= 225 && angle <= 315) //down
-            {
-                sr.sprite = bWalk[walkStage];
-            }
         }
     }
 

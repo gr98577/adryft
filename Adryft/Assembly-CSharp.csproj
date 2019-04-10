@@ -122,6 +122,7 @@
     <Compile Include="Assets\Scripts\Game\player\ScreenEffects.cs" />
     <Compile Include="Assets\Scripts\Game\SaveLoad\SaveLoadManager.cs" />
     <Compile Include="Assets\Scripts\Game\SaveLoad\SaveStation.cs" />
+    <Compile Include="Assets\Scripts\Game\ZeroGscript.cs" />
     <Compile Include="Assets\Scripts\gunController.cs" />
     <Compile Include="Assets\Scripts\lightController.cs" />
     <Compile Include="Assets\Scripts\Menu\MainMenu.cs" />
@@ -151,6 +152,7 @@
     <Compile Include="Assets\Scripts\VFX\ExplosionVFX.cs" />
     <Compile Include="Assets\Scripts\VFX\FlashDamageVFX.cs" />
     <Compile Include="Assets\Scripts\VFX\LenseFlareSizer.cs" />
+    <Compile Include="Assets\Scripts\VFX\SkyboxController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />

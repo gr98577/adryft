@@ -38,6 +38,7 @@ public class playerController : MonoBehaviour
     private bool isStaminaRegen = false;
     private bool isStaminaUsed = false;
     private Rigidbody2D rb;
+    public bool zeroG;
     //private bool isStaminaInDelay = false;
 
     // Max ammo getter
@@ -100,6 +101,11 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!zeroG)
+        {
+            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
+        }
+
         if (Input.GetButtonDown("Fire1"))
         {
             StartCoroutine(mainCamera.cameraShake(0.1f, 0.01f));
@@ -156,7 +162,15 @@ public class playerController : MonoBehaviour
         float x = transform.position.x + (direction.x * 1.1f);
         float y = transform.position.y + (direction.y * 1.1f);
         Vector2 pos = new Vector2(x, y);
-        rb.MovePosition(pos);
+
+        if (zeroG)
+        {
+            rb.AddForce(direction * 10);
+        }
+        else
+        {
+            rb.MovePosition(pos);
+        }
     }
 
     // Use stamina
@@ -178,23 +192,24 @@ public class playerController : MonoBehaviour
     // Bleeding
     public void bleed(bool heavy)
     {
-        float x = transform.position.x;
-        x = Random.Range(x - 0.01f, x + 0.01f);
-        float y = transform.position.y;
-        y = Random.Range(y - 0.01f, y + 0.01f);
-        Vector3 pos = new Vector3(x, y, 0);
-
-        if (heavy)
+        if (!zeroG)
         {
-            GameObject clone = Instantiate(bloodMed, pos, Quaternion.identity);
-        }
-        else
-        {
-            
-            GameObject clone = Instantiate(bloodSml, pos, Quaternion.identity);
-        }
+            float x = transform.position.x;
+            x = Random.Range(x - 0.01f, x + 0.01f);
+            float y = transform.position.y;
+            y = Random.Range(y - 0.01f, y + 0.01f);
+            Vector3 pos = new Vector3(x, y, 0);
 
-        
+            if (heavy)
+            {
+                GameObject clone = Instantiate(bloodMed, pos, Quaternion.identity);
+            }
+            else
+            {
+
+                GameObject clone = Instantiate(bloodSml, pos, Quaternion.identity);
+            }
+        }
     }
 
     // Dash
@@ -205,7 +220,10 @@ public class playerController : MonoBehaviour
         yield return new WaitForSeconds(0.15F);
         dash = 2;
         dc.setFlying(false);
-        gameObject.GetComponent<TrailRenderer>().enabled = false;
+        //if (!zeroG)
+        //{
+            gameObject.GetComponent<TrailRenderer>().enabled = false;
+        //}
 
         // Dash cooldown
         yield return new WaitForSeconds(1F);
