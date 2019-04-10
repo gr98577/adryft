@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PostProcessing;
+using UnityEngine.Video;
 
 public class CoolDeathThing : MonoBehaviour {
 
@@ -24,10 +25,11 @@ public class CoolDeathThing : MonoBehaviour {
         GrainModel.Settings Grain = normal.grain.settings;
         Grain.intensity = 0;
         normal.grain.settings = Grain;
-	}
+    }
 
     private void OnPlayerDeath()
     {
+        videoPlayer.GetComponent<VideoPlayer>().Prepare();
         GetComponent<MenuController>().Close();
         GetComponent<MenuController>().enabled = false;
         stage = 1;
@@ -58,7 +60,7 @@ public class CoolDeathThing : MonoBehaviour {
         else if (stage == 2)
         {
             stage = 3;
-            videoPlayer.SetActive(true);
+            videoPlayer.GetComponent<VideoPlayer>().Play();
             HUD.SetActive(false);
         }
         else if (stage == 3)

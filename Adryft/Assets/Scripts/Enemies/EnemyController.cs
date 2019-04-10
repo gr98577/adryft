@@ -16,6 +16,7 @@ public class EnemyController : MonoBehaviour
     private Vector2 searchLocation;
     private int moving = 0;
     private bool canSeePlayer;
+    public bool zeroG;
 
     [SerializeField]
     private LayerMask mask;
@@ -28,6 +29,7 @@ public class EnemyController : MonoBehaviour
     private Sprite[] right;
     private Sprite[] left;
     private int i;
+    private Rigidbody2D rb;
 
     // Use this for initialization
     void Start()
@@ -37,6 +39,7 @@ public class EnemyController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         startLocation = transform.position;
         searchLocation = startLocation;
+        rb = gameObject.GetComponent<Rigidbody2D>();
 
         sr = GetComponent<SpriteRenderer>();
 
@@ -73,6 +76,11 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!zeroG)
+        {
+            rb.velocity = new Vector2(0,0);
+        }
+
         // Faces the player
         FacePlayer();
 
@@ -152,7 +160,15 @@ public class EnemyController : MonoBehaviour
         }
 
         // moves in a straight line directly toward the player
-        transform.position = Vector3.MoveTowards(transform.position, searchLocation, mSpeed * Time.deltaTime);
+        if (zeroG)
+        {
+            Vector2 direction = new Vector2(x2, x1);
+            rb.AddForce(direction.normalized);
+        }
+        else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, searchLocation, mSpeed * Time.deltaTime);
+        }
     }
 
 

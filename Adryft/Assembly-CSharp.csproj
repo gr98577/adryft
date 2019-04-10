@@ -112,6 +112,7 @@
     <Compile Include="Assets\Scripts\Enemies\ANTI\AntiAnim.cs" />
     <Compile Include="Assets\Scripts\Enemies\EnemyController.cs" />
     <Compile Include="Assets\Scripts\Enemies\turretController.cs" />
+    <Compile Include="Assets\Scripts\Enemies\ZeroGEnemy.cs" />
     <Compile Include="Assets\Scripts\Game\damageController.cs" />
     <Compile Include="Assets\Scripts\Game\MenuController.cs" />
     <Compile Include="Assets\Scripts\Game\player\CoolDeathThing.cs" />

@@ -165,7 +165,7 @@ public class playerController : MonoBehaviour
 
         if (zeroG)
         {
-            rb.AddForce(direction * 10);
+            rb.AddForce(direction * 25);
         }
         else
         {

@@ -24,12 +24,27 @@ public class ZeroGscript : MonoBehaviour {
         // If it collided with the player
         if (collision.gameObject == player)
         {
-            Debug.Log("ZeroG: ON");
+            Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+            Debug.Log(rb.velocity);
+
             player.GetComponent<playerController>().zeroG = true;
             player.GetComponent<playerAnimScript>().zeroG = true;
             notif.SetActive(true);
-            //player.GetComponent<TrailRenderer>().enabled = true;
-            //player.GetComponent<TrailRenderer>().time = 0.75f;
+            player.GetComponent<TrailRenderer>().enabled = true;
+            player.GetComponent<TrailRenderer>().time = 0.75f;
+        }
+        if (collision.CompareTag("Enemy"))
+        {
+            collision.GetComponent<EnemyController>().zeroG = true;
+            //collision.GetComponent<Enemy2Controller>().zeroG = true;
+            //collision.GetComponent<SlugController>().zeroG = true;
+            collision.GetComponent<Rigidbody2D>().drag = 0f;
+        }
+        if (collision.CompareTag("PowerBlock"))
+        {
+            Rigidbody2D rb = collision.GetComponent<Rigidbody2D>();
+            rb.drag = 0f;
+            rb.freezeRotation = false;
         }
     }
 
@@ -38,14 +53,26 @@ public class ZeroGscript : MonoBehaviour {
         // If it collided with the player
         if (collision.gameObject == player)
         {
-            Debug.Log("ZeroG: OFF");
             player.GetComponent<playerController>().zeroG = false;
             player.GetComponent<playerAnimScript>().zeroG = false;
             notif.SetActive(false);
-            //player.GetComponent<TrailRenderer>().enabled = false;
-            //player.GetComponent<TrailRenderer>().time = 0.075f;
+            player.GetComponent<TrailRenderer>().enabled = false;
+            player.GetComponent<TrailRenderer>().time = 0.075f;
 
             player.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
+        }
+        if (collision.CompareTag("Enemy"))
+        {
+            collision.GetComponent<EnemyController>().zeroG = false;
+            //collision.GetComponent<Enemy2Controller>().zeroG = true;
+            //collision.GetComponent<SlugController>().zeroG = true;
+            collision.GetComponent<Rigidbody2D>().drag = 1f;
+        }
+        if (collision.CompareTag("PowerBlock"))
+        {
+            Rigidbody2D rb = collision.GetComponent<Rigidbody2D>();
+            rb.drag = 1000f;
+            rb.freezeRotation = true;
         }
     }
 }
