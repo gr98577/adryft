@@ -11,6 +11,7 @@ public class Terminal : MonoBehaviour {
     [SerializeField]
     private GameObject Closed;
     private bool isOpen;
+    private AudioSource open;
     
 
 	// Use this for initialization
@@ -18,6 +19,7 @@ public class Terminal : MonoBehaviour {
         Close();
         isOpen = false;
         UI.SetActive(false);
+        open = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -27,10 +29,12 @@ public class Terminal : MonoBehaviour {
             Debug.Log("E");
             if (isOpen)
             {
+                open.Play();
                 Close();
             }
             else
             {
+                open.Play();
                 Open();
             }
         }

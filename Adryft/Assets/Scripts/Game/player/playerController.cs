@@ -20,6 +20,9 @@ public class playerController : MonoBehaviour
     private GameObject bloodSml;
     public CameraController mainCamera;
 
+    [SerializeField]
+    private GameObject dashSound;
+
     private damageController dc;
     private BoxCollider2D bc;
     private CircleCollider2D cc;
@@ -217,6 +220,7 @@ public class playerController : MonoBehaviour
     {
         // Dash
         dc.setFlying(true);
+        GameObject noise = Instantiate(dashSound, transform.position, Quaternion.identity);
         yield return new WaitForSeconds(0.15F);
         dash = 2;
         dc.setFlying(false);

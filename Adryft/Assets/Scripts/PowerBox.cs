@@ -14,16 +14,31 @@ public class PowerBox : MonoBehaviour
     private float xDisplacement;
     private float yDisplacement;
     private bool isHeld;
+    private AudioSource scrapeSound;
+    private Vector3 lastLoc;
 
     public void setUse(bool isUsing)
     {
         isInUse = isUsing;
+    }
+    public void setZeroG(bool zeroG)
+    {
+        if (zeroG && scrapeSound.isPlaying)
+        {
+            scrapeSound.volume = 0f;
+        }
+        else if (!zeroG && !scrapeSound.isPlaying)
+        {
+            scrapeSound.volume = 1f;
+        }
     }
 
     // Use this for initialization
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+
+        scrapeSound = GetComponent<AudioSource>();
 
         sr = GetComponent<SpriteRenderer>();
 
@@ -38,12 +53,23 @@ public class PowerBox : MonoBehaviour
 
         i = 0;
 
+        lastLoc = transform.position;
+
         StartCoroutine(Shock());
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (lastLoc != transform.position && !scrapeSound.isPlaying)
+        {
+            scrapeSound.Play();
+        }
+        else if (lastLoc == transform.position && scrapeSound.isPlaying)
+        {
+            scrapeSound.Pause();
+        }
+
         dist = Vector3.Distance(player.transform.position, transform.position);
 
         if (Input.GetButtonDown("Fire3") && dist <= range)
@@ -63,6 +89,8 @@ public class PowerBox : MonoBehaviour
         {
             isHeld = false;
         }
+
+        lastLoc = transform.position;
     }
 
     // Follows the player

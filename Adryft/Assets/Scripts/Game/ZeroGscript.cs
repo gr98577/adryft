@@ -45,6 +45,7 @@ public class ZeroGscript : MonoBehaviour {
             Rigidbody2D rb = collision.GetComponent<Rigidbody2D>();
             rb.drag = 0f;
             rb.freezeRotation = false;
+            collision.GetComponent<PowerBox>().setZeroG(true);
         }
     }
 
@@ -73,6 +74,7 @@ public class ZeroGscript : MonoBehaviour {
             Rigidbody2D rb = collision.GetComponent<Rigidbody2D>();
             rb.drag = 1000f;
             rb.freezeRotation = true;
+            collision.GetComponent<PowerBox>().setZeroG(true);
         }
     }
 }

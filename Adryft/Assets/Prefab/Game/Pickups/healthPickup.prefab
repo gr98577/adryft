@@ -79,6 +79,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amount: 5
+  heal1: {fileID: 1891434066088580, guid: a22e4d2938422584ba5e4e0ef8602151, type: 2}
+  heal2: {fileID: 1060933120574612, guid: 05525b6e9fc9cff4e9514f16fe3cc4db, type: 2}
 --- !u!212 &212420251880545622
 SpriteRenderer:
   m_ObjectHideFlags: 1

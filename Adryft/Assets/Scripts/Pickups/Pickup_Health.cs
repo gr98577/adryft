@@ -12,6 +12,11 @@ public class Pickup_Health : MonoBehaviour {
     private float size;
     private bool grow;
 
+    [SerializeField]
+    private GameObject heal1;
+    [SerializeField]
+    private GameObject heal2;
+
 	// Use this for initialization
 	void Start () {
         // These are used for the sprite growing and shrinking
@@ -53,6 +58,8 @@ public class Pickup_Health : MonoBehaviour {
             {
                 // Gives the player health and then self destructs
                 dc.giveHealth(amount);
+                GameObject H1 = Instantiate(heal1, transform.position, Quaternion.identity);
+                GameObject H2 = Instantiate(heal2, transform.position, Quaternion.identity);
                 Destroy(this.gameObject);
             }
         }

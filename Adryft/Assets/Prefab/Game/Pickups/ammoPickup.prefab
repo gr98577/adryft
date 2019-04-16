@@ -79,6 +79,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amount: 5
+  reloadSound: {fileID: 1019801135315886, guid: aac43ad3bcf8e0d41aca6c9bce5033e5,
+    type: 2}
 --- !u!212 &212719114986874786
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -12,6 +12,9 @@ public class ammoPickupController : MonoBehaviour {
     private float minSize;
     private float size;
 
+    [SerializeField]
+    private GameObject reloadSound;
+
     // Use this for initialization
     void Start () {
         // These are used for the sprite growing and shrinking
@@ -53,11 +56,9 @@ public class ammoPickupController : MonoBehaviour {
             {
                 // Gives the player ammo and then self destructs
                 pc.incAmmunition(amount);
+                GameObject rs = Instantiate(reloadSound, transform.position, Quaternion.identity);
                 Destroy(this.gameObject);
             }
         }
     }
-
-
-
 }

@@ -7,10 +7,12 @@ public class SaveStation : MonoBehaviour {
     private playerController pc;
     [SerializeField]
     private GameObject box;
+    private AudioSource cabinet;
 
 	// Use this for initialization
 	void Start () {
         box.SetActive(false);
+        cabinet = GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -18,10 +20,12 @@ public class SaveStation : MonoBehaviour {
     {
         if (Input.GetButtonDown("Use1"))
         {
+            cabinet.Play();
             SaveGame();
         }
         if (Input.GetButtonDown("Use2"))
         {
+            cabinet.Play();
             LoadGame();
         }
     }

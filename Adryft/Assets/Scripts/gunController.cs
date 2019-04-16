@@ -13,6 +13,8 @@ public class gunController : MonoBehaviour {
     private GameObject UI;
     [SerializeField]
     private Transform Canvas;
+    [SerializeField]
+    private GameObject bulletCasing;
 
     private playerController pc;
 
@@ -206,5 +208,7 @@ public class gunController : MonoBehaviour {
         }
         yield return new WaitForSeconds(0.1F);
         canFire = true;
+        GameObject bullet = Instantiate(bulletCasing, transform.position, Quaternion.identity);
+        bullet.transform.up = transform.right;
     }
 }
