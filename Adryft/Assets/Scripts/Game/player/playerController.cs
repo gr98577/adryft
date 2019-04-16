@@ -143,11 +143,11 @@ public class playerController : MonoBehaviour
         {
             if (dash == 1)
             {
-                tSpeed = mSpeed * Time.deltaTime * 4;
+                tSpeed = mSpeed * Time.fixedDeltaTime * 4;
             }
             else
             {
-                tSpeed = mSpeed * Time.deltaTime;
+                tSpeed = mSpeed * Time.fixedDeltaTime;
             }
         }
         else
@@ -220,10 +220,10 @@ public class playerController : MonoBehaviour
         yield return new WaitForSeconds(0.15F);
         dash = 2;
         dc.setFlying(false);
-        //if (!zeroG)
-        //{
-           // gameObject.GetComponent<TrailRenderer>().enabled = false;
-        //}
+        if (!zeroG)
+        {
+            gameObject.GetComponent<TrailRenderer>().enabled = false;
+        }
 
         // Dash cooldown
         yield return new WaitForSeconds(1F);
