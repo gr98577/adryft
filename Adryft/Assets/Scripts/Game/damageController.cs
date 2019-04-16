@@ -251,7 +251,7 @@ public class damageController : MonoBehaviour {
         {
             
         }
-        else
+        else if(!plyr.zeroG)
         {
             StartCoroutine(bloodDelay(location));
         }
@@ -260,7 +260,7 @@ public class damageController : MonoBehaviour {
     IEnumerator bloodDelay(Vector3 location)
     {
         yield return new WaitForSeconds(0.1f);
-
+        
         GameObject clone = Instantiate(blood, transform.position, Quaternion.identity);
 
         Vector3 rot = transform.position - location;

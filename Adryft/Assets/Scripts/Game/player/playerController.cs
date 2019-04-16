@@ -222,7 +222,7 @@ public class playerController : MonoBehaviour
         dc.setFlying(false);
         //if (!zeroG)
         //{
-            gameObject.GetComponent<TrailRenderer>().enabled = false;
+           // gameObject.GetComponent<TrailRenderer>().enabled = false;
         //}
 
         // Dash cooldown
