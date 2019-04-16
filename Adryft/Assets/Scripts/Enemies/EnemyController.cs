@@ -30,6 +30,7 @@ public class EnemyController : MonoBehaviour
     private Sprite[] left;
     private int i;
     private Rigidbody2D rb;
+    private damageController dc;
 
     // Use this for initialization
     void Start()
@@ -40,7 +41,7 @@ public class EnemyController : MonoBehaviour
         startLocation = transform.position;
         searchLocation = startLocation;
         rb = gameObject.GetComponent<Rigidbody2D>();
-
+        dc = GetComponent<damageController>();
         sr = GetComponent<SpriteRenderer>();
 
         still = sr.sprite;
@@ -170,7 +171,6 @@ public class EnemyController : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, searchLocation, mSpeed * Time.deltaTime);
         }
     }
-
 
     // Collision detection
     private void OnCollisionEnter2D(Collision2D collision)

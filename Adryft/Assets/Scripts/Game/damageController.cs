@@ -37,6 +37,9 @@ public class damageController : MonoBehaviour {
     private GameObject killFlash;
     private playerController plyr;
 
+    public bool immune;
+    [SerializeField]
+    private GameObject immuneSound;
 
 
     // getter function for health
@@ -53,6 +56,9 @@ public class damageController : MonoBehaviour {
     // Getter function for isFlying
     public bool getFlying()
     { return doesFly; }
+
+    public bool getIsMobile()
+    { return isMobile; }
 
     // Use this for initialization
     void Start() {
@@ -150,78 +156,86 @@ public class damageController : MonoBehaviour {
         {
             health = MAX_HEALTH;
         }
+        StartCoroutine(greenFlash());
     }
 
     // Main component of damage controller
     public void doDamage(int amount, string type, Vector3 location, float kbAmount)
     {
-        // Does damage
-        health -= amount;
-        oofSource.Play();
-
-        // Turns the sprite red for a breif moment
-        StartCoroutine(redFlash());
-
-        // If its not a stationary enemy
-        if (isMobile)
+        if (!immune)
         {
-            // Attempts to knock back the owner slightly
-            if (!kb && kbAmount != 0)
+            // Does damage
+            health -= amount;
+            oofSource.Play();
+
+            // Turns the sprite red for a breif moment
+            StartCoroutine(redFlash());
+
+            // If its not a stationary enemy
+            if (isMobile)
             {
-                StartCoroutine(knockback(location, kbAmount));
+                // Attempts to knock back the owner slightly
+                if (!kb && kbAmount != 0)
+                {
+                    StartCoroutine(knockback(location, kbAmount));
+                }
             }
-        }
-        else
-        {
-            // Stuns the turret for a breif second
-            SendMessage("hit", 0.5f);
-        }
+            else
+            {
+                // Stuns the turret for a breif second
+                SendMessage("hit", 0.5f);
+            }
 
-        // Does different effecs based off of the type of damage delt
-        if (type == "fire")
-        {
-            StartCoroutine(fireDamage());
-        }
-        else if (type == "stun")
-        {
-            this.SendMessage("stun", 2f);
-        }
-        else if (type == "push")
-        {
-            // to implement
-        }
-        else if (type == "fall")
-        {
-            // Only does this damage if the owner can't fly
-            if (!doesFly)
+            // Does different effecs based off of the type of damage delt
+            if (type == "fire")
+            {
+                StartCoroutine(fireDamage());
+            }
+            else if (type == "stun")
             {
                 this.SendMessage("stun", 2f);
-                fell = true;
-                StartCoroutine(fall());
             }
-        }
-
-        if (player)
-        {
-            playerController plyr = GetComponent<playerController>();
-            StartCoroutine(plyr.mainCamera.cameraShake(0.1f, 0.05f));
-
-            if (health < 0)
+            else if (type == "push")
             {
-                GameObject clone = Instantiate(deathEffect, transform.position, Quaternion.identity);
+                // to implement
             }
-            else if (!fell)
+            else if (type == "fall")
             {
-                bloodSplat(location);
+                // Only does this damage if the owner can't fly
+                if (!doesFly)
+                {
+                    this.SendMessage("stun", 2f);
+                    fell = true;
+                    StartCoroutine(fall());
+                }
+            }
+
+            if (player)
+            {
+                playerController plyr = GetComponent<playerController>();
+                StartCoroutine(plyr.mainCamera.cameraShake(0.1f, 0.05f));
+
+                if (health < 0)
+                {
+                    GameObject clone = Instantiate(deathEffect, transform.position, Quaternion.identity);
+                }
+                else if (!fell)
+                {
+                    bloodSplat(location);
+                }
+            }
+            else
+            {
+                VFXflash();
+                if (!fell)
+                {
+                    bloodSplat(location);
+                }
             }
         }
         else
         {
-            VFXflash();
-            if (!fell)
-            {
-                bloodSplat(location);
-            }
+            GameObject clone = Instantiate(immuneSound, transform.position, Quaternion.identity);
         }
     }
 
@@ -324,6 +338,14 @@ public class damageController : MonoBehaviour {
     IEnumerator redFlash()
     {
         sr.color = Color.red;
+        yield return new WaitForSeconds(.1F);
+        sr.color = Color.white;
+    }
+
+    // Turns the sprite red for a breif moment
+    IEnumerator greenFlash()
+    {
+        sr.color = Color.green;
         yield return new WaitForSeconds(.1F);
         sr.color = Color.white;
     }

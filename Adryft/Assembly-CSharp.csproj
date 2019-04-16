@@ -111,6 +111,8 @@
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Enemies\ANTI\AntiAnim.cs" />
     <Compile Include="Assets\Scripts\Enemies\EnemyController.cs" />
+    <Compile Include="Assets\Scripts\Enemies\Slug.cs" />
+    <Compile Include="Assets\Scripts\Enemies\SlugHeal.cs" />
     <Compile Include="Assets\Scripts\Enemies\turretController.cs" />
     <Compile Include="Assets\Scripts\Enemies\ZeroGEnemy.cs" />
     <Compile Include="Assets\Scripts\Game\Checkpoint.cs" />
@@ -138,13 +140,16 @@
     <Compile Include="Assets\Scripts\Pickups\PickupController.cs" />
     <Compile Include="Assets\Scripts\Pickups\WeaponPickup.cs" />
     <Compile Include="Assets\Scripts\PowerBox.cs" />
-    <Compile Include="Assets\Scripts\PowerTrigger.cs" />
     <Compile Include="Assets\Scripts\pProjectileController.cs" />
+    <Compile Include="Assets\Scripts\ProximitySensor.cs" />
     <Compile Include="Assets\Scripts\SoundByte.cs" />
     <Compile Include="Assets\Scripts\swordController.cs" />
     <Compile Include="Assets\Scripts\Terminal.cs" />
     <Compile Include="Assets\Scripts\TextBox.cs" />
     <Compile Include="Assets\Scripts\tProjectileController.cs" />
+    <Compile Include="Assets\Scripts\Trigger\AutoTrigger.cs" />
+    <Compile Include="Assets\Scripts\Trigger\KillTrigger.cs" />
+    <Compile Include="Assets\Scripts\Trigger\PowerTrigger.cs" />
     <Compile Include="Assets\Scripts\UI\BulletBar.cs" />
     <Compile Include="Assets\Scripts\UI\CursorController.cs" />
     <Compile Include="Assets\Scripts\UI\healthBar.cs" />

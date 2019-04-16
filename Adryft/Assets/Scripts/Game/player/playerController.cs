@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class playerController : MonoBehaviour
 {
-
-
     // Game Object Variables
     [SerializeField]
     private AudioSource ochSource;
@@ -220,6 +218,13 @@ public class playerController : MonoBehaviour
     {
         // Dash
         dc.setFlying(true);
+
+        GameObject[] enemyList = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach(GameObject x in enemyList)
+        {
+            x.GetComponent<BoxCollider2D>().isTrigger = true;
+        }
+
         GameObject noise = Instantiate(dashSound, transform.position, Quaternion.identity);
         yield return new WaitForSeconds(0.15F);
         dash = 2;
@@ -227,6 +232,11 @@ public class playerController : MonoBehaviour
         if (!zeroG)
         {
             gameObject.GetComponent<TrailRenderer>().enabled = false;
+        }
+
+        foreach (GameObject x in enemyList)
+        {
+            x.GetComponent<BoxCollider2D>().isTrigger = false;
         }
 
         // Dash cooldown
