@@ -98,7 +98,6 @@ public class turretController : MonoBehaviour
                 shootDir.x = Mathf.Round(dir.x / 0.099f);
                 shootDir.y = Mathf.Round(dir.y / 0.099f);
 
-                //Debug.Log(shootDir);
 
                 StartCoroutine(EscalateToFire(shootDir));  //(loads in semi-quick succession the 
                                                            //seen_start/end and fire_start/end sprites)

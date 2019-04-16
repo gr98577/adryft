@@ -110,7 +110,6 @@ public class gunController : MonoBehaviour {
                         {
                             gunCharge = pc.getAmmunition();
                         }
-                        Debug.Log(gunCharge + " | " + gctemp);
                     }
                 }
             }

@@ -25,7 +25,6 @@ public class ZeroGscript : MonoBehaviour {
         if (collision.gameObject == player)
         {
             Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
-            Debug.Log(rb.velocity);
 
             player.GetComponent<playerController>().zeroG = true;
             player.GetComponent<playerAnimScript>().zeroG = true;

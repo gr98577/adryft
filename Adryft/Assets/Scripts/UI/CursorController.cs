@@ -18,10 +18,14 @@ public class CursorController : MonoBehaviour {
 
     private GameObject finish;
 
+    public void SetCheckpoint(GameObject checkpoint)
+    {
+        finish = checkpoint;
+    }
+
     // Use this for initialization
     void Start () {
         transform.localScale *= 2000f / Screen.width;
-        finish = GameObject.FindGameObjectWithTag("Finish");
         hotSpot = new Vector2(15f, 15f);
         Cursor.SetCursor(cursorImage, hotSpot, cursorMode);
     }

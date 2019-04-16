@@ -113,8 +113,10 @@
     <Compile Include="Assets\Scripts\Enemies\EnemyController.cs" />
     <Compile Include="Assets\Scripts\Enemies\turretController.cs" />
     <Compile Include="Assets\Scripts\Enemies\ZeroGEnemy.cs" />
+    <Compile Include="Assets\Scripts\Game\Checkpoint.cs" />
     <Compile Include="Assets\Scripts\Game\damageController.cs" />
     <Compile Include="Assets\Scripts\Game\MenuController.cs" />
+    <Compile Include="Assets\Scripts\Game\ObjectiveController.cs" />
     <Compile Include="Assets\Scripts\Game\player\CoolDeathThing.cs" />
     <Compile Include="Assets\Scripts\Game\player\FlashLight.cs" />
     <Compile Include="Assets\Scripts\Game\player\playerAnimScript.cs" />
@@ -127,7 +129,6 @@
     <Compile Include="Assets\Scripts\gunController.cs" />
     <Compile Include="Assets\Scripts\lightController.cs" />
     <Compile Include="Assets\Scripts\Menu\MainMenu.cs" />
-    <Compile Include="Assets\Scripts\ObjectiveController.cs" />
     <Compile Include="Assets\Scripts\Objects\Grabable.cs" />
     <Compile Include="Assets\Scripts\Obstacles\handPlantController.cs" />
     <Compile Include="Assets\Scripts\Obstacles\HAZslowScript.cs" />

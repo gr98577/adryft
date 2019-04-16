@@ -26,7 +26,6 @@ public class Terminal : MonoBehaviour {
 	void Update () {
         if (Input.GetButtonDown("Use1") && UI.activeSelf)
         {
-            Debug.Log("E");
             if (isOpen)
             {
                 open.Play();
