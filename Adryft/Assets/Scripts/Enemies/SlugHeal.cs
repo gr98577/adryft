@@ -8,9 +8,14 @@ public class SlugHeal : MonoBehaviour {
     private List<GameObject> deList;
     [SerializeField]
     private float healFactor;
+    [SerializeField]
+    private GameObject gas1;
+    [SerializeField]
+    private GameObject gas2;
     private float secondCount;
     private Slug parent;
     private bool alliesNeedHeal;
+    private int frameCount;
 
     private Vector3 moveLoc;
 
@@ -21,6 +26,7 @@ public class SlugHeal : MonoBehaviour {
         secondCount = 0f;
         parent = GetComponentInParent<Slug>();
         moveLoc = new Vector3(0f, 0f, 0f);
+        frameCount = 0;
     }
 	
 	// Update is called once per frame
@@ -44,6 +50,7 @@ public class SlugHeal : MonoBehaviour {
                 if (!parent.wait)
                 {
                     StartCoroutine(parent.Heal());
+                    GetComponent<SpriteRenderer>().enabled = true;
                 }
             }
             else
@@ -51,6 +58,7 @@ public class SlugHeal : MonoBehaviour {
                 if (!parent.wait)
                 {
                     StartCoroutine(parent.Move());
+                    GetComponent<SpriteRenderer>().enabled = false;
                 }
             }
         }
@@ -74,6 +82,17 @@ public class SlugHeal : MonoBehaviour {
             if (!parent.wait)
             {
                 
+            }
+
+            frameCount++;
+            if (frameCount == 9)
+            {
+                var clone1 = Instantiate(gas1, transform.position, Quaternion.identity);
+            }
+            else if (frameCount >= 18)
+            {
+                frameCount = 0;
+                var clone2 = Instantiate(gas2, transform.position, Quaternion.identity);
             }
         }
         else

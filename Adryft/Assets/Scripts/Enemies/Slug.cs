@@ -19,7 +19,7 @@ public class Slug : MonoBehaviour {
     void Start ()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-
+        
         dc = GetComponent<damageController>();
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();

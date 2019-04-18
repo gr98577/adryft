@@ -111,7 +111,7 @@ public class damageController : MonoBehaviour {
                 try
                 {
                     float rand = Random.Range(0.0f, 1.0f);
-                    if (rand < dropPercent)
+                    if (rand <= dropPercent)
                     {
                         var drop = Instantiate(deathDrop, transform.position, Quaternion.identity);
                     }

@@ -115,18 +115,21 @@
     <Compile Include="Assets\Scripts\Enemies\SlugHeal.cs" />
     <Compile Include="Assets\Scripts\Enemies\turretController.cs" />
     <Compile Include="Assets\Scripts\Enemies\ZeroGEnemy.cs" />
+    <Compile Include="Assets\Scripts\FadeInOut.cs" />
     <Compile Include="Assets\Scripts\Game\Checkpoint.cs" />
     <Compile Include="Assets\Scripts\Game\damageController.cs" />
     <Compile Include="Assets\Scripts\Game\MenuController.cs" />
     <Compile Include="Assets\Scripts\Game\ObjectiveController.cs" />
     <Compile Include="Assets\Scripts\Game\player\CoolDeathThing.cs" />
     <Compile Include="Assets\Scripts\Game\player\FlashLight.cs" />
+    <Compile Include="Assets\Scripts\Game\player\KeyContainer.cs" />
     <Compile Include="Assets\Scripts\Game\player\playerAnimScript.cs" />
     <Compile Include="Assets\Scripts\Game\player\playerCombat.cs" />
     <Compile Include="Assets\Scripts\Game\player\playerController.cs" />
     <Compile Include="Assets\Scripts\Game\player\ScreenEffects.cs" />
     <Compile Include="Assets\Scripts\Game\SaveLoad\SaveLoadManager.cs" />
     <Compile Include="Assets\Scripts\Game\SaveLoad\SaveStation.cs" />
+    <Compile Include="Assets\Scripts\Game\Teleport.cs" />
     <Compile Include="Assets\Scripts\Game\ZeroGscript.cs" />
     <Compile Include="Assets\Scripts\gunController.cs" />
     <Compile Include="Assets\Scripts\lightController.cs" />
@@ -136,6 +139,7 @@
     <Compile Include="Assets\Scripts\Obstacles\HAZslowScript.cs" />
     <Compile Include="Assets\Scripts\Obstacles\pitController.cs" />
     <Compile Include="Assets\Scripts\Pickups\ammoPickupController.cs" />
+    <Compile Include="Assets\Scripts\Pickups\KeyPickup.cs" />
     <Compile Include="Assets\Scripts\Pickups\Pickup_Health.cs" />
     <Compile Include="Assets\Scripts\Pickups\PickupController.cs" />
     <Compile Include="Assets\Scripts\Pickups\WeaponPickup.cs" />
@@ -148,6 +152,7 @@
     <Compile Include="Assets\Scripts\TextBox.cs" />
     <Compile Include="Assets\Scripts\tProjectileController.cs" />
     <Compile Include="Assets\Scripts\Trigger\AutoTrigger.cs" />
+    <Compile Include="Assets\Scripts\Trigger\KeyTrigger.cs" />
     <Compile Include="Assets\Scripts\Trigger\KillTrigger.cs" />
     <Compile Include="Assets\Scripts\Trigger\PowerTrigger.cs" />
     <Compile Include="Assets\Scripts\UI\BulletBar.cs" />
