@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour {
 
     // Variables
     private GameObject player;
+    private GameObject cutSceneLocation;
     [SerializeField]
     private float smoothAmount;
     private float smoothAmountActual;
@@ -14,6 +15,11 @@ public class CameraController : MonoBehaviour {
     private float shakeAmount;
     private float m_magnitude;
     private float delay;
+
+    public void setCSL(GameObject csl)
+    {
+        cutSceneLocation = csl;
+    }
 
     // Use this for initialization
     void Start () {
@@ -29,7 +35,15 @@ public class CameraController : MonoBehaviour {
         if (Time.timeScale != 0f)
         {
             smoothAmountActual = smoothAmount * ((1 / Time.deltaTime) / 120);
-            followPlayer();
+
+            if (GetComponentInParent<CutsceneController>().inCutscene)
+            {
+                goTo();
+            }
+            else
+            {
+                followPlayer();
+            }
         }
 	}
 
@@ -75,6 +89,16 @@ public class CameraController : MonoBehaviour {
             }
         }
 
+        transform.position = position;
+    }
+
+    void goTo()
+    {
+        // Sets position to the player position with delay
+        Vector3 cslPosition = cutSceneLocation.transform.position;
+        Vector3 desiredPosition = new Vector3(cslPosition.x, cslPosition.y, -4);
+
+        Vector3 position = Vector3.Lerp(transform.position, desiredPosition, smoothAmountActual);
         transform.position = position;
     }
 

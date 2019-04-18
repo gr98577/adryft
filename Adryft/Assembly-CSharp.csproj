@@ -117,6 +117,7 @@
     <Compile Include="Assets\Scripts\Enemies\ZeroGEnemy.cs" />
     <Compile Include="Assets\Scripts\FadeInOut.cs" />
     <Compile Include="Assets\Scripts\Game\Checkpoint.cs" />
+    <Compile Include="Assets\Scripts\Game\CutsceneController.cs" />
     <Compile Include="Assets\Scripts\Game\damageController.cs" />
     <Compile Include="Assets\Scripts\Game\MenuController.cs" />
     <Compile Include="Assets\Scripts\Game\ObjectiveController.cs" />
@@ -152,9 +153,11 @@
     <Compile Include="Assets\Scripts\TextBox.cs" />
     <Compile Include="Assets\Scripts\tProjectileController.cs" />
     <Compile Include="Assets\Scripts\Trigger\AutoTrigger.cs" />
+    <Compile Include="Assets\Scripts\Trigger\CutsceneTrigger.cs" />
     <Compile Include="Assets\Scripts\Trigger\KeyTrigger.cs" />
     <Compile Include="Assets\Scripts\Trigger\KillTrigger.cs" />
     <Compile Include="Assets\Scripts\Trigger\PowerTrigger.cs" />
+    <Compile Include="Assets\Scripts\TriggerSplitter.cs" />
     <Compile Include="Assets\Scripts\UI\BulletBar.cs" />
     <Compile Include="Assets\Scripts\UI\CursorController.cs" />
     <Compile Include="Assets\Scripts\UI\healthBar.cs" />

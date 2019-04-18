@@ -47,18 +47,20 @@ public class SlugHeal : MonoBehaviour {
 
             if (alliesNeedHeal)
             {
-                if (!parent.wait)
+                if (!parent.wait && !parent.isHealing)
                 {
+                    parent.wait = true;
                     StartCoroutine(parent.Heal());
-                    GetComponent<SpriteRenderer>().enabled = true;
+                    //GetComponent<SpriteRenderer>().enabled = true;
                 }
             }
             else
             {
-                if (!parent.wait)
+                if (!parent.wait && parent.isHealing)
                 {
+                    parent.wait = true;
                     StartCoroutine(parent.Move());
-                    GetComponent<SpriteRenderer>().enabled = false;
+                    //GetComponent<SpriteRenderer>().enabled = false;
                 }
             }
         }

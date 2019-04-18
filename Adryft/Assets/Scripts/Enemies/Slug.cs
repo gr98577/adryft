@@ -15,6 +15,10 @@ public class Slug : MonoBehaviour {
     public int numAlliesNear;
     public bool wait;
 
+    private Sprite[] move;
+    private Sprite[] heal;
+    private Sprite[] trans;
+
     // Use this for initialization
     void Start ()
     {
@@ -25,7 +29,27 @@ public class Slug : MonoBehaviour {
         sr = GetComponent<SpriteRenderer>();
         dc.immune = true;
         mSpeed = 0.3f;
-	}
+
+        move = new Sprite[4];
+        move[0] = Resources.Load<Sprite>("slug/Move/1");
+        move[1] = Resources.Load<Sprite>("slug/Move/2");
+        move[2] = Resources.Load<Sprite>("slug/Move/3");
+        move[3] = Resources.Load<Sprite>("slug/Move/4");
+
+        heal = new Sprite[4];
+        heal[0] = Resources.Load<Sprite>("slug/Heal/1");
+        heal[1] = Resources.Load<Sprite>("slug/Heal/2");
+        heal[2] = Resources.Load<Sprite>("slug/Heal/3");
+        heal[3] = Resources.Load<Sprite>("slug/Heal/4");
+
+        trans = new Sprite[4];
+        trans[0] = Resources.Load<Sprite>("slug/Trans/1");
+        trans[1] = Resources.Load<Sprite>("slug/Trans/2");
+        trans[2] = Resources.Load<Sprite>("slug/Trans/3");
+        trans[3] = Resources.Load<Sprite>("slug/Trans/4");
+
+        StartCoroutine(Walk());
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -37,12 +61,17 @@ public class Slug : MonoBehaviour {
             rb.constraints = RigidbodyConstraints2D.None;
             rb.freezeRotation = true;
         }
-        else
+        else if (numAlliesNear != 0)
         {
             sr.color = Color.white;
             dc.immune = false;
             rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
             rb.freezeRotation = true;
+        }
+        else
+        {
+            sr.color = Color.white;
+            dc.immune = false;
         }
 	}
 
@@ -110,17 +139,56 @@ public class Slug : MonoBehaviour {
 
     public IEnumerator Heal()
     {
-        wait = true;
         isHealing = true;
-        yield return new WaitForSeconds(1f);
+        sr.sprite = trans[0];
+        yield return new WaitForSeconds(0.25f);
+        sr.sprite = trans[1];
+        yield return new WaitForSeconds(0.25f);
+        sr.sprite = trans[2];
+        yield return new WaitForSeconds(0.25f);
+        sr.sprite = trans[3];
+        yield return new WaitForSeconds(0.25f);
         wait = false;
     }
 
     public IEnumerator Move()
     {
-        wait = true;
-        yield return new WaitForSeconds(1f);
+        sr.sprite = trans[3];
+        yield return new WaitForSeconds(0.25f);
+        sr.sprite = trans[2];
+        yield return new WaitForSeconds(0.25f);
+        sr.sprite = trans[1];
+        yield return new WaitForSeconds(0.25f);
+        sr.sprite = trans[0];
+        yield return new WaitForSeconds(0.25f);
         isHealing = false;
         wait = false;
+    }
+
+    private IEnumerator Walk()
+    {
+        int i = 0;
+        while (true)
+        {
+            yield return new WaitForSeconds(0.25f);
+            if (wait)
+            {
+
+            }
+            else if (isHealing)
+            {
+                sr.sprite = heal[i];
+            }
+            else
+            {
+                sr.sprite = move[i];
+            }
+
+            i++;
+            if (i >= 4)
+            {
+                i = 0;
+            }
+        }
     }
 }

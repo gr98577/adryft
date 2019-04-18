@@ -50,7 +50,11 @@ public class MenuController : MonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetButtonDown("Open Menu"))
+        if (GetComponentInParent<CutsceneController>().inCutscene)
+        {
+            shouldItBe = false;
+        }
+        else if (Input.GetButtonDown("Open Menu"))
         {
             if (shouldItBe)
             {

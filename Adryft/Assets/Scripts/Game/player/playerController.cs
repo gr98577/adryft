@@ -102,27 +102,34 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!zeroG)
+        if (GetComponentInParent<CutsceneController>().inCutscene)
         {
             gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
         }
-
-        if (Input.GetButtonDown("Fire1"))
-        {
-            StartCoroutine(mainCamera.cameraShake(0.1f, 0.01f));
-        }
-        if (Input.GetButtonDown("Fire2"))
-        {
-            //StartCoroutine(mainCamera.cameraShake(0.1f, 0.001f));
-        }
-
-        if (stunned)
-        {
-            // stun effect
-        }
         else
         {
-            Move();
+            if (!zeroG)
+            {
+                gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
+            }
+
+            if (Input.GetButtonDown("Fire1"))
+            {
+                StartCoroutine(mainCamera.cameraShake(0.1f, 0.01f));
+            }
+            if (Input.GetButtonDown("Fire2"))
+            {
+                //StartCoroutine(mainCamera.cameraShake(0.1f, 0.001f));
+            }
+
+            if (stunned)
+            {
+                // stun effect
+            }
+            else
+            {
+                Move();
+            }
         }
     }
 

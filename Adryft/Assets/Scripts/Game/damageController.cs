@@ -91,7 +91,7 @@ public class damageController : MonoBehaviour {
                 }
                 catch
                 {
-                    Debug.Log("no death spawn");
+                    //Debug.Log("no death spawn");
                 }
             }
             // If the owner didn't fall
@@ -104,7 +104,7 @@ public class damageController : MonoBehaviour {
                 }
                 catch
                 {
-                    Debug.Log("no death spawn");
+                    //Debug.Log("no death spawn");
                 }
 
                 // Tries to have a random change of dropping a pickup
@@ -118,7 +118,7 @@ public class damageController : MonoBehaviour {
                 }
                 catch
                 {
-                    Debug.Log("no death drop");
+                    //Debug.Log("no death drop");
                 }
             }
             

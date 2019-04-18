@@ -39,7 +39,7 @@ public class FlashLight : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if (Time.timeScale != 0f)
+        if (Time.timeScale != 0f && !GetComponentInParent<CutsceneController>().inCutscene)
         {
             // Toggles the flash light on/off
             if (Input.GetButtonDown("light"))
