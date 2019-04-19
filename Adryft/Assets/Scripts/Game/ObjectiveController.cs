@@ -12,7 +12,7 @@ public class ObjectiveController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         player = GameObject.FindGameObjectWithTag("Player");
-        player.GetComponentInChildren<CursorController>().SetCheckpoint(gameObject);
+        player.GetComponentInChildren<Pointer>().SetCheckpoint(gameObject);
     }
 
     // Collision detection

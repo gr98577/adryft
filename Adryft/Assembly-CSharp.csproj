@@ -162,6 +162,7 @@
     <Compile Include="Assets\Scripts\UI\CursorController.cs" />
     <Compile Include="Assets\Scripts\UI\DeathMenu.cs" />
     <Compile Include="Assets\Scripts\UI\healthBar.cs" />
+    <Compile Include="Assets\Scripts\UI\Pointer.cs" />
     <Compile Include="Assets\Scripts\UI\SplashScreen.cs" />
     <Compile Include="Assets\Scripts\UI\StaminaBar.cs" />
     <Compile Include="Assets\Scripts\UI\UIController.cs" />
