@@ -160,6 +160,7 @@
     <Compile Include="Assets\Scripts\TriggerSplitter.cs" />
     <Compile Include="Assets\Scripts\UI\BulletBar.cs" />
     <Compile Include="Assets\Scripts\UI\CursorController.cs" />
+    <Compile Include="Assets\Scripts\UI\DeathMenu.cs" />
     <Compile Include="Assets\Scripts\UI\healthBar.cs" />
     <Compile Include="Assets\Scripts\UI\SplashScreen.cs" />
     <Compile Include="Assets\Scripts\UI\StaminaBar.cs" />
@@ -169,6 +170,7 @@
     <Compile Include="Assets\Scripts\VFX\ExplosionVFX.cs" />
     <Compile Include="Assets\Scripts\VFX\FlashDamageVFX.cs" />
     <Compile Include="Assets\Scripts\VFX\LenseFlareSizer.cs" />
+    <Compile Include="Assets\Scripts\VFX\ScreenFlash.cs" />
     <Compile Include="Assets\Scripts\VFX\SkyboxController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />

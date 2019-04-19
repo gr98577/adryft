@@ -16,6 +16,9 @@ public class CoolDeathThing : MonoBehaviour {
     private GameObject videoPlayer;
     [SerializeField]
     private GameObject HUD;
+    [SerializeField]
+    private GameObject DeathMenu;
+    private float i;
 
     // Use this for initialization
     void Start ()
@@ -25,6 +28,7 @@ public class CoolDeathThing : MonoBehaviour {
         GrainModel.Settings Grain = normal.grain.settings;
         Grain.intensity = 0;
         normal.grain.settings = Grain;
+        i = 0;
     }
 
     private void OnPlayerDeath()
@@ -71,11 +75,21 @@ public class CoolDeathThing : MonoBehaviour {
             {
                 Grain.intensity = 0;
             }
+            stage = 4;
             normal.grain.settings = Grain;
         }
         else if (stage == 4)
         {
+            i += Time.unscaledDeltaTime;
+            if (i >= 1)
+            {
+                stage = 5;
+            }
 
+        }
+        else if (stage == 5)
+        {
+            DeathMenu.SetActive(true);
         }
 	}
 }

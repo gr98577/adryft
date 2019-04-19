@@ -8,7 +8,8 @@ public class PauseScript : MonoBehaviour {
     public static bool gameIsPaused;
     [SerializeField]
     public GameObject menuUI;
-
+    [SerializeField]
+    private GameObject check;
 
 	// Use this for initialization
 	void Start () {
@@ -17,7 +18,7 @@ public class PauseScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.Escape))
+		if (Input.GetKeyDown(KeyCode.Escape) && !check.activeSelf)
         {
             if (gameIsPaused) { pauseResume(); }
             else { pauseOpen(); }

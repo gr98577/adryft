@@ -321,7 +321,9 @@ MonoBehaviour:
   blood: {fileID: 0}
   damageFlash: {fileID: 1808185158270472, guid: 960f2604845dc3147993fc66851d6313,
     type: 2}
-  killFlash: {fileID: 1134804557898358, guid: 44f2814102dd2db4d84551ea72b690c6, type: 2}
+  killFlash: {fileID: 1942664495709768, guid: 886a489fdea3cba469f6a58644a64c23, type: 2}
+  immune: 0
+  immuneSound: {fileID: 0}
 --- !u!212 &212631682277253424
 SpriteRenderer:
   m_ObjectHideFlags: 1

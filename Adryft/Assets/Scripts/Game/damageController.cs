@@ -35,6 +35,8 @@ public class damageController : MonoBehaviour {
     private GameObject damageFlash;
     [SerializeField]
     private GameObject killFlash;
+    [SerializeField]
+    private GameObject healFlash;
     private playerController plyr;
 
     public bool immune;
@@ -156,6 +158,7 @@ public class damageController : MonoBehaviour {
         {
             health = MAX_HEALTH;
         }
+        GameObject clone = Instantiate(healFlash, transform.position, Quaternion.identity);
         StartCoroutine(greenFlash());
     }
 
@@ -226,12 +229,13 @@ public class damageController : MonoBehaviour {
             }
             else
             {
-                VFXflash();
                 if (!fell)
                 {
                     bloodSplat(location);
                 }
             }
+
+            VFXflash();
         }
         else
         {
