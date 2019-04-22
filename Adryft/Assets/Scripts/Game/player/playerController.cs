@@ -7,8 +7,6 @@ public class playerController : MonoBehaviour
 {
     // Game Object Variables
     [SerializeField]
-    private AudioSource ochSource;
-    [SerializeField]
     private GameObject gameOver;
     [SerializeField]
     private GameObject blood;
@@ -17,6 +15,7 @@ public class playerController : MonoBehaviour
     [SerializeField]
     private GameObject bloodSml;
     public CameraController mainCamera;
+    private AudioLowPassFilter alpf;
 
     [SerializeField]
     private GameObject dashSound;
@@ -84,7 +83,6 @@ public class playerController : MonoBehaviour
     {
         mSpeed = 2f;
         isSlowed = false;
-        ochSource = GetComponent<AudioSource>();
         dc = GetComponent<damageController>();
         rb = GetComponent<Rigidbody2D>();
         /*
@@ -95,6 +93,8 @@ public class playerController : MonoBehaviour
         ammo = maxAmmo;
         stamina = maxStamina;
         gameObject.GetComponent<TrailRenderer>().enabled = false;
+        alpf = mainCamera.GetComponent<AudioLowPassFilter>();
+        alpf.enabled = false;
     }
 
     
@@ -102,6 +102,15 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (zeroG)
+        {
+            alpf.enabled = true;
+        }
+        else
+        {
+            alpf.enabled = false;
+        }
+
         if (GetComponentInParent<CutsceneController>().inCutscene)
         {
             gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);

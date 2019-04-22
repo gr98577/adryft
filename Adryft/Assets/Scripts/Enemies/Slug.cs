@@ -7,6 +7,7 @@ public class Slug : MonoBehaviour {
     private damageController dc;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
+    private AudioSource audio;
     private GameObject player;
     public bool isHealing;
     public bool zeroG;
@@ -27,6 +28,7 @@ public class Slug : MonoBehaviour {
         dc = GetComponent<damageController>();
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        audio = GetComponent<AudioSource>();
         dc.immune = true;
         mSpeed = 0.3f;
 
@@ -72,6 +74,16 @@ public class Slug : MonoBehaviour {
         {
             sr.color = Color.white;
             dc.immune = false;
+        }
+
+        float distToPlayer = Vector3.Distance(transform.position, player.transform.position);
+        if (distToPlayer <= 1 && !audio.isPlaying)
+        {
+            audio.Play();
+        }
+        else if (distToPlayer > 1 && audio.isPlaying)
+        {
+            audio.Pause();
         }
 	}
 

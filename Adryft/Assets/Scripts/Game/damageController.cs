@@ -9,11 +9,15 @@ public class damageController : MonoBehaviour {
     [SerializeField]
     private int MAX_HEALTH;
     [SerializeField]
+    private GameObject hitSound;
+    [SerializeField]
     private GameObject deathSpawn;
     [SerializeField]
     private GameObject deathDrop;
     [SerializeField]
     private GameObject deathEffect;
+    [SerializeField]
+    private GameObject deathSound;
     [SerializeField]
     private bool isMobile;
     [SerializeField]
@@ -123,7 +127,7 @@ public class damageController : MonoBehaviour {
                     //Debug.Log("no death drop");
                 }
             }
-            
+
             if (player)
             {
                 Time.timeScale = 0f;
@@ -132,6 +136,7 @@ public class damageController : MonoBehaviour {
             }
             else
             {
+                var clone1 = Instantiate(deathSound, transform.position, Quaternion.identity);
                 // Self destructs
                 Destroy(this.gameObject);
             }
@@ -169,7 +174,7 @@ public class damageController : MonoBehaviour {
         {
             // Does damage
             health -= amount;
-            oofSource.Play();
+            var hit = Instantiate(hitSound, transform.position, Quaternion.identity);
 
             // Turns the sprite red for a breif moment
             StartCoroutine(redFlash());
@@ -334,7 +339,8 @@ public class damageController : MonoBehaviour {
         {
             yield return new WaitForSeconds(.5F);
             health -= 1;
-            oofSource.Play();
+            //oofSource.Play();
+            var hit = Instantiate(hitSound, transform.position, Quaternion.identity);
         }
     }
 

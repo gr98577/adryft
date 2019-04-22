@@ -31,6 +31,7 @@ public class EnemyController : MonoBehaviour
     private int i;
     private Rigidbody2D rb;
     private damageController dc;
+    private AudioSource stepSound;
 
     // Use this for initialization
     void Start()
@@ -43,6 +44,7 @@ public class EnemyController : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         dc = GetComponent<damageController>();
         sr = GetComponent<SpriteRenderer>();
+        stepSound = GetComponent<AudioSource>();
 
         still = sr.sprite;
         i = -1;
@@ -186,14 +188,33 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator Walk()
     {
+        int rand = Random.Range(0, 5);
+
         while (true)
         {
             yield return new WaitForSeconds(time);
 
-            if (canSeePlayer){ i -= 5; }
+            if (moving != 0)
+            {
+                if (i == rand)
+                {
+                    stepSound.Play();
+                }
+            }
+
+            if (canSeePlayer)
+            {
+                i -= 5;
+            }
             i++;
-            if (i >= 5){ i = 0; }
-            if (canSeePlayer){ i += 5; }
+            if (i >= 5)
+            {
+                i = 0;
+            }
+            if (canSeePlayer)
+            {
+                i += 5;
+            }
 
             if (moving == -1)
             {

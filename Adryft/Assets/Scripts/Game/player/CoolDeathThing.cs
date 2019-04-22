@@ -18,6 +18,12 @@ public class CoolDeathThing : MonoBehaviour {
     private GameObject HUD;
     [SerializeField]
     private GameObject DeathMenu;
+    [SerializeField]
+    private GameObject DeathSound;
+    [SerializeField]
+    private GameObject DeathSound1;
+    [SerializeField]
+    private GameObject DeathSound2;
     private float i;
 
     // Use this for initialization
@@ -37,6 +43,8 @@ public class CoolDeathThing : MonoBehaviour {
         GetComponent<MenuController>().Close();
         GetComponent<MenuController>().enabled = false;
         stage = 1;
+        //var clone = Instantiate(DeathSound, transform.position, Quaternion.identity);
+        var clone1 = Instantiate(DeathSound1, transform.position, Quaternion.identity);
     }
 
     // Update is called once per frame
@@ -65,6 +73,7 @@ public class CoolDeathThing : MonoBehaviour {
         {
             stage = 3;
             videoPlayer.GetComponent<VideoPlayer>().Play();
+            var clone1 = Instantiate(DeathSound2, transform.position, Quaternion.identity);
             HUD.SetActive(false);
         }
         else if (stage == 3)

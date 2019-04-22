@@ -16,13 +16,6 @@ public class CursorController : MonoBehaviour {
     bool OnEnemy = false;
     bool OnElement = false;
 
-    private GameObject finish;
-
-    public void SetCheckpoint(GameObject checkpoint)
-    {
-        finish = checkpoint;
-    }
-
     // Use this for initialization
     void Start () {
         transform.localScale *= 2000f / Screen.width;
@@ -38,17 +31,7 @@ public class CursorController : MonoBehaviour {
         mousePosition.y -= 0.01f;
 
         transform.position = mousePosition;
-        faceObjective();
         //transform.position = Vector3.Lerp(transform.position, mousePosition, 150 * Time.deltaTime);
-    }
-
-    private void faceObjective()
-    {
-        Vector2 direction = new Vector2(
-                    finish.transform.position.x - transform.position.x,
-                    finish.transform.position.y - transform.position.y);
-
-        transform.up = direction;
     }
 
     private void OnTriggerStay2D(Collider2D collision)

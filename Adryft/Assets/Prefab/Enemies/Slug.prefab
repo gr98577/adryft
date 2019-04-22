@@ -258,10 +258,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MAX_HEALTH: 20
+  hitSound: {fileID: 1051842467753302, guid: 0f49ea9ea8b9d6e449891ae2dc8546b1, type: 2}
   deathSpawn: {fileID: 0}
   deathDrop: {fileID: 1134802528883904, guid: c9eeccfde16d3bc438b8fe691480b44b, type: 2}
   deathEffect: {fileID: 1428261840459020, guid: acb797e6554d37e4ba3b162a1aeba179,
     type: 2}
+  deathSound: {fileID: 1514095242127210, guid: 5ee80ee4875f9fc4990506c3332389cf, type: 2}
   isMobile: 1
   dropPercent: 1
   doesFly: 0
@@ -270,6 +272,7 @@ MonoBehaviour:
   damageFlash: {fileID: 1808185158270472, guid: 960f2604845dc3147993fc66851d6313,
     type: 2}
   killFlash: {fileID: 1942664495709768, guid: 886a489fdea3cba469f6a58644a64c23, type: 2}
+  healFlash: {fileID: 0}
   immune: 1
   immuneSound: {fileID: 1231975050865958, guid: 00c94d8c3a8cafc47bda2e87d0086df4,
     type: 2}

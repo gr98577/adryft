@@ -62,7 +62,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\ab.cs" />
+    <Compile Include="Assets\flicker.cs" />
     <Compile Include="Assets\PauseScript.cs" />
+    <Compile Include="Assets\PlayerHitSound.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\MinAttribute.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\TrackballAttribute.cs" />
@@ -170,6 +172,7 @@
     <Compile Include="Assets\Scripts\VFX\BulletCasing.cs" />
     <Compile Include="Assets\Scripts\VFX\ExplosionVFX.cs" />
     <Compile Include="Assets\Scripts\VFX\FlashDamageVFX.cs" />
+    <Compile Include="Assets\Scripts\VFX\Flicker2.cs" />
     <Compile Include="Assets\Scripts\VFX\LenseFlareSizer.cs" />
     <Compile Include="Assets\Scripts\VFX\ScreenFlash.cs" />
     <Compile Include="Assets\Scripts\VFX\SkyboxController.cs" />

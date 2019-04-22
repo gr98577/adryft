@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/MenuScene.unity
-    guid: 34553b8c8e45ab146979a5b575e29e4e
+    path: Assets/adryftSceneOne - Copy.unity
+    guid: 7a297dc9e63499e46a79c3db7d5b1717
   - enabled: 1
     path: Assets/adryftSceneOne.unity
     guid: ff7dab065c3ed184f83154a179de8cd4

@@ -7,6 +7,7 @@ public class ZeroGscript : MonoBehaviour {
     private GameObject player;
     [SerializeField]
     private GameObject notif;
+    private AudioSource thrust;
 
 	// Use this for initialization
 	void Start () {
@@ -29,6 +30,7 @@ public class ZeroGscript : MonoBehaviour {
             player.GetComponent<playerController>().zeroG = true;
             player.GetComponent<playerAnimScript>().zeroG = true;
             notif.SetActive(true);
+            thrust.Play();
             player.GetComponent<TrailRenderer>().enabled = true;
             player.GetComponent<TrailRenderer>().time = 0.75f;
         }
@@ -56,6 +58,7 @@ public class ZeroGscript : MonoBehaviour {
             player.GetComponent<playerController>().zeroG = false;
             player.GetComponent<playerAnimScript>().zeroG = false;
             notif.SetActive(false);
+            thrust.Pause();
             player.GetComponent<TrailRenderer>().enabled = false;
             player.GetComponent<TrailRenderer>().time = 0.075f;
 

@@ -33,7 +33,6 @@ public class ScreenFlash : MonoBehaviour {
 
     void Update()
     {
-        Debug.Log(".");
 
         t += Time.unscaledDeltaTime / duration;
 

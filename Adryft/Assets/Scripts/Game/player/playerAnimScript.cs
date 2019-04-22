@@ -6,6 +6,7 @@ using UnityEngine;
 public class playerAnimScript : MonoBehaviour {
 
     private SpriteRenderer sr;
+    private AudioSource stepSound;
     private Sprite front;
     private Sprite back;
     private Sprite[] fWalk = new Sprite[3], bWalk = new Sprite[3], lWalk = new Sprite[3], rWalk = new Sprite[3];
@@ -37,6 +38,9 @@ public class playerAnimScript : MonoBehaviour {
 
         front = Resources.Load<Sprite>("PlayerAnim/PlayerFront");
         back = Resources.Load<Sprite>("PlayerAnim/PlayerBack");
+
+        stepSound = GetComponent<AudioSource>();
+
         StartCoroutine(walkCycle());
     }
 	
@@ -147,6 +151,11 @@ public class playerAnimScript : MonoBehaviour {
                 if (walkStage > 2)
                 {
                     walkStage = 0;
+
+                    if (!zeroG)
+                    {
+                        stepSound.Play();
+                    }
                 }
             }
             else

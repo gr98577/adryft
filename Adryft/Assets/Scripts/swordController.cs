@@ -8,7 +8,7 @@ public class swordController : MonoBehaviour {
     private GameObject player;
     [SerializeField]
     private int swingArc;
-
+    private AudioSource swing;
     private float swingTime;
 
     //private bool pickedUp = false;
@@ -27,6 +27,7 @@ public class swordController : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player");
         swingTime = 0.01f;
         pc = player.GetComponent<playerController>();
+        swing = GetComponent<AudioSource>();
 
         canSwing = true;
         active = true;
@@ -58,6 +59,7 @@ public class swordController : MonoBehaviour {
                     // Does full damage and speed if there is enough stamina
                     if (pc.useStamina(0.15f))
                     {
+                        swing.Play();
                         fullPower = true;
                         swingTime = 0.01f;
                         StartCoroutine(Swing());
