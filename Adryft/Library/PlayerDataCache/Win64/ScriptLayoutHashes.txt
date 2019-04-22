@@ -200,6 +200,7 @@ fc061f3ae8a876c0687e86378d4a447c UnityEngine.Networking.dll:UnityEngine.Networki
 943142a08aaffe9e4b553982f75e2e4d Assembly-CSharp.dll:.SlugHeal
 835999720c64ca72971bdcd599094aa9 Assembly-CSharp.dll:TMPro.Examples.ObjectSpin
 72a8523b432c0a5317826b7a9e0a0e79 Unity.TextMeshPro.dll:TMPro.PackageResourceImporterWindow
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.PlayerHitSound
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:TMPro.TMP_DigitValidator
 fe7e9583cd3b3436d7da5682e9bb3596 Assembly-CSharp.dll:.Checkpoint
 fdf3b7b8c11693da574645f94eace9c9 Assembly-CSharp.dll:.CameraController
@@ -248,9 +249,11 @@ f7dde43371003df0435af6f9df05256c Assembly-CSharp.dll:TMPro.Examples.Benchmark04
 eabb14b55dc317646709e1aaab0543fb Assembly-CSharp.dll:TMPro.Examples.Benchmark02
 9ecabe4a6b0b699f4890bde3b3e4b3b9 Assembly-CSharp.dll:TMPro.Examples.TMP_UiFrameRateCounter
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:TMPro.Examples.VertexColorCycler
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.Flicker2
 7e7ee21ab8ff1f2eb206565d6caa2bfd Assembly-CSharp.dll:TMPro.Examples.VertexZoom
 ee7a809daca407c85ed8eec3ee922049 Assembly-CSharp.dll:.ZeroGscript
 e04611b8715e6833d2bd7010fc6be10b Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.flicker
 5215564abdd6ebc43eb482eb1df310ce Assembly-CSharp.dll:.Pointer
 8ce712c004fddf1ebc65ee6757cd994e Assembly-CSharp.dll:TMPro.Examples.TMPro_InstructionOverlay
 d0771230d6d61d78f4cdcf7665978fa5 Assembly-CSharp.dll:.FlashDamageVFX
@@ -267,6 +270,3 @@ dd223b2cbb523615eee8980d99d61ddd Assembly-CSharp.dll:.EnvMapAnimator
 817531d964bdd1334442c92e0cfc612f Assembly-CSharp.dll:.ScreenFlash
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.pProjectileController
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.playerCombat
-486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.PlayerHitSound
-486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.flicker
-486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.Flicker2
