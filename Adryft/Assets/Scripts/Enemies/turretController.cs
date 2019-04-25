@@ -33,6 +33,7 @@ public class turretController : MonoBehaviour
     bool hivar;
     [SerializeField]
     private DIR[] noTurn = new DIR[8];
+    public bool genTurret = false;
 
 
     // Use this for initialization

@@ -207,7 +207,10 @@ public class gunController : MonoBehaviour {
         }
         yield return new WaitForSeconds(0.1F);
         canFire = true;
-        GameObject bullet = Instantiate(bulletCasing, transform.position, Quaternion.identity);
-        bullet.transform.up = transform.right;
+        if (!player.GetComponent<playerController>().zeroG)
+        {
+            GameObject bullet = Instantiate(bulletCasing, transform.position, Quaternion.identity);
+            bullet.transform.up = transform.right;
+        }
     }
 }
