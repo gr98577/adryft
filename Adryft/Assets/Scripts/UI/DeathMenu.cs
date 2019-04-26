@@ -15,7 +15,7 @@ public class DeathMenu : MonoBehaviour {
     void Start()
     {
         //pauseResume();
-        pc = GameObject.FindGameObjectWithTag("player").GetComponent<playerController>();
+        pc = GameObject.FindGameObjectWithTag("Player").GetComponent<playerController>();
     }
 
     public void pauseResume()

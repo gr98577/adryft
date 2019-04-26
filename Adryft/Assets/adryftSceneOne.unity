@@ -144,7 +144,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.25
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -13351,7 +13351,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.017892241, y: -0.057005882}
+  m_Offset: {x: -0.017892241, y: 0.11573219}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -13362,7 +13362,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7405641, y: 0.37148857}
+  m_Size: {x: 0.7405641, y: 0.42354584}
   m_EdgeRadius: 0
 --- !u!114 &1207713176
 MonoBehaviour:
@@ -17660,6 +17660,11 @@ Prefab:
         type: 2}
       propertyPath: m_Pitch
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82407277438173682, guid: 6a93e80137c599240acb817e56915f2a,
+        type: 2}
+      propertyPath: Loop
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a93e80137c599240acb817e56915f2a, type: 2}
@@ -65366,6 +65371,10 @@ Prefab:
       value: 
       objectReference: {fileID: 1579877376745352, guid: f786cd92c6a06d246bfc84c5a1c44dde,
         type: 2}
+    - target: {fileID: 1553713549998768, guid: 91fa30b04e55693468a0113845f5b5d3, type: 2}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91fa30b04e55693468a0113845f5b5d3, type: 2}
   m_IsPrefabAsset: 0
@@ -65501,6 +65510,10 @@ Prefab:
     - target: {fileID: 4218533951929360, guid: f786cd92c6a06d246bfc84c5a1c44dde, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1579877376745352, guid: f786cd92c6a06d246bfc84c5a1c44dde, type: 2}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f786cd92c6a06d246bfc84c5a1c44dde, type: 2}

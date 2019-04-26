@@ -64,12 +64,15 @@ public class FlashLight : MonoBehaviour
 
                 for (int i = 0; i < 200; i++)
                 {
+                    
                     float radian = (dirAngle + (deg * i)) * Mathf.Deg2Rad;
                     direction = new Vector2(Mathf.Cos(radian), Mathf.Sin(radian));
                     RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, Mathf.Infinity, mask.value);
 
                     //Vector3 temp = new Vector3(transform.position.x - hit.point.x, transform.position.y - hit.point.y, 0);
                     //verticies[i + 1] = temp;
+                    
+                    
                     verticies[i + 1] = transform.InverseTransformPoint(hit.point);
                     verticies[i + 1].z = 1;
 
@@ -77,6 +80,7 @@ public class FlashLight : MonoBehaviour
                 }
                 //gameObject.layer = 0;
 
+                
                 mesh.transform.position = transform.position;
 
                 verticies[0] = Vector3.zero;
@@ -85,6 +89,7 @@ public class FlashLight : MonoBehaviour
                 int[] triangles = new int[597];
                 for (int i = 0; i < 199; i++)
                 {
+                    
                     triangles[i * 3] = 0;
                     triangles[i * 3 + 1] = i + 2;
                     triangles[i * 3 + 2] = i + 1;

@@ -82,7 +82,7 @@ public class turretController : MonoBehaviour
             
             Vector3 shootDir;
 
-            shootDir = dir; //collects dir to be passed to EscalateToFire to determine what orientation of sprites to load
+            shootDir = dir; //collects dir to be passed to Escalator to determine what orientation of sprites to load
                             //this variable will have their x and y components rounded to the nearest integer after given some 
                             //"slack" in an attempt to make turrets more likely to turn to their proper directions when shooting
 
@@ -100,7 +100,7 @@ public class turretController : MonoBehaviour
                 shootDir.y = Mathf.Round(dir.y / 0.099f);
 
 
-                StartCoroutine(EscalateToFire(shootDir));  //(loads in semi-quick succession the 
+                StartCoroutine(Escalator(shootDir));  //(loads in semi-quick succession the 
                                                            //seen_start/end and fire_start/end sprites)
 
                 
@@ -108,7 +108,7 @@ public class turretController : MonoBehaviour
             }
             else
             {
-                StopCoroutine(EscalateToFire(shootDir));
+                StopCoroutine(Escalator(shootDir));
                 StartCoroutine(idleSwing(hit.transform.tag));
                 
             }
@@ -309,7 +309,7 @@ public class turretController : MonoBehaviour
 
     }
 
-    IEnumerator EscalateToFire(Vector3 shtDir)
+    IEnumerator Escalator(Vector3 shtDir)
     {
 
 
