@@ -11,6 +11,9 @@ public class FadeInOut : MonoBehaviour {
     [SerializeField]
     private float radius;
 
+    [SerializeField]
+    private bool isGas;
+
     private bool faded = true;
 
     private float startTime;
@@ -24,18 +27,21 @@ public class FadeInOut : MonoBehaviour {
         sprite = GetComponent<SpriteRenderer>();
         startTime = Time.time;
 
-        int x = Random.Range(0, 2);
-        if (x == 0)
+        if (isGas)
         {
-            sprite.sprite = Resources.Load<Sprite>("slug/Gas1");
-        }
-        else if (x == 1)
-        {
-            sprite.sprite = Resources.Load<Sprite>("slug/Gas2");
-        }
-        else
-        {
-            sprite.sprite = Resources.Load<Sprite>("slug/Gas3");
+            int x = Random.Range(0, 2);
+            if (x == 0)
+            {
+                sprite.sprite = Resources.Load<Sprite>("slug/Gas1");
+            }
+            else if (x == 1)
+            {
+                sprite.sprite = Resources.Load<Sprite>("slug/Gas2");
+            }
+            else
+            {
+                sprite.sprite = Resources.Load<Sprite>("slug/Gas3");
+            }
         }
     }
 

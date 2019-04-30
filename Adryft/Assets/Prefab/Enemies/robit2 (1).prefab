@@ -228,7 +228,7 @@ MonoBehaviour:
   damageFlash: {fileID: 1808185158270472, guid: 960f2604845dc3147993fc66851d6313,
     type: 2}
   killFlash: {fileID: 1942664495709768, guid: 886a489fdea3cba469f6a58644a64c23, type: 2}
-  healFlash: {fileID: 0}
+  healFlash: {fileID: 1987770680789058, guid: 8ea655ad7553d1742b2cb0f4e96fbfdc, type: 2}
   immune: 0
   immuneSound: {fileID: 0}
 --- !u!114 &114584752687737066

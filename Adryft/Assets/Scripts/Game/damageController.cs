@@ -165,6 +165,10 @@ public class damageController : MonoBehaviour {
         }
         GameObject clone = Instantiate(healFlash, transform.position, Quaternion.identity);
         StartCoroutine(greenFlash());
+        if (!player)
+        {
+            clone.GetComponent<Stick>().creator = gameObject;
+        }
     }
 
     // Main component of damage controller

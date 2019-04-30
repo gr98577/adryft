@@ -53,6 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 1.8
+  isGas: 1
 --- !u!212 &212599662195775458
 SpriteRenderer:
   m_ObjectHideFlags: 1
